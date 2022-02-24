@@ -1,23 +1,5 @@
 
 
-var canvas = null
-
-function setup() {
-
-    let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-    canvas = createCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 70);
-    canvas.parent("canvas-region")
-    canvas.style("display","table-row")
-    canvas.style("width","100%")
-}
-
-function windowResized() {
-    
-    let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-    resizeCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 70);
-    canvas.style("width","100%")
-}
-
 class FlowNode {
 
     constructor() {
@@ -48,6 +30,31 @@ class FlowNode {
     }
 }
 
+var canvas = null
+let nodes = []
+
+function setup() {
+
+    let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
+    canvas = createCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 70);
+    canvas.parent("canvas-region")
+    canvas.style("display","table-row")
+    canvas.style("width","100%")
+
+    for(let i = 0; i < 10; ++i) {
+        nodes.push(new FlowNode())
+        nodes[i].setX(i * 100)
+    }
+
+}
+
+function windowResized() {
+    
+    let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
+    resizeCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 70);
+    canvas.style("width","100%")
+}
+
 
 let test_node = new FlowNode()
 let currently_dragged = null
@@ -56,18 +63,23 @@ function draw() {
 
     background(220);
 
-    test_node.draw()
+    for (node of nodes) {
+        node.draw()
+    }
 
 }
 
 function mousePressed() {
 
     if (currently_dragged == null) {
-        if (test_node.isInVolume(mouseX, mouseY)) {
-            drag_offx = mouseX - test_node.x
-            drag_offy = mouseY - test_node.y
-            currently_dragged = test_node
+        for (node of nodes) {
+            if (node.isInVolume(mouseX, mouseY)) {
+                drag_offx = mouseX - node.x
+                drag_offy = mouseY - node.y
+                currently_dragged = node
+            }
         }
+        
     }
 
 }
