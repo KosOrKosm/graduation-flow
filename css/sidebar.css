@@ -46,6 +46,23 @@ main {
     background-color: #051937;
   }
 
+  .col-10 {
+    display:flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+    flex-direction: column;
+    text-align: center;
+    /*test variable to see container space*/
+    background:red;
+}
 
-
+  #p5_canvas { 
+    border-radius: 0px;
+    background: rgba(246, 246, 247, 0.863);
+    border: 1px solid;
+    padding: 0px;
+    margin: 0% auto;
+    width:200px;
+    flex: 1;
+  }
 

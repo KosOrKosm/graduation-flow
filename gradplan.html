@@ -19,50 +19,68 @@
 <body>
     <!-- OUR CODE STARTS HERE -->
 
-    <!-- sidebar-->
+   
     <!-- h-100 takes the full height of the body-->
     <div class="container-fluid h-100">
         <!-- h-100 takes the full height of the container-->
         <div class="row h-100">
+             <!-- sidebar-->
             <div class="col-2" role="navigation">
                 <!-- Navigation links in sidebar-->
                 <a href="./index.html">Home</a><br />
                 <br />
-                <a href="./gradplan.html" style="color: #00bf72;">Grad Planner</a><br /> <!--change single style to class-->
+                <a href="./gradplan.html" style="color: #00bf72;">Grad Planner</a><br />
+                <!--change single style to class-->
                 <br />
                 <a href="./about.html">About</a><br />
                 <br />
             </div>
 
-            <div class="col-10" style="padding: 0;">
-                <!-- Top navbar -->
-                <nav class="navbar navbar-expand-lg navbar-dark">
-                    <!-- Hamburger button that toggles the navbar-->
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <!-- navbar links -->
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-item nav-link" href="#">SAVE</a>
-                            <a class="nav-item nav-link" href="#">LOAD</a>
-                            <a class="nav-item nav-link" href="#">EXPORT</a>
-                            <a class="nav-item nav-link" href="#">PRINT</a>
-                            <a class="nav-item nav-link" href="#">RESET</a>
 
+            <!-- anything to the right of column 2 (side bar) must go below here-->
+            <div class="col-10" style="padding: 0;">
+                <div class="container-fluid h-100">
+                    <!-- Top navbar -->
+                    <div class="row h-20">
+                        <div class="col" style="padding:0;">
+                            <nav class="navbar navbar-expand-lg navbar-dark">
+                                <!-- Hamburger button that toggles the navbar-->
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <!-- navbar links -->
+                                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                    <div class="navbar-nav">
+                                        <a class="nav-item nav-link" href="#">SAVE</a>
+                                        <a class="nav-item nav-link" href="#">LOAD</a>
+                                        <a class="nav-item nav-link" href="#">EXPORT</a>
+                                        <a class="nav-item nav-link" href="#">PRINT</a>
+                                        <a class="nav-item nav-link" href="#">RESET</a>
+                                    </div>
+                                </div>
+                            </nav>
                         </div>
                     </div>
-                </nav>
 
-                <!-- Contains the main content of the webpage-->
-                <p style="padding: 15px; text-align: justify;">
-                    p5-canvas
-                </p>
+                    <!-- p5 canvas div-->
+                    <div class="row">
+                        <div class="col-12" id= "p5_canvas" style="padding:0; border:5px solid red; "> <!--delete border:1px solid red, just visual aid-->
+                        insert p5 stuff here. flex box grows. 
+                       
+                        </div>
+                        
+                    </div>
 
+
+
+                </div>
             </div>
         </div>
+
+    </div>
+    </div>
     </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
