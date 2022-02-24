@@ -1,0 +1,96 @@
+body {
+  background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  color: white;
+  min-height: 100vh;
+}
+
+/* the side bar itself */
+.navBar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/*the links on the side bar */
+.navBar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 30px;
+  color: #818181;
+  display: block;
+}
+/* hover over links */
+.navBar a:hover {
+  color: #f1f1f1;
+}
+/* for the big word Grad Planner */
+.mainPAGE {
+  padding-top: 400px;
+}
+
+/* specifically for the big word Grad Planner */
+.TitleWord {
+  font-size: 80px;
+}
+
+
+
+/* css for that super special button, might make the title and subtitle look pretty too at some point */
+.homeButton {
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+  /*position of button below */
+  right: 870px;
+  position:absolute;
+}
+
+.homeButton:active,
+.homeButton:hover {
+  outline: 0;
+}
+
+.homeButton span {
+  background-color: rgb(5, 6, 45);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.homeButton:hover span {
+  background: none;
+}
+
+@media (min-width: 768px) {
+  .homeButton {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+
