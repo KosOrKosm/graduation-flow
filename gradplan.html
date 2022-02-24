@@ -16,72 +16,22 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<body>
+<body style="display:flex;flex-direction:row">
     <!-- OUR CODE STARTS HERE -->
 
+    <div class="navBar" style="position:relative;">
+        <!-- page link goes where # is-->
+        <a href="./index.html">Home</a>
+        <a href="./gradplan.html" style="color:lightgreen">Grad Planner</a>
+        <a href="./about.html">About</a>
+    </div>
+
+    <div id="canvas-region" style="display:table;width:calc(100% - 160px);height:100%;">
+        <div id="bar" style="height:70px;background-color:#111;"></div>
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+        <script src="main-canvas.js"></script>
+    </div>
    
-    <!-- h-100 takes the full height of the body-->
-    <div class="container-fluid h-100">
-        <!-- h-100 takes the full height of the container-->
-        <div class="row h-100">
-             <!-- sidebar-->
-            <div class="col-2" role="navigation">
-                <!-- Navigation links in sidebar-->
-                <a href="./index.html">Home</a><br />
-                <br />
-                <a href="./gradplan.html" style="color: #00bf72;">Grad Planner</a><br />
-                <!--change single style to class-->
-                <br />
-                <a href="./about.html">About</a><br />
-                <br />
-            </div>
-
-
-            <!-- anything to the right of column 2 (side bar) must go below here-->
-            <div class="col-10" style="padding: 0;">
-                <div class="container-fluid h-100">
-                    <!-- Top navbar -->
-                    <div class="row h-20">
-                        <div class="col" style="padding:0;">
-                            <nav class="navbar navbar-expand-lg navbar-dark">
-                                <!-- Hamburger button that toggles the navbar-->
-                                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                    data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <!-- navbar links -->
-                                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                                    <div class="navbar-nav">
-                                        <a class="nav-item nav-link" href="#">SAVE</a>
-                                        <a class="nav-item nav-link" href="#">LOAD</a>
-                                        <a class="nav-item nav-link" href="#">EXPORT</a>
-                                        <a class="nav-item nav-link" href="#">PRINT</a>
-                                        <a class="nav-item nav-link" href="#">RESET</a>
-                                    </div>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-
-                    <!-- p5 canvas div-->
-                    <div class="row">
-                        <div class="col-12" id= "p5_canvas" style="padding:0; border:5px solid red; "> <!--delete border:1px solid red, just visual aid-->
-                        insert p5 stuff here. flex box grows. 
-                       
-                        </div>
-                        
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-    </div>
-    </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
