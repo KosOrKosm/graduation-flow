@@ -1,0 +1,34 @@
+/* font import for righteousregular" */ 
+@font-face {
+    font-family: "righteousregular";
+    src: url("./font/righteous-regular/righteous-regular-webfont.woff2") format('woff2'),
+         url("./font/righteous-regular/righteous-regular-webfont.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    height:100%; /*adding this to the body will strectch the gradient*/
+  }
+  
+body {
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    background-repeat: no-repeat;
+  }
+
+.logo {
+    height:auto; 
+    width:50px;
+}
+
+.title {
+    font-family: "righteousregular", cursive; /* cursive as second choice to catch font-face errors easily*/
+    font-size: 80px;
+}
+
+.subheading {
+    font-size: 15px;
+
+}
+
+
