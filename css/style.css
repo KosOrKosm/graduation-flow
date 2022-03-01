@@ -1,34 +1,77 @@
-/* font import for righteousregular" */ 
-@font-face {
-    font-family: "righteousregular";
-    src: url("./font/righteous-regular/righteous-regular-webfont.woff2") format('woff2'),
-         url("./font/righteous-regular/righteous-regular-webfont.woff") format('woff');
+ /* font 1 of 3 for Titles (h1)*/ 
+ @font-face {
+    font-family: 'righteous';
+    src: url('./font/righteous/righteous-regular.eot'); /* IE9 Compat Modes */
+    src: url('./font/righteous/righteous-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('./font/righteous/righteous-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('./font/righteous/righteous-regular.woff') format('woff'), /* Pretty Modern Browsers */
+         url('./font/righteous/righteous-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('./font/righteous/righteous-regular.svg#righteous') format('svg'); /* Legacy iOS */
     font-weight: normal;
     font-style: normal;
 }
 
+/* font 2 of 3 for Headings (h2-h6)*/ 
+@font-face {
+    font-family: 'titilliumweb';
+    src: url('./font/titilliumweb/titilliumweb-regular.eot');
+    src: url('./font/titilliumweb/titilliumweb-regular.eot?#iefix') format('embedded-opentype'),
+         url('./font/titilliumweb/titilliumweb-regular.woff') format('woff'),
+         url('./font/titilliumweb/titilliumweb-regular.ttf') format('truetype'),
+         url('./font/titilliumweb/titilliumweb-regular.svg#titilliumweb') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* font 3 of 3 for normal text*/
+@font-face {
+    font-family: 'robotoslab';
+    src: url('./font/robotoslab/robotoslab.eot');
+    src: url('./font/robotoslab/robotoslab.eot?#iefix') format('embedded-opentype'),
+         url('./font/robotoslab/robotoslab.woff2') format('woff2'),
+         url('./font/robotoslab/robotoslab.woff') format('woff'),
+         url('./font/robotoslab/robotoslab.ttf') format('truetype'),
+         url('./font/robotoslab/robotoslab.svg#robotoslab') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 html {
-    height:100%; /*adding this to the body will strectch the gradient*/
-  }
+    /*adding height to the body will stretch the gradient*/
+    height: 100%; 
+}
   
+
 body {
     background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
-    background-repeat: no-repeat;
-  }
+    background-repeat:no-repeat;
+}
 
 .logo {
     height:auto; 
-    width:50px;
-}
-
-.title {
-    font-family: "righteousregular", cursive; /* cursive as second choice to catch font-face errors easily*/
-    font-size: 80px;
-}
-
-.subheading {
-    font-size: 15px;
-
+    width:80px;
 }
 
 
+h1 {
+    font-family: 'righteous', cursive; /* cursive as second choice to catch font-face errors easily*/
+    font-size:70px;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: "titilliumweb", cursive;
+}
+
+h2 {
+    font-size: 70px;
+}
+
+h3 {
+    font-size: 55px;
+}
+
+p {
+    font-size:20px;
+    font-family: 'robotoslab', cursive;
+}
