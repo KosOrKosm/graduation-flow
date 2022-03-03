@@ -54,10 +54,10 @@ class FlowNode {
         textAlign(CENTER, CENTER)
         text(
             "Introduction to Mathmatics", 
-            this.x + FlowNode.textPadding,
-            this.y + FlowNode.tabSizeY + FlowNode.textPadding,
-            FlowNode.sizeX - FlowNode.textPadding * 2,
-            FlowNode.sizeY - FlowNode.tabSizeY - FlowNode.textPadding,
+            this.x + FlowNode.#textPadding,
+            this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
+            FlowNode.#sizeX - FlowNode.#textPadding * 2,
+            FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
         )
     }
 }
@@ -91,7 +91,7 @@ function windowResized() {
 
 function draw() {
 
-    background(220);
+    clear()
 
     for (node of nodes) {
         node.draw()
