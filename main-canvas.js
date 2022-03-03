@@ -2,16 +2,20 @@
 
 class FlowNode {
 
-    static sizeX = 100
-    static sizeY = 70
-    static tabSizeY = 20
-    static textPadding = 3
+    // Public node fields
+    x = 0
+    y = 0
 
-    constructor(tabColor) {
+    // Private + static node fields
+    static #sizeX = 100
+    static #sizeY = 70
+    static #tabSizeY = 20
+    static #textPadding = 3
 
-        this.x = 0
-        this.y = 0
-        this.beingDragged = false
+    constructor(x, y, tabColor) {
+
+        this.x = x
+        this.y = y
         this.tabColor = tabColor
 
     }
@@ -27,25 +31,25 @@ class FlowNode {
     isInVolume(_x, _y) {
         return  this.x <= _x && 
                 this.y <= _y && 
-                this.x + FlowNode.sizeX >= _x && 
-                this.y + FlowNode.tabSizeY >= _y
+                this.x + FlowNode.#sizeX >= _x && 
+                this.y + FlowNode.#tabSizeY >= _y
     }
 
     draw() {
         fill('white')
-        rect(this.x, this.y, FlowNode.sizeX, FlowNode.sizeY, 5)
+        rect(this.x, this.y, FlowNode.#sizeX, FlowNode.#sizeY, 5)
         fill(this.tabColor)
-        rect(this.x, this.y, FlowNode.sizeX, FlowNode.tabSizeY, 5)
+        rect(this.x, this.y, FlowNode.#sizeX, FlowNode.#tabSizeY, 5)
 
-        textSize(FlowNode.tabSizeY - FlowNode.textPadding * 2)
+        textSize(FlowNode.#tabSizeY - FlowNode.#textPadding * 2)
         textAlign(CENTER, TOP)
         fill('black')
         text(
             "MATH101", 
-            this.x + FlowNode.textPadding,
-            this.y + FlowNode.textPadding,
-            FlowNode.sizeX - FlowNode.textPadding * 2,
-            FlowNode.sizeY - FlowNode.textPadding * 2,
+            this.x + FlowNode.#textPadding,
+            this.y + FlowNode.#textPadding,
+            FlowNode.#sizeX - FlowNode.#textPadding * 2,
+            FlowNode.#sizeY - FlowNode.#textPadding * 2,
         )
         textAlign(CENTER, CENTER)
         text(
@@ -73,8 +77,7 @@ function setup() {
 
     let testNodeColors = ["maroon", "violet", "cyan", "green", "orange"]
     for(let i = 0; i < 10; ++i) {
-        nodes.push(new FlowNode(testNodeColors[i % testNodeColors.length]))
-        nodes[i].setX(i * 100)
+        nodes.push(new FlowNode(i * 100, 0, testNodeColors[i % testNodeColors.length]))
     }
 
 }
