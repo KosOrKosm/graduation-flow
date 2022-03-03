@@ -35,11 +35,14 @@ class FlowNode {
     }
 
     draw() {
+        stroke('rgb(0,0,0)')
+        strokeWeight(2)
         fill('white')
         rect(this.x, this.y, FlowNode.#sizeX, FlowNode.#sizeY, 5)
         fill(this.tabColor)
         rect(this.x, this.y, FlowNode.#sizeX, FlowNode.#tabSizeY, 5)
 
+        strokeWeight(0)
         textSize(FlowNode.#tabSizeY - FlowNode.#textPadding * 2)
         textAlign(CENTER, TOP)
         fill('black')
@@ -61,6 +64,32 @@ class FlowNode {
     }
 }
 
+class GenericPopup {
+
+    constructor() {
+
+    }
+
+    draw() {
+        strokeWeight(4)
+        stroke(50)
+        fill('white')
+
+        let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
+        let canvasWidth = windowWidth - canvasRegion.left
+        let canvasHeight = windowHeight - canvasRegion.top - 70
+        
+        rect(
+            canvasWidth / 2 - canvasWidth / 4, 
+            canvasHeight / 2 - canvasHeight / 4,
+            canvasWidth / 2,
+            canvasHeight / 2,
+            20
+        )
+    }
+
+}
+
 var canvas = null
 let nodes = []
 let dragging = false
@@ -68,6 +97,7 @@ let currently_dragged = null
 let drag_offx = 0, drag_offy = 0
 let fadeForeground = false
 let fadeForegroundAlpha = 0.5
+let curPopup = true
 
 function setup() {
 
@@ -102,6 +132,11 @@ function draw() {
     if (fadeForeground) {
         fill(`rgba(0,0,0,${fadeForegroundAlpha})`);
         rect(-2, -2, windowWidth, windowHeight)
+
+        if(curPopup != null)
+            curPopup.draw()
+        else
+            fadeForeground = false
     }
 
 }
@@ -144,11 +179,13 @@ function mouseReleased() {
     if (fadeForeground) {
 
         fadeForeground = false
+        curPopup = null
 
     } else if (!dragging) {
 
         for (node of nodes) {
             if (node.isInVolume(mouseX, mouseY)) {
+                curPopup = new GenericPopup()
                 fadeForeground = true
             }
         }
