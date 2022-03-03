@@ -5,6 +5,7 @@ class FlowNode {
     static sizeX = 100
     static sizeY = 70
     static tabSizeY = 20
+    static textPadding = 3
 
     constructor(tabColor) {
 
@@ -35,6 +36,25 @@ class FlowNode {
         rect(this.x, this.y, FlowNode.sizeX, FlowNode.sizeY, 5)
         fill(this.tabColor)
         rect(this.x, this.y, FlowNode.sizeX, FlowNode.tabSizeY, 5)
+
+        textSize(FlowNode.tabSizeY - FlowNode.textPadding * 2)
+        textAlign(CENTER, TOP)
+        fill('black')
+        text(
+            "MATH101", 
+            this.x + FlowNode.textPadding,
+            this.y + FlowNode.textPadding,
+            FlowNode.sizeX - FlowNode.textPadding * 2,
+            FlowNode.sizeY - FlowNode.textPadding * 2,
+        )
+        textAlign(CENTER, CENTER)
+        text(
+            "Introduction to Mathmatics", 
+            this.x + FlowNode.textPadding,
+            this.y + FlowNode.tabSizeY + FlowNode.textPadding,
+            FlowNode.sizeX - FlowNode.textPadding * 2,
+            FlowNode.sizeY - FlowNode.tabSizeY - FlowNode.textPadding,
+        )
     }
 }
 
