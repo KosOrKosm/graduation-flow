@@ -24,6 +24,13 @@ class FlowNode {
         return  this.x <= _x && 
                 this.y <= _y && 
                 this.x + FlowNode.#sizeX >= _x && 
+                this.y + FlowNode.#sizeY >= _y
+    }
+
+    isInTabVolume(_x, _y) {
+        return  this.x <= _x && 
+                this.y <= _y && 
+                this.x + FlowNode.#sizeX >= _x && 
                 this.y + FlowNode.#tabSizeY >= _y
     }
 
@@ -56,6 +63,7 @@ class FlowNode {
 
 var canvas = null
 let nodes = []
+let dragging = false
 let currently_dragged = null
 let drag_offx = 0, drag_offy = 0
 let fadeForeground = false
@@ -98,27 +106,6 @@ function draw() {
 
 }
 
-function mouseClicked() {
-
-    if (fadeForeground) {
-
-    } else {
-
-        if (currently_dragged != null)
-            return
-
-        for (node of nodes) {
-            if (node.isInVolume(mouseX, mouseY)) {
-                drag_offx = mouseX - node.x
-                drag_offy = mouseY - node.y
-                currently_dragged = node
-            }
-        }
-
-    }
-
-}
-
 function mousePressed() {
 
     if (fadeForeground) {
@@ -127,7 +114,7 @@ function mousePressed() {
 
         if (currently_dragged == null) {
             for (node of nodes) {
-                if (node.isInVolume(mouseX, mouseY)) {
+                if (node.isInTabVolume(mouseX, mouseY)) {
                     drag_offx = mouseX - node.x
                     drag_offy = mouseY - node.y
                     currently_dragged = node
@@ -142,6 +129,8 @@ function mousePressed() {
 
 function mouseDragged() {
 
+    dragging = true
+
     if (currently_dragged != null) {
         currently_dragged.x = (mouseX - drag_offx)
         currently_dragged.y = (mouseY - drag_offy)
@@ -151,5 +140,22 @@ function mouseDragged() {
 
 
 function mouseReleased() {
+
+    if (fadeForeground) {
+
+        fadeForeground = false
+
+    } else if (!dragging) {
+
+        for (node of nodes) {
+            if (node.isInVolume(mouseX, mouseY)) {
+                fadeForeground = true
+            }
+        }
+
+    }
+
+    dragging = false
     currently_dragged = null
+
 }
