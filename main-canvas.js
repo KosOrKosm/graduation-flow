@@ -58,6 +58,8 @@ var canvas = null
 let nodes = []
 let currently_dragged = null
 let drag_offx = 0, drag_offy = 0
+let fadeForeground = false
+let fadeForegroundAlpha = 0.5
 
 function setup() {
 
@@ -89,11 +91,22 @@ function draw() {
         node.draw()
     }
 
+    if (fadeForeground) {
+        fill(`rgba(0,0,0,${fadeForegroundAlpha})`);
+        rect(-2, -2, windowWidth, windowHeight)
+    }
+
 }
 
-function mousePressed() {
+function mouseClicked() {
 
-    if (currently_dragged == null) {
+    if (fadeForeground) {
+
+    } else {
+
+        if (currently_dragged != null)
+            return
+
         for (node of nodes) {
             if (node.isInVolume(mouseX, mouseY)) {
                 drag_offx = mouseX - node.x
@@ -101,7 +114,28 @@ function mousePressed() {
                 currently_dragged = node
             }
         }
-        
+
+    }
+
+}
+
+function mousePressed() {
+
+    if (fadeForeground) {
+
+    } else {
+
+        if (currently_dragged == null) {
+            for (node of nodes) {
+                if (node.isInVolume(mouseX, mouseY)) {
+                    drag_offx = mouseX - node.x
+                    drag_offy = mouseY - node.y
+                    currently_dragged = node
+                }
+            }
+            
+        }
+
     }
 
 }
