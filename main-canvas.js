@@ -96,7 +96,8 @@ let dragging = false
 let currently_dragged = null
 let drag_offx = 0, drag_offy = 0
 let fadeForeground = false
-let fadeForegroundAlpha = 0.5
+let fadeForegroundAlpha = 0
+let fadeForegroundAlphaTarget = 0.5
 let curPopup = true
 
 function setup() {
@@ -130,6 +131,10 @@ function draw() {
     }
 
     if (fadeForeground) {
+
+        if(fadeForegroundAlpha < fadeForegroundAlphaTarget)
+            fadeForegroundAlpha += fadeForegroundAlphaTarget / 7
+
         fill(`rgba(0,0,0,${fadeForegroundAlpha})`);
         rect(-2, -2, windowWidth, windowHeight)
 
@@ -178,6 +183,7 @@ function mouseReleased() {
 
     if (fadeForeground) {
 
+        fadeForegroundAlpha = 0
         fadeForeground = false
         curPopup = null
 
