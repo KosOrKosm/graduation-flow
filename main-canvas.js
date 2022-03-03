@@ -2,11 +2,16 @@
 
 class FlowNode {
 
-    constructor() {
+    static sizeX = 100
+    static sizeY = 70
+    static tabSizeY = 20
+
+    constructor(tabColor) {
 
         this.x = 0
         this.y = 0
         this.beingDragged = false
+        this.tabColor = tabColor
 
     }
 
@@ -19,19 +24,24 @@ class FlowNode {
     }
 
     isInVolume(_x, _y) {
-        return this.x <= _x && this.y <= _y && this.x + 100 >= _x && this.y + 20 >= _y
+        return  this.x <= _x && 
+                this.y <= _y && 
+                this.x + FlowNode.sizeX >= _x && 
+                this.y + FlowNode.tabSizeY >= _y
     }
 
     draw() {
         fill('white')
-        rect(this.x, this.y, 100, 70, 5)
-        fill('maroon')
-        rect(this.x, this.y, 100, 20, 5)
+        rect(this.x, this.y, FlowNode.sizeX, FlowNode.sizeY, 5)
+        fill(this.tabColor)
+        rect(this.x, this.y, FlowNode.sizeX, FlowNode.tabSizeY, 5)
     }
 }
 
 var canvas = null
 let nodes = []
+let currently_dragged = null
+let drag_offx = 0, drag_offy = 0
 
 function setup() {
 
@@ -41,8 +51,9 @@ function setup() {
     canvas.style("display","table-row")
     canvas.style("width","100%")
 
+    let testNodeColors = ["maroon", "violet", "cyan", "green", "orange"]
     for(let i = 0; i < 10; ++i) {
-        nodes.push(new FlowNode())
+        nodes.push(new FlowNode(testNodeColors[i % testNodeColors.length]))
         nodes[i].setX(i * 100)
     }
 
@@ -55,10 +66,6 @@ function windowResized() {
     canvas.style("width","100%")
 }
 
-
-let test_node = new FlowNode()
-let currently_dragged = null
-let drag_offx = 0, drag_offy = 0
 function draw() {
 
     background(220);
