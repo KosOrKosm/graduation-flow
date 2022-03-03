@@ -10,20 +10,37 @@
 
 <body>
      <!--Header Navigation-->
-     <ul>
-      <li><a href="#">SAVE</a></li>
-      <li><a href="#">LOAD</a></li>
-      <li><a href="#">EXPORT</a></li>
-      <li><a href="#">PRINT</a></li>
-      <li><a href="#">RESET</a></li>
-    </ul>
-  
-    <!--Sidebar Navigation-->
-    <ul>
-      <li><a href="./index.html">Home</a></li>
-      <li><a href="./gradflow.html">GradFlow</a></li>
-      <li><a href="./about.html">About</a></li>
-    </ul>
+     <div class="header">
+      <div class="left">
+        <div class="logo">
+          <span>
+            <a href="./index.html">
+              <img class="logo img" src="./img/logo.svg" alt="GradFlow Logo">
+            </a>
+           </span>
+        </div>
+        <ul class="links">
+          <li><a href="./gradflow.html">Create</a></li>
+          <li><a href="./about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="right">
+        <button class="placeholder">
+          placeholder
+        </button>
+        <div class="profile-image"></div>
+      </div>
+    </div>
+
+    <div class = "gradHeader">
+      <a href="#">SAVE</a>
+      <a href="#">LOAD</a>
+      <a href="#">EXPORT</a>
+      <a href="#">PRINT</a>
+      <div class = "gradHeader-right">
+        <a href="#">RESET</a>
+      </div>
+  </div>
 
   <div id="canvas-region">
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
@@ -31,7 +48,11 @@
   </div>
 
   <!--Footer-->
-  <p>GradFlow © | 2022</p>
-  <p><a href="https://github.com/KosOrKosm/graduation-flow.git">GitHub</a></p>
+  <div class="footer">
+    <ul class="left-links">
+      <p>GradFlow © | 2022</p>
+      <p><a href="https://github.com/KosOrKosm/graduation-flow.git">GitHub</a></p>
+    </ul>
+  </div>
 </body>
 </html>
