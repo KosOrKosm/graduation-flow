@@ -20,14 +20,6 @@ class FlowNode {
 
     }
 
-    setX(newX) {
-        this.x = newX
-    }
-
-    setY(newY) {
-        this.y = newY
-    }
-
     isInVolume(_x, _y) {
         return  this.x <= _x && 
                 this.y <= _y && 
@@ -117,8 +109,8 @@ function mousePressed() {
 function mouseDragged() {
 
     if (currently_dragged != null) {
-        currently_dragged.setX(mouseX - drag_offx)
-        currently_dragged.setY(mouseY - drag_offy)
+        currently_dragged.x = (mouseX - drag_offx)
+        currently_dragged.y = (mouseY - drag_offy)
     }
 
 }
