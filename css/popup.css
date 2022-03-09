@@ -1,0 +1,31 @@
+.form-popup {
+    display: none;
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:300px;
+    height:400px;
+    margin-left:-150px;
+    margin-top:-200px;
+    border: 3px solid #f1f1f1;
+    background-color: white;
+    z-index: 9;
+  }
+  
+  .form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+  }
+
+  
+  .form-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  
