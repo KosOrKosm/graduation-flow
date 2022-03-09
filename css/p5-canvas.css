@@ -13,7 +13,7 @@
     background-color:#111;
 }
 
-.create.btn {
+.btn.btn-create {
     display:block;
     position:fixed;
     z-index:8;

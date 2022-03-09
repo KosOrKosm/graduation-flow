@@ -6,6 +6,9 @@ class FlowNode {
     x = 0
     y = 0
 
+    className = "Introduction to Mathmatics"
+    classCode = "MATH101"
+
     // Private + static node fields
     static #sizeX = 100
     static #sizeY = 70
@@ -47,7 +50,7 @@ class FlowNode {
         textAlign(CENTER, TOP)
         fill('black')
         text(
-            "MATH101", 
+            this.classCode, 
             this.x + FlowNode.#textPadding,
             this.y + FlowNode.#textPadding,
             FlowNode.#sizeX - FlowNode.#textPadding * 2,
@@ -55,39 +58,13 @@ class FlowNode {
         )
         textAlign(CENTER, CENTER)
         text(
-            "Introduction to Mathmatics", 
+            this.className, 
             this.x + FlowNode.#textPadding,
             this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
             FlowNode.#sizeX - FlowNode.#textPadding * 2,
             FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
         )
     }
-}
-
-class GenericPopup {
-
-    constructor() {
-
-    }
-
-    draw() {
-        strokeWeight(4)
-        stroke(50)
-        fill('white')
-
-        let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-        let canvasWidth = windowWidth - canvasRegion.left
-        let canvasHeight = windowHeight - canvasRegion.top - 70
-        
-        rect(
-            canvasWidth / 2 - canvasWidth / 4, 
-            canvasHeight / 2 - canvasHeight / 4,
-            canvasWidth / 2,
-            canvasHeight / 2,
-            20
-        )
-    }
-
 }
 
 var canvas = null
@@ -99,13 +76,13 @@ let fadeForeground = false
 let fadeForegroundAlpha = 0
 let fadeForegroundAlphaTarget = 0.5
 let curPopup = true
+let selectedNode = null
 
 function setup() {
 
     let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
     canvas = createCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 70);
     canvas.parent("canvas-region")
-    canvas.style("display","table-row")
     canvas.style("width","100%")
 
     let testNodeColors = ["maroon", "violet", "cyan", "green", "orange"]
@@ -138,10 +115,6 @@ function draw() {
         fill(`rgba(0,0,0,${fadeForegroundAlpha})`);
         rect(-2, -2, windowWidth, windowHeight)
 
-        if(curPopup != null)
-            curPopup.draw()
-        else
-            fadeForeground = false
     }
 
 }
@@ -185,14 +158,19 @@ function mouseReleased() {
 
         fadeForegroundAlpha = 0
         fadeForeground = false
+        curPopup.style.display="none"
         curPopup = null
 
     } else if (!dragging) {
 
         for (node of nodes) {
             if (node.isInVolume(mouseX, mouseY)) {
-                curPopup = new GenericPopup()
+                curPopup = document.getElementById("modify-node-form")
+                curPopup.style.display="block"
                 fadeForeground = true
+                selectedNode = node
+                //nodes = nodes.filter(item => item !== node)
+                break
             }
         }
 

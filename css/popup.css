@@ -20,12 +20,16 @@
 
   
   .form-container .btn {
-    background-color: #04AA6D;
+    background: #04AA6D;
     color: white;
     padding: 16px 20px;
     cursor: pointer;
     width: 100%;
     margin-bottom:10px;
     opacity: 0.8;
+  }
+
+  .btn.btn-delete {
+      background:red;
   }
   
