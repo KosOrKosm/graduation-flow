@@ -184,6 +184,14 @@ function create() {
     nodes.push(new FlowNode(0, 300, "orange"))
 }
 
+function onClickCreateCustomNode() {
+    let btn = document.getElementById("btn-create-custom")
+    let popup = document.getElementById("create-node-form")
+
+    nodes.push(new FlowNode(0, 300, "orange"))
+    popup.style.display="none"
+}
+
 function onClickCreate() {
     let btn = document.getElementById("btn-create")
     let popup = document.getElementById("create-node-form")
@@ -192,4 +200,22 @@ function onClickCreate() {
     curPopup = popup
     fadeForeground = true
 }
+
+function onClickDeleteSelectedNode() {
+    let btn = document.getElementById("btn-delete")
+    let popup = document.getElementById("modify-node-form")
+    
+    nodes = nodes.filter(item => item !== selectedNode)
+    popup.style.display="none"
+}
+
+function openForm() {
+  document.getElementById("create-node-form").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("create-node-form").style.display = "none";
+}
+
+
 
