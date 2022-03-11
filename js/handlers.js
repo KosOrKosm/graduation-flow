@@ -25,3 +25,11 @@ function onClickDeleteSelectedNode() {
     nodes = nodes.filter(item => item !== selectedNode)
     
 }
+
+function openForm() {
+    window.mainCanvas.showPopup("create-node-form")
+}
+
+function closeForm() {
+    window.mainCanvas.hideLastPopup()
+}

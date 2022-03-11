@@ -1,5 +1,3 @@
-
-
 class FlowNode {
 
     // Public node fields
@@ -192,16 +190,16 @@ class MainCanvas {
         this.curPopup.style.display="block"
         this.fadeForeground = true
     }
-
+    
 }
 
-window.mainCanvas = new MainCanvas()
+mainCanvas = new MainCanvas()
 
 // Mount main canvas functions to the locations p5 expects them
-window.setup = window.mainCanvas.setup
-window.draw = window.mainCanvas.draw
-window.windowResized = window.mainCanvas.windowResized
-window.mousePressed = window.mainCanvas.mousePressed
-window.mouseDragged = window.mainCanvas.mouseDragged
-window.mouseReleased = window.mainCanvas.mouseReleased
+window.setup = mainCanvas.setup.bind(mainCanvas)
+window.draw = mainCanvas.draw.bind(mainCanvas)
+window.windowResized = mainCanvas.windowResized.bind(mainCanvas)
+window.mousePressed = mainCanvas.mousePressed.bind(mainCanvas)
+window.mouseDragged = mainCanvas.mouseDragged.bind(mainCanvas)
+window.mouseReleased = mainCanvas.mouseReleased.bind(mainCanvas)
 
