@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>GradFlow</title>
+  <link rel="icon" href="img/logo.png">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/popup.css">
+  <script src="../addons/p5.dom.min.js"></script>
+</head>
+
+<body>
+     <!--Header Navigation-->
+     <div class="header">
+      <div class="left">
+        <div class="logo">
+          <span>
+            <a href="./index.html">
+              <img class="logo img" src="./img/logo.svg" alt="GradFlow Logo">
+            </a>
+           </span>
+        </div>
+        <ul class="links">
+          <li><a href="./gradflow.html">Create</a></li>
+          <li><a href="./about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="right">
+        <button class="placeholder">
+          placeholder
+        </button>
+        <div class="profile-image"></div>
+      </div>
+    </div>
+
+    <div class = "gradHeader">
+      <a href="#">SAVE</a>
+      <a href="#">LOAD</a>
+      <a href="#">EXPORT</a>
+      <a href="#">PRINT</a>
+      <div class = "gradHeader-right">
+        <a href="javascript:void(0)" onclick="openForm()">ADD</a>
+        <a href="#">RESET</a>
+      </div>
+  </div>
+
+  <!--popups-->
+
+  <!-- Create Custom Node Popup-->
+  <div class="form-popup create-node-form" id="create-node-form">
+    <form action="/about.html" class="form-container">
+      <h1>Input Custom Course</h1>
+  
+      <label for="c-name"><b>Course Name</b></label>
+      <input type="text" placeholder="Enter Course Name" name="c-name" required>
+  
+      <label for="c-units"><b>Units</b></label>
+      <input type="text" placeholder="Enter Units" name="c-units" required>
+
+      <label for="c-preReq"><b>Prereqs</b></label>
+      <input type="text" placeholder="Enter Prereq" name="c-preReq">
+
+      <label for="c-Major"><b>Major</b></label>
+      <input type="text" placeholder="Enter Major" name="c-Major" required>
+
+      <!-- node buton-->
+      <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="onClickCreateCustomNode()">Create
+        Custom Node</button>
+
+      <!-- <button type="submit" class="btn">Create</button> -->
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+  <!-- Modify Node Popup -->
+  <div class="form-popup modify-node-form" id="modify-node-form">
+    <form action="/about.html" class="form-container">
+      <h1>Modify a Node</h1>
+      <input type="text" name="c-name" value="Course Name" readonly>
+      <input type="text" name="c-desc" value="Description" readonly>
+      <input type="text" name="c-units" value="Unit #" readonly>
+      <input type="text" name="c-preReq" value="Prereq" readonly>
+      <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="openForm()">Edit Node</button>
+      <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete
+        Node</button>
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <div id="canvas-region">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+    <script src="./js/main-canvas.js"></script>
+  </div>
+
+  <!--Footer-->
+  <div class="footer">
+    <ul class="left-links">
+      <p>GradFlow © | 2022</p>
+      <p><a href="https://github.com/KosOrKosm/graduation-flow.git">GitHub</a></p>
+    </ul>
+  </div>
+</body>
+</html>
