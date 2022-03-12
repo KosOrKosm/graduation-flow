@@ -1,13 +1,26 @@
+/**
+ * @ Author: Jacob Fano
+ * @ Create Time: 2022-03-11 14:42:55
+ * @ Modified by: Jacob Fano
+ * @ Modified time: 2022-03-11 16:39:12
+ */
+
+/**
+ *  Describes a single node in the flowchart
+ *  Contains all the data describing that node, as well as
+ *  functions for rendering + interacting with the node.
+ *  TODO: move to a seperate file
+ */
 class FlowNode {
 
-    // Public node fields
+    // PUBLIC
     x = 0
     y = 0
 
     className = "Introduction to Mathmatics"
     classCode = "MATH101"
 
-    // Private + static node fields
+    // PRIVATE
     static #sizeX = 100
     static #sizeY = 70
     static #tabSizeY = 20
@@ -65,75 +78,130 @@ class FlowNode {
     }
 }
 
+/**
+ * This object contains all the app's runtime data
+ * and P5 rendering hooks.
+ */
 class MainCanvas {
 
-    canvas
-    nodes
-    dragging = false
-    currently_dragged = null
-    drag_offx = 0
-    drag_offy = 0
-    fadeForeground = false
-    fadeForegroundAlpha = 0
-    fadeForegroundAlphaTarget = 0.5
-    curPopup = true
-    selectedNode = null
+    // PRIVATE
+    #canvas
+    #nodes = []
+    #dragging = false
+    #currently_dragged = null
+    #drag_offx = 0
+    #drag_offy = 0
+    #fadeForeground = false
+    #fadeForegroundAlpha = 0
+    #fadeForegroundAlphaTarget = 0.5
+    #curPopup = null
+    #curNode = null
 
-    setup() {
+    constructor() {
 
-        this.nodes = []
-
-        let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-        this.canvas = createCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 70);
-        this.canvas.parent("canvas-region")
-        this.canvas.style("width","100%")
-    
+        // TEST NODES
         let testNodeColors = ["maroon", "violet", "cyan", "green", "orange"]
         for(let i = 0; i < 10; ++i) {
-            this.nodes.push(new FlowNode(i * 100, 0, testNodeColors[i % testNodeColors.length]))
+            this.#nodes.push(new FlowNode(i * 100, 0, testNodeColors[i % testNodeColors.length]))
         }
     
     }
+
+    addNode(node) {
+        this.#nodes.push(node)
+    }
+
+    removeNode(node) {
+        this.#nodes = this.#nodes.filter(item => item !== node)
+    }
+
+    removeSelectedNode() {
+        if (this.#curNode == null)
+            throw "No node selected!"
+        this.removeNode(this.#curNode)
+    }
+
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked when P5 begins rendering.
+     * The canvas should be created here.
+     */
+    setup() {
+
+        let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
+        this.#canvas = createCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 8);
+        this.#canvas.parent("canvas-region")
+
+        // Auto-lock the canvas to the max width it can occupy
+        // NOTE: this will not override the canvas's actual 
+        //       pixel width, just stretch to fit the screen
+        this.#canvas.style("width","100%")
+    }
     
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked whenever the browser window is resized.
+     * The canvas should be resized to fit the new window here.
+     */
     windowResized() {
         
         let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-        resizeCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 70);
-        this.canvas.style("width","100%")
+        resizeCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 8);
+        
+        // Auto-lock the canvas to the max width it can occupy
+        // NOTE: this will not override the canvas's actual 
+        //       pixel width, just stretch to fit the screen
+        this.#canvas.style("width","100%")
     }
     
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked to draw each new frame by P5.
+     * Framerate is ~20 FPS by default
+     * 
+     * If the nodes have been modified in any way since last draw,
+     * this should redraw the tree. 
+     * 
+     * Currently, we just redraw every frame since that is safer.
+     */
     draw() {
     
         clear()
     
-        for (let node of this.nodes) {
+        for (let node of this.#nodes) {
             node.draw()
         }
     
-        if (this.fadeForeground) {
+        if (this.#fadeForeground) {
     
-            if(this.fadeForegroundAlpha < this.fadeForegroundAlphaTarget)
-                this.fadeForegroundAlpha += this.fadeForegroundAlphaTarget / 7
+            if(this.#fadeForegroundAlpha < this.#fadeForegroundAlphaTarget)
+                this.#fadeForegroundAlpha += this.#fadeForegroundAlphaTarget / 7
     
-            fill(`rgba(0,0,0,${this.fadeForegroundAlpha})`);
+            fill(`rgba(0,0,0,${this.#fadeForegroundAlpha})`);
             rect(-2, -2, windowWidth, windowHeight)
     
         }
     
     }
     
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked whenever the mouse is:
+     *      Pressed (ie. starting to click) 
+     * anywhere in the browser
+     */
     mousePressed() {
     
-        if (this.fadeForeground) {
+        if (this.#fadeForeground) {
     
         } else {
     
-            if (this.currently_dragged == null) {
-                for (let node of this.nodes) {
+            if (this.#currently_dragged == null) {
+                for (let node of this.#nodes) {
                     if (node.isInTabVolume(mouseX, mouseY)) {
-                        this.drag_offx = mouseX - node.x
-                        this.drag_offy = mouseY - node.y
-                        this.currently_dragged = node
+                        this.#drag_offx = mouseX - node.x
+                        this.#drag_offy = mouseY - node.y
+                        this.#currently_dragged = node
                     }
                 }
                 
@@ -143,52 +211,63 @@ class MainCanvas {
     
     }
     
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked whenever the mouse is:
+     *      Dragged (ie. moved during a press but before release) 
+     * anywhere in the browser
+     */
     mouseDragged() {
     
-        this.dragging = true
+        this.#dragging = true
     
-        if (this.currently_dragged != null) {
-            this.currently_dragged.x = (mouseX - this.drag_offx)
-            this.currently_dragged.y = (mouseY - this.drag_offy)
+        if (this.#currently_dragged != null) {
+            this.#currently_dragged.x = (mouseX - this.#drag_offx)
+            this.#currently_dragged.y = (mouseY - this.#drag_offy)
         }
     
     }
     
-    
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked whenever the mouse is:
+     *      Released (ie. ending a click or drag) 
+     * anywhere in the browser
+     */
     mouseReleased() {
     
-        if (this.fadeForeground) {
-
-            this.hideLastPopup()
+        if (this.#fadeForeground) {
     
-        } else if (!this.dragging) {
+        } else if (!this.#dragging) {
     
-            for (let node of this.nodes) {
+            for (let node of this.#nodes) {
                 if (node.isInVolume(mouseX, mouseY)) {
                     this.showPopup("modify-node-form")
-                    this.selectedNode = node
+                    this.#curNode = node
                     break
                 }
             }
     
         }
     
-        this.dragging = false
-        this.currently_dragged = null
+        this.#dragging = false
+        this.#currently_dragged = null
     
     }
 
+    // Hides the last popup the canvas is aware of being displayed
     hideLastPopup() {
-        this.fadeForegroundAlpha = 0
-        this.fadeForeground = false
-        this.curPopup.style.display="none"
-        this.curPopup = null
+        this.#fadeForegroundAlpha = 0
+        this.#fadeForeground = false
+        this.#curPopup.style.display="none"
+        this.#curPopup = null
     }
 
+    // Shows a given popup
     showPopup(popupName) {
-        this.curPopup = document.getElementById(popupName)
-        this.curPopup.style.display="block"
-        this.fadeForeground = true
+        this.#curPopup = document.getElementById(popupName)
+        this.#curPopup.style.display="block"
+        this.#fadeForeground = true
     }
     
 }

@@ -39,7 +39,7 @@
       <a href="#">EXPORT</a>
       <a href="#">PRINT</a>
       <div class = "gradHeader-right">
-        <a href="javascript:void(0)" onclick="openForm()">ADD</a>
+        <a href="javascript:void(0)" onclick="mainCanvas.showPopup('create-node-form')">ADD</a>
         <a href="#">RESET</a>
       </div>
   </div>
@@ -68,7 +68,7 @@
         Custom Node</button>
 
       <!-- <button type="submit" class="btn">Create</button> -->
-      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      <button type="button" class="btn cancel" onclick="mainCanvas.hideLastPopup()">Close</button>
     </form>
   </div>
 
@@ -80,7 +80,7 @@
       <input type="text" name="c-desc" value="Description" readonly>
       <input type="text" name="c-units" value="Unit #" readonly>
       <input type="text" name="c-preReq" value="Prereq" readonly>
-      <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="openForm()">Edit Node</button>
+      <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="onClickModifyNode()">Edit Node</button>
       <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete
         Node</button>
     </form>
