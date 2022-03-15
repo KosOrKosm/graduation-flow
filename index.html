@@ -5,47 +5,55 @@
   <title>GradFlow</title>
   <link rel="icon" href="img/logo.svg">
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body class="landing_page">
- 
-  <!--div header-->
-  <div class="header">
-    <div class="left">
-      <div class="logo">
-        <span>
-          <a href="./index.html">
-            <img class="logo img" src="./img/logo.svg" alt="GradFlow Logo">
-          </a>
-        </span>
+<body id ="index">
+  <div class="page-wrapper">
+
+    <!--PAGE HEADER-->
+    <header class="page-header">
+      <div class="left-side">
+        <ul>
+          <li><span><a class="link-animation-1" href="./index.html"><img class="logo" src="./img/logo.svg"
+                  alt="GradFlow Logo"></a></span></li>
+        </ul>
       </div>
-      <ul class="links">
-        <li><a href="./gradflow.html">Create</a></li>
-        <li><a href="./about.html">About</a></li>
+      <div class="right-side">
+        <ul>
+          <li><a class="link-animation-1" href="./gradflow.html">Create</a></li>
+          <li><a class="link-animation-1" href="./about.html">About</a></li>
+        </ul>
+        <!-- currently unused header navigation, for possible future use-->
+        <!-- <button type="button" class="placeholder">
+          placeholder
+        </button>
+        <div class="profile-image"></div> -->
+      </div>
+    </header>
+
+    <!--INDEX PAGE MAIN-->
+    <main class="index-main">
+      <div class="title">
+        <h1>GradFlow</h1>
+      </div>
+      <div class="heading">
+        <h2>GradFlow helps students build graduation flowcharts.</h2>
+      </div>
+      <div class="button"><a href="./gradflow.html">Create</a></div>
+    </main>
+
+    <!--PAGE FOOTER-->
+    <footer class="page-footer">
+      <p>GradFlow © | 2022</p>
+      <ul>
+        <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><img
+              class="logo" src="./img/logo-github.svg" alt="Github Logo"></a></li>
       </ul>
-    </div>
-    <div class="right">
-      <button type="button" class="placeholder">
-        placeholder
-      </button>
-      <div class="profile-image"></div>
-    </div>
+    </footer>
+  
   </div>
-
-  <!--Landing Page Title-->
-    <section class="TitleBox">
-      <h1 id="title">GradFlow</h1>
-      <h2 class="title heading">GradFlow helps students build graduation flowcharts.</h2>
-      <a href="./gradflow.html" class="button">Get Started Today</a>
-    </section>
-
-    <!-- Footer-->
-    <div class="footer">
-      <ul class="left-links">
-        <p>GradFlow © | 2022</p>
-        <p><a href="https://github.com/KosOrKosm/graduation-flow.git">GitHub</a></p>
-      </ul>
-    </div>
 </body>
 </html>

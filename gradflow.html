@@ -5,46 +5,52 @@
   <title>GradFlow</title>
   <link rel="icon" href="img/logo.png">
   <meta charset="UTF-8">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/popup.css">
 </head>
 
 <body>
-     <!--Header Navigation-->
-     <div class="header">
-      <div class="left">
-        <div class="logo">
-          <span>
-            <a href="./index.html">
-              <img class="logo img" src="./img/logo.svg" alt="GradFlow Logo">
-            </a>
-           </span>
-        </div>
-        <ul class="links">
-          <li><a href="./gradflow.html">Create</a></li>
-          <li><a href="./about.html">About</a></li>
+  <div class="page-wrapper">
+
+    <!--PAGE HEADER-->
+    <header class="page-header">
+      <div class="left-side">
+        <ul>
+          <li><span><a class="link-animation-1" href="./index.html"><img class="logo" src="./img/logo.svg"
+                  alt="GradFlow Logo"></a></span></li>
         </ul>
       </div>
-      <div class="right">
-        <button class="placeholder">
+      <div class="right-side">
+        <ul>
+          <li><a class="link-animation-1" href="./gradflow.html">Create</a></li>
+          <li><a class="link-animation-1" href="./about.html">About</a></li>
+        </ul>
+        <!-- currently unused header navigation, for possible future use-->
+        <!-- <button type="button" class="placeholder">
           placeholder
         </button>
-        <div class="profile-image"></div>
+        <div class="profile-image"></div> -->
       </div>
-    </div>
+    </header>
 
-    <div class = "gradHeader">
+    <!--GRADFLOW MENU HEADER-->
+    <div class="gradflow-header">
       <a href="#">SAVE</a>
       <a href="#">LOAD</a>
       <a href="#">EXPORT</a>
       <a href="#">PRINT</a>
-      <div class = "gradHeader-right">
+      <div class="gradflow-header-right">
         <a href="javascript:void(0)" onclick="mainCanvas.showPopup('create-node-form')">ADD</a>
         <a href="#">RESET</a>
       </div>
-  </div>
+    </div>
 
-  <!--popups-->
+    <!--GRADFLOW PAGE MAIN-->
+    <main class="gradflow-main">
+
+      <!--popups-->
 
   <!-- Create Custom Node Popup-->
   <div class="form-popup create-node-form" id="create-node-form">
@@ -102,12 +108,18 @@
     <script src="./js/handlers.js"></script>
   </div>
 
-  <!--Footer-->
-  <div class="footer">
-    <ul class="left-links">
+    </main>
+
+    <!--PAGE FOOTER-->
+    <footer class="page-footer">
       <p>GradFlow © | 2022</p>
-      <p><a href="https://github.com/KosOrKosm/graduation-flow.git">GitHub</a></p>
-    </ul>
+      <ul>
+        <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><img
+              class="logo" src="./img/logo-github.svg" alt="Github Logo"></a></li>
+      </ul>
+    </footer>
+
   </div>
 </body>
+
 </html>
