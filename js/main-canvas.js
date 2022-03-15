@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-03-15 15:19:37
+ * @ Modified time: 2022-03-15 15:42:45
  */
 
 /**
@@ -131,7 +131,8 @@ class MainCanvas {
     setup() {
 
         let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-        this.#canvas = createCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 8);
+        // TODO: remove these magic number offsets in the Y coord
+        this.#canvas = createCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 65);
         this.#canvas.parent("canvas-region")
 
         // Auto-lock the canvas to the max width it can occupy
@@ -148,7 +149,8 @@ class MainCanvas {
     windowResized() {
         
         let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-        resizeCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 8);
+        // TODO: remove these magic number offsets in the Y coord
+        resizeCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 65);
         
         // Auto-lock the canvas to the max width it can occupy
         // NOTE: this will not override the canvas's actual 
@@ -195,20 +197,34 @@ class MainCanvas {
     mousePressed() {
     
         if (this.#fadeForeground) {
-    
-        } else {
-    
-            if (this.#currently_dragged == null) {
-                for (let node of this.#nodes) {
-                    if (node.isInTabVolume(mouseX, mouseY)) {
-                        this.#drag_offx = mouseX - node.x
-                        this.#drag_offy = mouseY - node.y
-                        this.#currently_dragged = node
-                    }
+
+            if(this.#curPopup != null) {
+
+                // TODO: remove these magic number offsets in the Y coord
+                let dim = this.#curPopup.getBoundingClientRect()
+                if(
+                    mouseX <= dim.left ||
+                    mouseY <= dim.top - 108 ||
+                    mouseX >= dim.left + dim.width ||
+                    mouseY >= dim.top - 108 + dim.height
+                ) {
+                    this.hideLastPopup()
                 }
-                
+
+            } else {
+                this.#fadeForeground = false
             }
     
+        } else if (this.#currently_dragged == null) {
+
+            for (let node of this.#nodes) {
+                if (node.isInTabVolume(mouseX, mouseY)) {
+                    this.#drag_offx = mouseX - node.x
+                    this.#drag_offy = mouseY - node.y
+                    this.#currently_dragged = node
+                }
+            }
+            
         }
     
     }
