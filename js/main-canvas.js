@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-03-11 16:39:12
+ * @ Modified time: 2022-03-15 15:19:37
  */
 
 /**
@@ -19,6 +19,7 @@ class FlowNode {
 
     className = "Introduction to Mathmatics"
     classCode = "MATH101"
+    tabColor = 'orange'
 
     // PRIVATE
     static #sizeX = 100
@@ -26,11 +27,10 @@ class FlowNode {
     static #tabSizeY = 20
     static #textPadding = 3
 
-    constructor(x, y, tabColor) {
+    constructor(x, y) {
 
         this.x = x
         this.y = y
-        this.tabColor = tabColor
 
     }
 
@@ -102,7 +102,9 @@ class MainCanvas {
         // TEST NODES
         let testNodeColors = ["maroon", "violet", "cyan", "green", "orange"]
         for(let i = 0; i < 10; ++i) {
-            this.#nodes.push(new FlowNode(i * 100, 0, testNodeColors[i % testNodeColors.length]))
+            let node = new FlowNode(i * 100, 0)
+            node.tabColor = testNodeColors[i % testNodeColors.length]
+            this.addNode(node)
         }
     
     }
