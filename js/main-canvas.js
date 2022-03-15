@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-03-15 15:42:45
+ * @ Modified time: 2022-03-15 16:00:41
  */
 
 /**
@@ -17,9 +17,9 @@ class FlowNode {
     x = 0
     y = 0
 
-    className = "Introduction to Mathmatics"
-    classCode = "MATH101"
-    tabColor = 'orange'
+    className = ""
+    classCode = ""
+    tabColor = "white"
 
     // PRIVATE
     static #sizeX = 100
@@ -100,7 +100,7 @@ class MainCanvas {
     constructor() {
 
         // TEST NODES
-        let testNodeColors = ["maroon", "violet", "cyan", "green", "orange"]
+        let testNodeColors = ["#800000", "#EE82EE", "#00FFFF", "#008000", "#FFA500"]
         for(let i = 0; i < 10; ++i) {
             let node = new FlowNode(i * 100, 0)
             node.tabColor = testNodeColors[i % testNodeColors.length]
@@ -121,6 +121,14 @@ class MainCanvas {
         if (this.#curNode == null)
             throw "No node selected!"
         this.removeNode(this.#curNode)
+    }
+
+    realizeNodeModifications() {
+        if (this.#curNode == null)
+            throw "No node selected!"
+        this.#curNode.className = document.getElementById("c-name-modify").value
+        this.#curNode.classCode = document.getElementById("c-major-modify").value
+        this.#curNode.tabColor = document.getElementById("c-color-modify").value
     }
 
     /**
@@ -260,6 +268,11 @@ class MainCanvas {
     
             for (let node of this.#nodes) {
                 if (node.isInVolume(mouseX, mouseY)) {
+
+                    document.getElementById("c-name-modify").value = node.className
+                    document.getElementById("c-major-modify").value = node.classCode
+                    document.getElementById("c-color-modify").value = node.tabColor
+
                     this.showPopup("modify-node-form")
                     this.#curNode = node
                     break

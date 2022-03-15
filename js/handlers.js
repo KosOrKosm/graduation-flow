@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-03-15 15:28:43
+ * @ Modified time: 2022-03-15 16:07:40
  */
 
 
@@ -31,16 +31,22 @@ function onClickCreate() {
 
 }
 
+// Target HTML Element: modify-node-form
+// Used for the button to delete the selected node
 function onClickDeleteSelectedNode() {
-    // let btn = document.getElementById("btn-delete")
-    // let popup = document.getElementById("modify-node-form")
+    let popup = document.getElementById("modify-node-form-body")
     
     mainCanvas.removeSelectedNode()
     mainCanvas.hideLastPopup()
-    
+    popup.reset()
 }
 
+// Target HTML Element: modify-node-form
+// Used to confirm modifications to the selected node
 function onClickModifyNode() {
-    // TODO: logic to modify node
+    let popup = document.getElementById("modify-node-form-body")
+
+    mainCanvas.realizeNodeModifications() 
     mainCanvas.hideLastPopup()
+    popup.reset()
 }

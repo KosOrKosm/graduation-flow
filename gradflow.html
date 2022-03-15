@@ -83,15 +83,27 @@
 
   <!-- Modify Node Popup -->
   <div class="form-popup modify-node-form" id="modify-node-form">
-    <form action="/about.html" class="form-container">
+    <form class="form-container" id="modify-node-form-body">
       <h1>Modify a Node</h1>
-      <input type="text" name="c-name" value="Course Name" readonly>
-      <input type="text" name="c-desc" value="Description" readonly>
-      <input type="text" name="c-units" value="Unit #" readonly>
-      <input type="text" name="c-preReq" value="Prereq" readonly>
+
+      <label for="c-name"><b>Course Name</b></label>
+      <input type="text" name="c-name" id="c-name-modify" placeholder="N/A">
+
+      <label for="c-units"><b>Units</b></label>
+      <input type="text" name="c-units" id="c-units-modify" placeholder="N/A">
+
+      <label for="c-preReq"><b>Prereqs</b></label>
+      <input type="text" name="c-preReq" id="c-prereq-modify" placeholder="N/A">
+
+      <label for="c-Major"><b>Major</b></label>
+      <input type="text" name="c-major" id="c-major-modify" placeholder="N/A">
+
+      <label for="c-color"><b>Tab Color</b></label>
+      <input type="color" name="c-color" id="c-color-modify" value="#f6b73c">
+
       <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="onClickModifyNode()">Edit Node</button>
-      <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete
-        Node</button>
+      
+      <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete Node</button>
     </form>
   </div>
 
