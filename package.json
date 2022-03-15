@@ -1,0 +1,20 @@
+{
+  "name": "graduation-flow",
+  "version": "1.0.0",
+  "description": "An app for visually planning college semesters based on class dependencies.",
+  "main": "main-canvas.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KosOrKosm/graduation-flow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KosOrKosm/graduation-flow/issues"
+  },
+  "homepage": "https://github.com/KosOrKosm/graduation-flow#readme"
+}

@@ -1,13 +1,26 @@
+/**
+ * @ Author: Jacob Fano
+ * @ Create Time: 2022-03-11 14:42:55
+ * @ Modified by: Jacob Fano
+ * @ Modified time: 2022-03-11 16:39:12
+ */
+
+/**
+ *  Describes a single node in the flowchart
+ *  Contains all the data describing that node, as well as
+ *  functions for rendering + interacting with the node.
+ *  TODO: move to a seperate file
+ */
 class FlowNode {
 
-    // Public node fields
+    // PUBLIC
     x = 0
     y = 0
 
     className = "Introduction to Mathmatics"
     classCode = "MATH101"
 
-    // Private + static node fields
+    // PRIVATE
     static #sizeX = 100
     static #sizeY = 70
     static #tabSizeY = 20
@@ -65,157 +78,207 @@ class FlowNode {
     }
 }
 
-var canvas = null
-let nodes = []
-let dragging = false
-let currently_dragged = null
-let drag_offx = 0, drag_offy = 0
-let fadeForeground = false
-let fadeForegroundAlpha = 0
-let fadeForegroundAlphaTarget = 0.5
-let curPopup = true
-let selectedNode = null
+/**
+ * This object contains all the app's runtime data
+ * and P5 rendering hooks.
+ */
+class MainCanvas {
 
-function setup() {
+    // PRIVATE
+    #canvas
+    #nodes = []
+    #dragging = false
+    #currently_dragged = null
+    #drag_offx = 0
+    #drag_offy = 0
+    #fadeForeground = false
+    #fadeForegroundAlpha = 0
+    #fadeForegroundAlphaTarget = 0.5
+    #curPopup = null
+    #curNode = null
 
-    let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-    canvas = createCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 70);
-    canvas.parent("canvas-region")
-    canvas.style("width","100%")
+    constructor() {
 
-    let testNodeColors = ["maroon", "violet", "cyan", "green", "orange"]
-    for(let i = 0; i < 10; ++i) {
-        nodes.push(new FlowNode(i * 100, 0, testNodeColors[i % testNodeColors.length]))
-    }
-
-}
-
-function windowResized() {
+        // TEST NODES
+        let testNodeColors = ["maroon", "violet", "cyan", "green", "orange"]
+        for(let i = 0; i < 10; ++i) {
+            this.#nodes.push(new FlowNode(i * 100, 0, testNodeColors[i % testNodeColors.length]))
+        }
     
-    let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-    resizeCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 70);
-    canvas.style("width","100%")
-}
-
-function draw() {
-
-    clear()
-
-    for (node of nodes) {
-        node.draw()
     }
 
-    if (fadeForeground) {
-
-        if(fadeForegroundAlpha < fadeForegroundAlphaTarget)
-            fadeForegroundAlpha += fadeForegroundAlphaTarget / 7
-
-        fill(`rgba(0,0,0,${fadeForegroundAlpha})`);
-        rect(-2, -2, windowWidth, windowHeight)
-
+    addNode(node) {
+        this.#nodes.push(node)
     }
 
-}
+    removeNode(node) {
+        this.#nodes = this.#nodes.filter(item => item !== node)
+    }
 
-function mousePressed() {
+    removeSelectedNode() {
+        if (this.#curNode == null)
+            throw "No node selected!"
+        this.removeNode(this.#curNode)
+    }
 
-    if (fadeForeground) {
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked when P5 begins rendering.
+     * The canvas should be created here.
+     */
+    setup() {
 
-    } else {
+        let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
+        this.#canvas = createCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 8);
+        this.#canvas.parent("canvas-region")
 
-        if (currently_dragged == null) {
-            for (node of nodes) {
-                if (node.isInTabVolume(mouseX, mouseY)) {
-                    drag_offx = mouseX - node.x
-                    drag_offy = mouseY - node.y
-                    currently_dragged = node
+        // Auto-lock the canvas to the max width it can occupy
+        // NOTE: this will not override the canvas's actual 
+        //       pixel width, just stretch to fit the screen
+        this.#canvas.style("width","100%")
+    }
+    
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked whenever the browser window is resized.
+     * The canvas should be resized to fit the new window here.
+     */
+    windowResized() {
+        
+        let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
+        resizeCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 8);
+        
+        // Auto-lock the canvas to the max width it can occupy
+        // NOTE: this will not override the canvas's actual 
+        //       pixel width, just stretch to fit the screen
+        this.#canvas.style("width","100%")
+    }
+    
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked to draw each new frame by P5.
+     * Framerate is ~20 FPS by default
+     * 
+     * If the nodes have been modified in any way since last draw,
+     * this should redraw the tree. 
+     * 
+     * Currently, we just redraw every frame since that is safer.
+     */
+    draw() {
+    
+        clear()
+    
+        for (let node of this.#nodes) {
+            node.draw()
+        }
+    
+        if (this.#fadeForeground) {
+    
+            if(this.#fadeForegroundAlpha < this.#fadeForegroundAlphaTarget)
+                this.#fadeForegroundAlpha += this.#fadeForegroundAlphaTarget / 7
+    
+            fill(`rgba(0,0,0,${this.#fadeForegroundAlpha})`);
+            rect(-2, -2, windowWidth, windowHeight)
+    
+        }
+    
+    }
+    
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked whenever the mouse is:
+     *      Pressed (ie. starting to click) 
+     * anywhere in the browser
+     */
+    mousePressed() {
+    
+        if (this.#fadeForeground) {
+    
+        } else {
+    
+            if (this.#currently_dragged == null) {
+                for (let node of this.#nodes) {
+                    if (node.isInTabVolume(mouseX, mouseY)) {
+                        this.#drag_offx = mouseX - node.x
+                        this.#drag_offy = mouseY - node.y
+                        this.#currently_dragged = node
+                    }
+                }
+                
+            }
+    
+        }
+    
+    }
+    
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked whenever the mouse is:
+     *      Dragged (ie. moved during a press but before release) 
+     * anywhere in the browser
+     */
+    mouseDragged() {
+    
+        this.#dragging = true
+    
+        if (this.#currently_dragged != null) {
+            this.#currently_dragged.x = (mouseX - this.#drag_offx)
+            this.#currently_dragged.y = (mouseY - this.#drag_offy)
+        }
+    
+    }
+    
+    /**
+     * ======= P5 Renderer Hook =======
+     * This function is invoked whenever the mouse is:
+     *      Released (ie. ending a click or drag) 
+     * anywhere in the browser
+     */
+    mouseReleased() {
+    
+        if (this.#fadeForeground) {
+    
+        } else if (!this.#dragging) {
+    
+            for (let node of this.#nodes) {
+                if (node.isInVolume(mouseX, mouseY)) {
+                    this.showPopup("modify-node-form")
+                    this.#curNode = node
+                    break
                 }
             }
-            
-        }
-
-    }
-
-}
-
-function mouseDragged() {
-
-    dragging = true
-
-    if (currently_dragged != null) {
-        currently_dragged.x = (mouseX - drag_offx)
-        currently_dragged.y = (mouseY - drag_offy)
-    }
-
-}
-
-
-function mouseReleased() {
-
-    if (fadeForeground) {
-
-        fadeForegroundAlpha = 0
-        fadeForeground = false
-        curPopup.style.display="none"
-        curPopup = null
-
-    } else if (!dragging) {
-
-        for (node of nodes) {
-            if (node.isInVolume(mouseX, mouseY)) {
-                curPopup = document.getElementById("modify-node-form")
-                curPopup.style.display="block"
-                fadeForeground = true
-                selectedNode = node
-                //nodes = nodes.filter(item => item !== node)
-                break
-            }
-        }
-
-    }
-
-    dragging = false
-    currently_dragged = null
-
-}
-
-
-function create() {
-    nodes.push(new FlowNode(0, 300, "orange"))
-}
-
-function onClickCreateCustomNode() {
-    let btn = document.getElementById("btn-create-custom")
-    let popup = document.getElementById("create-node-form")
-
-    nodes.push(new FlowNode(0, 300, "orange"))
-    popup.style.display="none"
-}
-
-function onClickCreate() {
-    let btn = document.getElementById("btn-create")
-    let popup = document.getElementById("create-node-form")
-
-    popup.style.display="block"
-    curPopup = popup
-    fadeForeground = true
-}
-
-function onClickDeleteSelectedNode() {
-    let btn = document.getElementById("btn-delete")
-    let popup = document.getElementById("modify-node-form")
     
-    nodes = nodes.filter(item => item !== selectedNode)
-    popup.style.display="none"
+        }
+    
+        this.#dragging = false
+        this.#currently_dragged = null
+    
+    }
+
+    // Hides the last popup the canvas is aware of being displayed
+    hideLastPopup() {
+        this.#fadeForegroundAlpha = 0
+        this.#fadeForeground = false
+        this.#curPopup.style.display="none"
+        this.#curPopup = null
+    }
+
+    // Shows a given popup
+    showPopup(popupName) {
+        this.#curPopup = document.getElementById(popupName)
+        this.#curPopup.style.display="block"
+        this.#fadeForeground = true
+    }
+    
 }
 
-function openForm() {
-  document.getElementById("create-node-form").style.display = "block";
-}
+mainCanvas = new MainCanvas()
 
-function closeForm() {
-  document.getElementById("create-node-form").style.display = "none";
-}
-
-
+// Mount main canvas functions to the locations p5 expects them
+window.setup = mainCanvas.setup.bind(mainCanvas)
+window.draw = mainCanvas.draw.bind(mainCanvas)
+window.windowResized = mainCanvas.windowResized.bind(mainCanvas)
+window.mousePressed = mainCanvas.mousePressed.bind(mainCanvas)
+window.mouseDragged = mainCanvas.mouseDragged.bind(mainCanvas)
+window.mouseReleased = mainCanvas.mouseReleased.bind(mainCanvas)
 
