@@ -1,24 +1,39 @@
+/**
+ * @ Author: Jacob Fano
+ * @ Create Time: 2022-03-17 12:10:58
+ * @ Modified by: Jacob Fano
+ * @ Modified time: 2022-03-17 12:52:20
+ */
 
 const express = require('express')
 const app = express()
+const root = __dirname + '../../'
 app.set('port', 3000)
 
 // Host assets
-app.use('/css', express.static(__dirname + '../../css/'))
-app.use('/img', express.static(__dirname + '../../img/'))
-app.use('/js', express.static(__dirname + '../../js/'))
+app.use('/css', express.static(root + 'css/'))
+app.use('/img', express.static(root + 'img/'))
+app.use('/js', express.static(root + 'js/'))
 
 // ========= GRADFLOW APP =========
 app.get('/gradflow.html', (req, res) => {
     res.redirect('/app')
 })
 app.get('/app', (req, res) => {
-    res.sendFile('gradflow.html', { root: __dirname + '../../'})
+    res.sendFile('gradflow.html', { root: root})
+})
+
+// =========  ABOUT PAGE  =========
+app.get('/about.html', (req, res) => {
+    res.redirect('/about')
+})
+app.get('/about', (req, res) => {
+    res.sendFile('about.html', { root: root})
 })
 
 // ========= WELCOME PAGE =========
 app.get('/welcome', (req, res) => {
-    res.sendFile('index.html', { root: __dirname + '../../'})
+    res.sendFile('index.html', { root: root})
 })
 
 // No path handler
