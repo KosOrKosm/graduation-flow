@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/KosOrKosm/graduation-flow/issues"
   },
-  "homepage": "https://github.com/KosOrKosm/graduation-flow#readme"
+  "homepage": "https://github.com/KosOrKosm/graduation-flow#readme",
+  "devDependencies": {
+    "express": "^4.17.3",
+    "mysql": "^2.18.1"
+  }
 }
