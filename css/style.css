@@ -260,11 +260,11 @@ STARTING AT MAIN - ABOUT.HTML
 	padding: clamp(.5rem, 2vw, 2.5rem);
 	align-items: center;
 	margin: 10px;
+	text-align: center;
 }
 
 .about-main h1 { 
 	font-size: clamp(2.5rem, 5vw, 5.5rem);
-	text-align: center;
 }
 
 .about-main h2 { 
