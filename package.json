@@ -2,10 +2,10 @@
   "name": "graduation-flow",
   "version": "1.0.0",
   "description": "An app for visually planning college semesters based on class dependencies.",
-  "main": "main-canvas.js",
-  "type": "module",
+  "main": "js/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .\\js\\server.js"
   },
   "repository": {
     "type": "git",
