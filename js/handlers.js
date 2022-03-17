@@ -12,8 +12,12 @@
 function onClickCreateCustomNode() {
     // let btn = document.getElementById("btn-create-custom")
     let popup = document.getElementById("create-node-form-body")
-
+    //ALFREDO: The following code that is commented out is just some iterations of my work with connecting the Datbase to the nodes.
+    // var xmlHttp = new XMLHttpRequest();
+    // xmlHttp.open("GET", 'http://localhost:3000/test?test=120', false)
+    // xmlHttp.send(null)
     let customNode = new FlowNode(0, 300)
+    //customNode.className = xmlHttp.responseText
     customNode.className = document.getElementById("c-name-create").value
     customNode.classCode = document.getElementById("c-major-create").value
     customNode.tabColor = document.getElementById("c-color-create").value

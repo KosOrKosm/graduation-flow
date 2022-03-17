@@ -6,6 +6,7 @@
  */
 
 const express = require('express')
+const mysql = require('mysql')
 const app = express()
 const root = __dirname + '../../'
 app.set('port', 3000)
@@ -14,6 +15,29 @@ app.set('port', 3000)
 app.use('/css', express.static(root + 'css/'))
 app.use('/img', express.static(root + 'img/'))
 app.use('/js', express.static(root + 'js/'))
+
+
+// =========   DATABASE   =========
+app.get('/test', (req, res) => {
+    res.send("Hello Class!")
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'college_planner'
+      })
+      
+      connection.connect()
+      
+      connection.query(`SELECT * from class_list where Course = ${req.query.test}`, (err, rows, fields) => {
+        if (err) throw err
+      
+        console.log('The solution is: ',  rows[0].Course + rows[0].Dept , " ",  rows[0].Description)
+      })
+      
+      connection.end()
+
+})
 
 // ========= GRADFLOW APP =========
 app.get('/gradflow.html', (req, res) => {
