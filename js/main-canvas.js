@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-03-24 12:19:51
+ * @ Modified time: 2022-03-24 13:03:52
  */
 
 /**
@@ -39,6 +39,38 @@ class FlowNode {
         const x = FlowNode.#sizeX / 2 + this.x
         const y = FlowNode.#sizeY / 2 + this.y
         return { x, y }
+    }
+
+    // Calculates where a line segment starting at lp and ending
+    // at the center of the node would intersect the node's rectangle
+    getIntersection(lp) {
+        if(this.isInVolume(lp.x, lp.y))
+            return undefined
+        else {
+
+            let hitX = 0, hitY = 0
+            const center = this.getCenter()
+            const slope = (lp.y - center.y) / (lp.x - center.x)
+            const halfW = FlowNode.#sizeX/2
+            const halfH = FlowNode.#sizeY/2
+
+            if( slope * halfW >= -halfH && 
+                slope * halfW <= halfH
+            ) {
+                const sideOfRect = (lp.x > center.x ? 1 : -1)
+                hitX = center.x + sideOfRect * halfW
+                hitY = center.y + sideOfRect * slope * halfW
+            } else if ( 
+                halfH / slope >= -halfW && 
+                halfH / slope <= halfW
+            ) {
+                const sideOfRect = (lp.y > center.y ? 1 : -1)
+                hitY = center.y + sideOfRect * halfH
+                hitX = center.x + sideOfRect * halfH / slope
+            }
+            return { x: hitX, y: hitY }
+            
+        }
     }
 
     isInVolume(_x, _y) {
@@ -83,6 +115,14 @@ class FlowNode {
             FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
         )
     }
+}
+
+// Helper function to perform a P5 action without
+// altering the draw state permenantly
+function tempDrawState(action) {
+    push()
+    action()
+    pop()
 }
 
 /**
@@ -150,11 +190,50 @@ class MainCanvas {
         return this.#nodes.find(node => {return node.classCode == code})
     }
 
-    drawArrow(p1, p2) {
-        // TODO: draw an actual arrow instead of a line
-        stroke(255)
-        strokeWeight(2)
+    // Draws an arrow, starting at p1 and pointing to p2
+    drawArrow(p1, p2, color) {
+        
+        strokeWeight(4)
+
+        // Dropshadow Effect
+        tempDrawState(() => {
+            stroke('black')
+            fill('black')
+            translate(3, 3)
+
+            // Draw arrow body
+            line(p1.x, p1.y, p2.x, p2.y)
+
+            // Draw the arrow head
+            tempDrawState(() => {
+                translate(p2.x, p2.y)
+                rotate(Math.atan2(p2.y - p1.y, p2.x - p1.x))
+                triangle(
+                    0, 0,
+                    -20, -10,
+                    -20, 10
+                )
+            })
+
+        })
+        
+        stroke(color)
+        fill(color)
+        
+        // Draw arrow body
         line(p1.x, p1.y, p2.x, p2.y)
+
+        // Draw arrow head
+        tempDrawState(() => {
+            translate(p2.x, p2.y)
+            rotate(Math.atan2(p2.y - p1.y, p2.x - p1.x))
+            triangle(
+                0, 0,
+                -20, -10,
+                -20, 10
+            )
+        })
+        
     }
 
     /**
@@ -211,7 +290,7 @@ class MainCanvas {
             for(let prereq of node.prereqs) {
                 const found = this.findNodeByClassCode(prereq)
                 if(found != undefined) {
-                    this.drawArrow(node.getCenter(), found.getCenter())
+                    this.drawArrow(node.getCenter(), found.getIntersection(node.getCenter()), node.tabColor)
                 }
             }
         }
