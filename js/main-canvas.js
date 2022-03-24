@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-03-15 16:19:31
+ * @ Modified time: 2022-03-24 12:19:51
  */
 
 /**
@@ -20,6 +20,7 @@ class FlowNode {
     className = ""
     classCode = ""
     tabColor = "white"
+    prereqs = []
 
     // PRIVATE
     static #sizeX = 100
@@ -32,6 +33,12 @@ class FlowNode {
         this.x = x
         this.y = y
 
+    }
+
+    getCenter() {
+        const x = FlowNode.#sizeX / 2 + this.x
+        const y = FlowNode.#sizeY / 2 + this.y
+        return { x, y }
     }
 
     isInVolume(_x, _y) {
@@ -121,6 +128,7 @@ class MainCanvas {
         this.#curNode.className = document.getElementById("c-name-modify").value
         this.#curNode.classCode = document.getElementById("c-major-modify").value
         this.#curNode.tabColor = document.getElementById("c-color-modify").value
+        this.#curNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
     }
 
     reset() {
@@ -134,6 +142,19 @@ class MainCanvas {
             node.tabColor = testNodeColors[i % testNodeColors.length]
             this.addNode(node)
         }
+    }
+
+    findNodeByClassCode(code) {
+        if(code == '')
+            return undefined
+        return this.#nodes.find(node => {return node.classCode == code})
+    }
+
+    drawArrow(p1, p2) {
+        // TODO: draw an actual arrow instead of a line
+        stroke(255)
+        strokeWeight(2)
+        line(p1.x, p1.y, p2.x, p2.y)
     }
 
     /**
@@ -184,6 +205,16 @@ class MainCanvas {
     draw() {
     
         clear()
+
+        // Draw prereq indicators
+        for (let node of this.#nodes) {
+            for(let prereq of node.prereqs) {
+                const found = this.findNodeByClassCode(prereq)
+                if(found != undefined) {
+                    this.drawArrow(node.getCenter(), found.getCenter())
+                }
+            }
+        }
     
         for (let node of this.#nodes) {
             node.draw()
@@ -277,6 +308,7 @@ class MainCanvas {
                     document.getElementById("c-name-modify").value = node.className
                     document.getElementById("c-major-modify").value = node.classCode
                     document.getElementById("c-color-modify").value = node.tabColor
+                    document.getElementById("c-prereq-modify").value = node.prereqs.join(',')
 
                     this.showPopup("modify-node-form")
                     this.#curNode = node

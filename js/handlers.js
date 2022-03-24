@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-03-15 16:07:40
+ * @ Modified time: 2022-03-24 12:04:04
  */
 
 
@@ -17,6 +17,7 @@ function onClickCreateCustomNode() {
     customNode.className = document.getElementById("c-name-create").value
     customNode.classCode = document.getElementById("c-major-create").value
     customNode.tabColor = document.getElementById("c-color-create").value
+    customNode.prereqs = document.getElementById("c-prereq-create").value.split(',')
     mainCanvas.addNode(customNode)
     mainCanvas.hideLastPopup()
     popup.reset()
