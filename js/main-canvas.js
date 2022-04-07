@@ -429,3 +429,7 @@ window.mousePressed = mainCanvas.mousePressed.bind(mainCanvas)
 window.mouseDragged = mainCanvas.mouseDragged.bind(mainCanvas)
 window.mouseReleased = mainCanvas.mouseReleased.bind(mainCanvas)
 
+function jpg(){
+    save("canvas.png")
+}
+
