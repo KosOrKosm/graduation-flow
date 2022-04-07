@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-03-24 12:04:04
+ * @ Modified time: 2022-04-07 12:34:45
  */
 
 
@@ -10,7 +10,7 @@
 // 
 
 function doLoadPrompt(onResolve) {
-    const tmpInput = document.body.createElement('input')
+    const tmpInput = document.createElement('input')
     tmpInput.type = 'file'
     tmpInput.accept = '.json'
     tmpInput.onchange = event => {
@@ -35,7 +35,7 @@ async function doFilePrompt(consumer) {
 
 
 async function download(data, filename, type) {
-    var file = new Blob([data], {type: type});
+    var file = new Blob([data], {type: type})
     const tmpDownloader = document.createElement("a")
     const tmpURL = URL.createObjectURL(file)
     tmpDownloader.href = tmpURL
