@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-03-24 13:03:52
+ * @ Modified time: 2022-04-07 12:54:49
  */
 
 /**
@@ -89,27 +89,27 @@ class FlowNode {
                 this.y + FlowNode.#tabSizeY >= _y
     }
 
-    draw() {
-        stroke('rgb(0,0,0)')
-        strokeWeight(2)
-        fill('white')
-        rect(this.x, this.y, FlowNode.#sizeX, FlowNode.#sizeY, 5)
-        fill(this.tabColor)
-        rect(this.x, this.y, FlowNode.#sizeX, FlowNode.#tabSizeY, 5)
+    draw(p) {
+        p.stroke('rgb(0,0,0)')
+        p.strokeWeight(2)
+        p.fill('white')
+        p.rect(this.x, this.y, FlowNode.#sizeX, FlowNode.#sizeY, 5)
+        p.fill(this.tabColor)
+        p.rect(this.x, this.y, FlowNode.#sizeX, FlowNode.#tabSizeY, 5)
 
-        strokeWeight(0)
-        textSize(FlowNode.#tabSizeY - FlowNode.#textPadding * 2)
-        textAlign(CENTER, TOP)
-        fill('black')
-        text(
+        p.strokeWeight(0)
+        p.textSize(FlowNode.#tabSizeY - FlowNode.#textPadding * 2)
+        p.textAlign(p.CENTER, p.TOP)
+        p.fill('black')
+        p.text(
             this.classCode, 
             this.x + FlowNode.#textPadding,
             this.y + FlowNode.#textPadding,
             FlowNode.#sizeX - FlowNode.#textPadding * 2,
             FlowNode.#sizeY - FlowNode.#textPadding * 2,
         )
-        textAlign(CENTER, CENTER)
-        text(
+        p.textAlign(p.CENTER, p.CENTER)
+        p.text(
             this.className, 
             this.x + FlowNode.#textPadding,
             this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
@@ -121,10 +121,10 @@ class FlowNode {
 
 // Helper function to perform a P5 action without
 // altering the draw state permenantly
-function tempDrawState(action) {
-    push()
+function tempDrawState(p, action) {
+    p.push()
     action()
-    pop()
+    p.pop()
 }
 
 /**
@@ -216,24 +216,24 @@ class MainCanvas {
     }
 
     // Draws an arrow, starting at p1 and pointing to p2
-    drawArrow(p1, p2, color) {
+    drawArrow(p5, point1, point2, color) {
         
-        strokeWeight(4)
+        p5.strokeWeight(4)
 
         // Dropshadow Effect
-        tempDrawState(() => {
-            stroke('black')
-            fill('black')
-            translate(3, 3)
+        tempDrawState(p5, () => {
+            p5.stroke('black')
+            p5.fill('black')
+            p5.translate(3, 3)
 
             // Draw arrow body
-            line(p1.x, p1.y, p2.x, p2.y)
+            p5.line(point1.x, point1.y, point2.x, point2.y)
 
             // Draw the arrow head
-            tempDrawState(() => {
-                translate(p2.x, p2.y)
-                rotate(Math.atan2(p2.y - p1.y, p2.x - p1.x))
-                triangle(
+            tempDrawState(p5, () => {
+                p5.translate(point2.x, point2.y)
+                p5.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x))
+                p5.triangle(
                     0, 0,
                     -20, -10,
                     -20, 10
@@ -242,17 +242,17 @@ class MainCanvas {
 
         })
         
-        stroke(color)
-        fill(color)
+        p5.stroke(color)
+        p5.fill(color)
         
         // Draw arrow body
-        line(p1.x, p1.y, p2.x, p2.y)
+        p5.line(point1.x, point1.y, point2.x, point2.y)
 
         // Draw arrow head
-        tempDrawState(() => {
-            translate(p2.x, p2.y)
-            rotate(Math.atan2(p2.y - p1.y, p2.x - p1.x))
-            triangle(
+        tempDrawState(p5, () => {
+            p5.translate(point2.x, point2.y)
+            p5.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x))
+            p5.triangle(
                 0, 0,
                 -20, -10,
                 -20, 10
@@ -266,17 +266,9 @@ class MainCanvas {
      * This function is invoked when P5 begins rendering.
      * The canvas should be created here.
      */
-    setup() {
-
-        let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-        // TODO: remove these magic number offsets in the Y coord
-        this.#canvas = createCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 65);
-        this.#canvas.parent("canvas-region")
-
-        // Auto-lock the canvas to the max width it can occupy
-        // NOTE: this will not override the canvas's actual 
-        //       pixel width, just stretch to fit the screen
-        this.#canvas.style("width","100%")
+    setup(p5) {
+        this.#canvas = p5.createCanvas(100, 100);
+        this.windowResized(p5)
     }
     
     /**
@@ -284,11 +276,11 @@ class MainCanvas {
      * This function is invoked whenever the browser window is resized.
      * The canvas should be resized to fit the new window here.
      */
-    windowResized() {
+    windowResized(p5) {
         
-        let canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
+        const canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
         // TODO: remove these magic number offsets in the Y coord
-        resizeCanvas(windowWidth - canvasRegion.left, windowHeight - canvasRegion.top - 65);
+        p5.resizeCanvas(p5.windowWidth - canvasRegion.left, p5.windowHeight - canvasRegion.top - 65);
         
         // Auto-lock the canvas to the max width it can occupy
         // NOTE: this will not override the canvas's actual 
@@ -306,22 +298,22 @@ class MainCanvas {
      * 
      * Currently, we just redraw every frame since that is safer.
      */
-    draw() {
+    draw(p5) {
     
-        clear()
+        p5.clear()
 
         // Draw prereq indicators
         for (let node of this.#nodes) {
             for(let prereq of node.prereqs) {
                 const found = this.findNodeByClassCode(prereq)
                 if(found != undefined) {
-                    this.drawArrow(node.getCenter(), found.getIntersection(node.getCenter()), node.tabColor)
+                    this.drawArrow(p5, node.getCenter(), found.getIntersection(node.getCenter()), node.tabColor)
                 }
             }
         }
     
         for (let node of this.#nodes) {
-            node.draw()
+            node.draw(p5)
         }
     
         if (this.#fadeForeground) {
@@ -329,8 +321,8 @@ class MainCanvas {
             if(this.#fadeForegroundAlpha < this.#fadeForegroundAlphaTarget)
                 this.#fadeForegroundAlpha += this.#fadeForegroundAlphaTarget / 7
     
-            fill(`rgba(0,0,0,${this.#fadeForegroundAlpha})`);
-            rect(-2, -2, windowWidth, windowHeight)
+            p5.fill(`rgba(0,0,0,${this.#fadeForegroundAlpha})`);
+            p5.rect(-2, -2, p5.windowWidth, p5.windowHeight)
     
         }
     
@@ -342,7 +334,7 @@ class MainCanvas {
      *      Pressed (ie. starting to click) 
      * anywhere in the browser
      */
-    mousePressed() {
+    mousePressed(p5) {
     
         if (this.#fadeForeground) {
 
@@ -351,10 +343,10 @@ class MainCanvas {
                 // TODO: remove these magic number offsets in the Y coord
                 let dim = this.#curPopup.getBoundingClientRect()
                 if(
-                    mouseX <= dim.left ||
-                    mouseY <= dim.top - 108 ||
-                    mouseX >= dim.left + dim.width ||
-                    mouseY >= dim.top - 108 + dim.height
+                    p5.mouseX <= dim.left ||
+                    p5.mouseY <= dim.top - 108 ||
+                    p5.mouseX >= dim.left + dim.width ||
+                    p5.mouseY >= dim.top - 108 + dim.height
                 ) {
                     this.hideLastPopup()
                 }
@@ -366,9 +358,9 @@ class MainCanvas {
         } else if (this.#currently_dragged == null) {
 
             for (let node of this.#nodes) {
-                if (node.isInTabVolume(mouseX, mouseY)) {
-                    this.#drag_offx = mouseX - node.x
-                    this.#drag_offy = mouseY - node.y
+                if (node.isInTabVolume(p5.mouseX, p5.mouseY)) {
+                    this.#drag_offx = p5.mouseX - node.x
+                    this.#drag_offy = p5.mouseY - node.y
                     this.#currently_dragged = node
                 }
             }
@@ -383,13 +375,13 @@ class MainCanvas {
      *      Dragged (ie. moved during a press but before release) 
      * anywhere in the browser
      */
-    mouseDragged() {
+    mouseDragged(p5) {
     
         this.#dragging = true
     
         if (this.#currently_dragged != null) {
-            this.#currently_dragged.x = (mouseX - this.#drag_offx)
-            this.#currently_dragged.y = (mouseY - this.#drag_offy)
+            this.#currently_dragged.x = (p5.mouseX - this.#drag_offx)
+            this.#currently_dragged.y = (p5.mouseY - this.#drag_offy)
         }
     
     }
@@ -400,14 +392,14 @@ class MainCanvas {
      *      Released (ie. ending a click or drag) 
      * anywhere in the browser
      */
-    mouseReleased() {
+    mouseReleased(p5) {
     
         if (this.#fadeForeground) {
     
         } else if (!this.#dragging) {
     
             for (let node of this.#nodes) {
-                if (node.isInVolume(mouseX, mouseY)) {
+                if (node.isInVolume(p5.mouseX, p5.mouseY)) {
 
                     document.getElementById("c-name-modify").value = node.className
                     document.getElementById("c-major-modify").value = node.classCode
@@ -444,13 +436,30 @@ class MainCanvas {
     
 }
 
-mainCanvas = new MainCanvas()
+var mainCanvasSketch = function(p5) {
+    mainCanvas = new MainCanvas()
+    
+    // Mount main canvas functions to the locations p5 expects them
+    p5.setup = () => {
+        mainCanvas.setup(p5)
+    }
+    p5.draw = () => {
+        mainCanvas.draw(p5)
+    }
+    p5.windowResized = () => {
+        mainCanvas.windowResized(p5)
+    }
+    p5.mousePressed = () => {
+        mainCanvas.mousePressed(p5)
+    }
+    p5.mouseDragged = () => {
+        mainCanvas.mouseDragged(p5)
+    }
+    p5.mouseReleased = () => { 
+        mainCanvas.mouseReleased(p5)
+    }
 
-// Mount main canvas functions to the locations p5 expects them
-window.setup = mainCanvas.setup.bind(mainCanvas)
-window.draw = mainCanvas.draw.bind(mainCanvas)
-window.windowResized = mainCanvas.windowResized.bind(mainCanvas)
-window.mousePressed = mainCanvas.mousePressed.bind(mainCanvas)
-window.mouseDragged = mainCanvas.mouseDragged.bind(mainCanvas)
-window.mouseReleased = mainCanvas.mouseReleased.bind(mainCanvas)
+}
 
+const canvasRegion = document.getElementById("canvas-region")
+new p5(mainCanvasSketch, canvasRegion)
