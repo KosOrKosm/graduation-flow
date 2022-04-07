@@ -30,8 +30,10 @@ class FlowNode {
 
     constructor(x, y) {
 
-        this.x = x
-        this.y = y
+        if(x != undefined)
+            this.x = x
+        if(y != undefined)
+            this.y = y
 
     }
 
@@ -146,6 +148,15 @@ class MainCanvas {
 
     constructor() {
         this.reset()
+
+        // TEST NODES
+        // TODO: remove from final build of website
+        let testNodeColors = ["#800000", "#EE82EE", "#00FFFF", "#008000", "#FFA500"]
+        for(let i = 0; i < 10; ++i) {
+            let node = new FlowNode(i * 100, 0)
+            node.tabColor = testNodeColors[i % testNodeColors.length]
+            this.addNode(node)
+        }
     }
 
     addNode(node) {
@@ -171,17 +182,31 @@ class MainCanvas {
         this.#curNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
     }
 
+    toJson() {
+        return JSON.stringify(this.#nodes)
+    }
+
+    fromJson(json) {
+        this.reset();
+        const records = JSON.parse(json)
+        for (let nodeRecord of records) {
+            let newNode = new FlowNode(nodeRecord.x, nodeRecord.y)
+            if (nodeRecord.className != undefined)
+                newNode.className = nodeRecord.className
+            if (nodeRecord.classCode != undefined)
+                newNode.classCode = nodeRecord.classCode
+            if (nodeRecord.tabColor != undefined)
+                newNode.tabColor = nodeRecord.tabColor
+            if (nodeRecord.prereqs == undefined)
+                newNode.prereqs = []
+            else
+                newNode.prereqs = nodeRecord.prereqs
+            this.addNode(newNode)
+        }
+    }
+
     reset() {
         this.#nodes = []
-
-        // TEST NODES
-        // TODO: remove from final build of website
-        let testNodeColors = ["#800000", "#EE82EE", "#00FFFF", "#008000", "#FFA500"]
-        for(let i = 0; i < 10; ++i) {
-            let node = new FlowNode(i * 100, 0)
-            node.tabColor = testNodeColors[i % testNodeColors.length]
-            this.addNode(node)
-        }
     }
 
     findNodeByClassCode(code) {

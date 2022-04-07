@@ -9,6 +9,59 @@
 // This file contains JS functions to be invoked by HTML buttons.
 // 
 
+function doLoadPrompt(onResolve) {
+    const tmpInput = document.body.createElement('input')
+    tmpInput.type = 'file'
+    tmpInput.accept = '.json'
+    tmpInput.onchange = event => {
+        if (tmpInput.files.length > 0) {
+            const file = Array.from(tmpInput.files)[0]
+            const reader = new FileReader()
+            reader.onload = event => {
+                onResolve(reader.result)
+            }
+            reader.readAsText(file)
+        }
+    }
+    tmpInput.click()
+}
+
+async function doFilePrompt(consumer) {
+    const [fileHandle] = await window.showOpenFilePicker()
+    const file = await fileHandle.getFile()
+    const content = await file.text()
+    consumer(content)
+}
+
+
+async function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    const tmpDownloader = document.createElement("a")
+    const tmpURL = URL.createObjectURL(file)
+    tmpDownloader.href = tmpURL
+    tmpDownloader.download = filename
+    tmpDownloader.click()
+    setTimeout(function() {
+        window.URL.revokeObjectURL(tmpURL)
+    }, 0)
+}
+
+function upload() {
+
+    doLoadPrompt((text) => {
+        mainCanvas.fromJson(text)
+    })
+
+}
+
+function onClickSave() {
+    download(mainCanvas.toJson(), 'canvas.json', 'text/plain')
+}
+
+function onClickLoad() {
+    upload()
+}
+
 function onClickCreateCustomNode() {
     // let btn = document.getElementById("btn-create-custom")
     let popup = document.getElementById("create-node-form-body")
