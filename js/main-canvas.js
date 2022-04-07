@@ -18,6 +18,7 @@ class FlowNode {
     y = 0
 
     className = ""
+    classUnit = ""
     classCode = ""
     tabColor = "white"
     prereqs = []
@@ -102,20 +103,51 @@ class FlowNode {
         textAlign(CENTER, TOP)
         fill('black')
         text(
-            this.classCode, 
+            this.className, 
             this.x + FlowNode.#textPadding,
             this.y + FlowNode.#textPadding,
             FlowNode.#sizeX - FlowNode.#textPadding * 2,
             FlowNode.#sizeY - FlowNode.#textPadding * 2,
         )
-        textAlign(CENTER, CENTER)
-        text(
-            this.className, 
-            this.x + FlowNode.#textPadding,
-            this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
-            FlowNode.#sizeX - FlowNode.#textPadding * 2,
-            FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
-        )
+
+        if (this.classUnit.trim() !== '') {
+            textAlign(CENTER, TOP)
+            text(
+                this.classUnit + " units",
+                this.x + FlowNode.#textPadding,
+                this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
+                FlowNode.#sizeX - FlowNode.#textPadding * 2,
+                FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
+            )
+            }
+        
+        if (this.classCode.trim() !== '') {
+            textAlign(CENTER, CENTER)
+            text(    
+                this.classCode,
+                this.x + FlowNode.#textPadding,
+                this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
+                FlowNode.#sizeX - FlowNode.#textPadding * 2,
+                FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
+            )     
+        }
+
+       
+       if (this.className.trim() !== ''){
+            textAlign(RIGHT, BOTTOM)
+            text (
+                "+",
+                this.x + FlowNode.#textPadding,
+                this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
+                FlowNode.#sizeX - FlowNode.#textPadding * 2,
+                FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
+        
+            )
+        }
+
+     
+    
+        
     }
 }
 
@@ -177,6 +209,7 @@ class MainCanvas {
         if (this.#curNode == null)
             throw "No node selected!"
         this.#curNode.className = document.getElementById("c-name-modify").value
+        this.#curNode.classUnit = document.getElementById("c-units-modify").value
         this.#curNode.classCode = document.getElementById("c-major-modify").value
         this.#curNode.tabColor = document.getElementById("c-color-modify").value
         this.#curNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
@@ -410,6 +443,7 @@ class MainCanvas {
                 if (node.isInVolume(mouseX, mouseY)) {
 
                     document.getElementById("c-name-modify").value = node.className
+                    document.getElementById("c-units-modify").value = node.classUnit
                     document.getElementById("c-major-modify").value = node.classCode
                     document.getElementById("c-color-modify").value = node.tabColor
                     document.getElementById("c-prereq-modify").value = node.prereqs.join(',')
