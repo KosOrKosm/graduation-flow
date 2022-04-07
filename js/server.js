@@ -18,7 +18,7 @@ app.use('/js', express.static(root + 'js/'))
 
 
 // =========   DATABASE   =========
-app.get('/test', (req, res) => {
+app.get('/query', (req, res) => {
     res.send("Hello Class!")
     const connection = mysql.createConnection({
         host: 'localhost',
@@ -29,7 +29,7 @@ app.get('/test', (req, res) => {
       
       connection.connect()
       
-      connection.query(`SELECT * from class_list where Course = ${req.query.test}`, (err, rows, fields) => {
+      connection.query(`SELECT * from class_list where Course = ${req.query.class}`, (err, rows, fields) => {
         if (err) throw err
       
         console.log('The solution is: ',  rows[0].Course + rows[0].Dept , " ",  rows[0].Description)
