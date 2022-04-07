@@ -2,14 +2,36 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-07 12:34:45
+ * @ Modified time: 2022-04-07 13:07:48
  */
 
 
 // This file contains JS functions to be invoked by HTML buttons.
 // 
 
-function doLoadPrompt(onResolve) {
+async function tryUploadPrompt(onResolve) {
+
+    // Modern download method using File System Access API
+    if (window.showOpenFilePicker) {
+        
+        const [fileHandle] = await window.showOpenFilePicker({
+            types: [{
+                description: "JSON",
+                accept: {
+                    'application/json': ['.json']
+                }
+            }],
+            excludeAcceptAllOptions: false,
+            multiple: false
+        })
+        const file = await fileHandle.getFile()
+        const content = await file.text()
+        onResolve(content)
+        return
+
+    }
+
+    // Backup upload method using HTML elements
     const tmpInput = document.createElement('input')
     tmpInput.type = 'file'
     tmpInput.accept = '.json'
@@ -26,40 +48,43 @@ function doLoadPrompt(onResolve) {
     tmpInput.click()
 }
 
-async function doFilePrompt(consumer) {
-    const [fileHandle] = await window.showOpenFilePicker()
-    const file = await fileHandle.getFile()
-    const content = await file.text()
-    consumer(content)
-}
-
-
-async function download(data, filename, type) {
+async function tryDownloadPrompt(data, filename, type) {
     var file = new Blob([data], {type: type})
+
+    // Modern download method using File System Access API
+    if(window.showSaveFilePicker) {
+        const fileHandle = await window.showSaveFilePicker({
+            suggestedName: "canvas",
+            types: [{
+                description: "JSON",
+                accept: {
+                    'application/json': ['.json']
+                }
+            }]
+        })
+        const writable = await fileHandle.createWritable()
+        await writable.write(file)
+        await writable.close()
+        return
+    }
+
+    // Backup download method using HTML elements
     const tmpDownloader = document.createElement("a")
     const tmpURL = URL.createObjectURL(file)
     tmpDownloader.href = tmpURL
     tmpDownloader.download = filename
     tmpDownloader.click()
-    setTimeout(function() {
+    setTimeout(() => {
         window.URL.revokeObjectURL(tmpURL)
     }, 0)
 }
 
-function upload() {
-
-    doLoadPrompt((text) => {
-        mainCanvas.fromJson(text)
-    })
-
-}
-
 function onClickSave() {
-    download(mainCanvas.toJson(), 'canvas.json', 'text/plain')
+    tryDownloadPrompt(mainCanvas.toJson(), 'canvas.json', 'text/plain')
 }
 
 function onClickLoad() {
-    upload()
+    tryUploadPrompt((text) => mainCanvas.fromJson(text))
 }
 
 function onClickCreateCustomNode() {
