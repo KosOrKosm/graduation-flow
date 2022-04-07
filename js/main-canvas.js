@@ -458,3 +458,5 @@ function jpg(){
     save("canvas.png")
 }
 
+const canvasRegion = document.getElementById("canvas-region")
+new p5(mainCanvasSketch, canvasRegion)
