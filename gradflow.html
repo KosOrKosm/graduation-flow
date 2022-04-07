@@ -39,7 +39,7 @@
     <div class="gradflow-header">
       <a href="javascript:void(0)" onclick="onClickSave()">SAVE</a>
       <a href="javascript:void(0)" onclick="onClickLoad()">LOAD</a>
-      <a href="javascript:void(0)" onclick="jpg()">EXPORT</a>
+      <a href="javascript:void(0)" onclick="jepg()">EXPORT</a>
       <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
       <div class="gradflow-header-right">
         <a href="javascript:void(0)" onclick="mainCanvas.showPopup('import-node-form')">ADD</a>
@@ -139,7 +139,7 @@
 
       <!-- Modify Node Popup -->
       <div class="form-popup modify-node-form" id="modify-node-form">
-        <form class="form-container" id="modify-node-form-body">
+        <form class="form-container" id="modify-node-form-bodyf">
           <h1>Modify a Node</h1>
 
           <label for="c-name"><b>Course Name</b></label>
@@ -170,6 +170,139 @@
         </form>
       </div>
 
+
+
+
+
+
+
+
+
+      <!-- EXPERIJENTAL POPUPS BELOW-->
+      <h1>HOLLA BACK YO!</h1>
+      <div>
+        <p>You can place trigger button wherever you want.</p>
+        <p>
+          <label class="btn" for="modal-1">Show me modal with a cat</label>
+          <label class="btn btn--blue" for="modal-2">Click for more AWW</label>
+          <label class="btn" for="modal-3">Show me asdft</label>
+          <label class="btn" for="modal-4">Show me your moves</label>
+        </p>
+      </div>
+      
+      <div class="form-popup create-node-form" id="create-node-form"></div>
+
+
+      <input class="modal-state" id="modal-1" type="checkbox" />
+      <div class="modal">
+        <label class="modal__bg" for="modal-1"></label>
+        <div class="modal__inner">
+          <label class="modal__close" for="modal-1"></label>
+          <form class="form-container" id="create-node-form-body">
+            <h1>Input Custom Course</h1>
+          
+            <label for="c-name"><b>Course Name</b></label>
+            <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" required>
+          
+            <label for="c-units"><b>Units</b></label>
+            <input type="text" placeholder="Enter Units" name="c-units" id="c-units-create" required>
+          
+            <label for="c-preReq"><b>Prereqs</b></label>
+            <input type="text" placeholder="Enter Prereq" name="c-preReq" id="c-prereq-create">
+          
+            <label for="c-Major"><b>Major</b></label>
+            <input type="text" placeholder="Enter Major" name="c-Major" id="c-major-create" required>
+          
+            <label for="Description"><b>Description</b></label>
+            <br> <br>
+            <textarea id="Description" class="desc" name="Description" rows="8" width="50">placeholder</textarea>
+            <br> <br> <br>
+          
+            <label for="c-color"><b>Tab Color</b></label>
+            <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
+          
+            <!-- node buton-->
+            <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="onClickCreateCustomNode()">Create
+              Custom Node</button>
+          </form>
+        </div>
+      </div>
+
+      <input class="modal-state" id="modal-2" type="checkbox" />
+      <div class="modal">
+        <label class="modal__bg" for="modal-2"></label>
+        <div class="modal__inner-tex">
+          <label class="modal__close" for="modal-2"></label>
+          <h2>Course Name</h2>
+          
+        </div>
+      </div>
+
+      <input class="modal-state" id="modal-3" type="checkbox" />
+      <div class="modal">
+        <label class="modal__bg" for="modal-3"></label>
+        <div class="modal__inner" id="modify-node-form-body">
+          <label class="modal__close" for="modal-3"></label>
+          <form class="form-container" id="modify-node-form-bodyf">
+            <h1>Modify a Node</h1>
+          
+            <label for="c-name"><b>Course Name</b></label>
+            <input type="text" name="c-name" id="c-name-modify" placeholder="N/A">
+          
+            <label for="c-units"><b>Units</b></label>
+            <input type="text" name="c-units" id="c-units-modify" placeholder="N/A">
+          
+            <label for="c-preReq"><b>Prereqs</b></label>
+            <input type="text" name="c-preReq" id="c-prereq-modify" placeholder="N/A">
+          
+            <label for="c-Major"><b>Major</b></label>
+            <input type="text" name="c-major" id="c-major-modify" placeholder="N/A">
+          
+            <label for="Description">Description</label>
+            <br> <br>
+            <textarea id="Description" name="Description" rows="8" width="50">placeholder</textarea>
+            <br> <br> <br>
+          
+            <label for="c-color"><b>Tab Color</b></label>
+            <input type="color" name="c-color" id="c-color-modify" value="#f6b73c">
+          
+            <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="onClickModifyNode()">Edit
+              Node</button>
+          
+            <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete
+              Node</button>
+          </form>
+        </div>
+      </div>
+
+
+      <input class="modal-state" id="modal-4" type="checkbox" />
+      <div class="modal">
+        <label class="modal__bg" for="modal-4"></label>
+        <div class="modal__inner" id="modify-node-form-body">
+          <label class="modal__close" for="modal-4"></label>
+          <form class="form-container" id="import-node-form-body">
+            <h1>Import Course</h1>
+          
+            <label for="c-name"><b>Course Name</b></label>
+            <input list="c-name" type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create">
+          
+            <label for="c-color"><b>Tab Color</b></label>
+            <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
+          
+            <!-- Submit button-->
+            <button id="btn-import" type="button" class="btn btn-import" onclick="nothing">Import</button>
+          
+            <!-- node buton-->
+            <button id="btn-create-custom" type="button" class="btn btn-create-custom"
+              onclick="mainCanvas.hideLastPopup(); mainCanvas.showPopup('create-node-form');">Create
+              Custom Node</button>
+          
+            <!-- <button type="submit" class="btn">Create</button> -->
+            <button type="button" class="btn cancel" onclick="mainCanvas.hideLastPopup()">Close</button>
+          </form>
+        </div>
+      </div>
 
 
 

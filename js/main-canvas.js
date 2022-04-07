@@ -423,7 +423,7 @@ class MainCanvas {
     hideLastPopup() {
         this.#fadeForegroundAlpha = 0
         this.#fadeForeground = false
-        this.#curPopup.style.display="none"
+        this.#curPopup.style.display="block"
         this.#curPopup = null
     }
 
@@ -433,11 +433,16 @@ class MainCanvas {
         this.#curPopup.style.display="block"
         this.#fadeForeground = true
     }
+
+    jpg() {
+        save("canvas.png")
+    }
     
 }
 
 var mainCanvasSketch = function(p5) {
     mainCanvas = new MainCanvas()
+ 
     
     // Mount main canvas functions to the locations p5 expects them
     p5.setup = () => {
@@ -459,12 +464,20 @@ var mainCanvasSketch = function(p5) {
         mainCanvas.mouseReleased(p5)
     }
 
+    
+
 }
 
 
-function jpg(){
-    save("canvas.png")
-}
+
 
 const canvasRegion = document.getElementById("canvas-region")
 new p5(mainCanvasSketch, canvasRegion)
+
+
+
+function jepg() {
+    save("canvas.png")
+}
+
+// EXPERIMENTAL POPUPS BELOW
