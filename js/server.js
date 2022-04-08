@@ -23,6 +23,27 @@ app.get('/app', (req, res) => {
     res.sendFile('gradflow.html', { root: root})
 })
 
+// ========= DATABASE CONNECTION =========
+app.get('/query', (req, res) => {
+    
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'college_planner'
+      })
+      
+      connection.connect()
+      
+      connection.query(`SELECT * from class_list where Course = ${req.query.entry}`, (err, rows, fields) => {
+        if (err) throw err
+        console.log(rows[0].Course + rows[0].Dept)
+      })
+      
+      connection.end()
+
+})
+
 // =========  ABOUT PAGE  =========
 app.get('/about.html', (req, res) => {
     res.redirect('/about')
