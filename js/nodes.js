@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:14
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-12 16:10:08
+ * @ Modified time: 2022-04-12 16:16:48
  */
 
 
@@ -10,7 +10,6 @@
  *  Describes a single node in the flowchart
  *  Contains all the data describing that node, as well as
  *  functions for rendering + interacting with the node.
- *  TODO: move to a seperate file
  */
  class FlowNode {
 
@@ -84,7 +83,7 @@
         let ret = new FlowNode(0, 0)
         const props = Object.keys(record)
         for(const prop of props) {
-            if (Object.prototype.hasOwnProperty.call(ret, prop)) {
+            if (FlowNode.prototype.hasOwnProperty.call(ret, prop)) {
                 ret[prop] = record[prop]
             }
         }

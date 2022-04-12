@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-12 16:13:24
+ * @ Modified time: 2022-04-12 16:18:02
  */
 
 /**
@@ -81,6 +81,9 @@ class MainCanvas {
 
     // Draws an arrow, starting at p1 and pointing to p2
     drawArrow(p5, point1, point2, color) {
+
+        if(point1 == undefined || point2 == undefined)
+            return
         
         p5.strokeWeight(4)
 
