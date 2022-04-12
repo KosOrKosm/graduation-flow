@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-07 13:09:38
+ * @ Modified time: 2022-04-07 15:04:44
  */
 
 /**
@@ -41,6 +41,29 @@ class MainCanvas {
         this.#nodes.push(node)
     }
 
+    addNodeFromRecord(nodeRecord) {
+        let newNode = new FlowNode(0, 0)
+        if (nodeRecord.x != undefined)
+            newNode.x = nodeRecord.x
+        if (nodeRecord.y != undefined)
+            newNode.y = nodeRecord.y
+        if (nodeRecord.className != undefined)
+            newNode.className = nodeRecord.className
+        if (nodeRecord.classCode != undefined)
+            newNode.classCode = nodeRecord.classCode
+        if (nodeRecord.tabColor != undefined)
+            newNode.tabColor = nodeRecord.tabColor
+        if (nodeRecord.prereqs == undefined)
+            newNode.prereqs = []
+        else
+            newNode.prereqs = nodeRecord.prereqs
+        this.addNode(newNode)
+    }
+
+    addNodeFromJson(json) {
+        addNodeFromRecord(JSON.parse(json))
+    }
+
     removeNode(node) {
         this.#nodes = this.#nodes.filter(item => item !== node)
     }
@@ -65,21 +88,10 @@ class MainCanvas {
     }
 
     fromJson(json) {
-        this.reset();
+        this.reset()
         const records = JSON.parse(json)
         for (let nodeRecord of records) {
-            let newNode = new FlowNode(nodeRecord.x, nodeRecord.y)
-            if (nodeRecord.className != undefined)
-                newNode.className = nodeRecord.className
-            if (nodeRecord.classCode != undefined)
-                newNode.classCode = nodeRecord.classCode
-            if (nodeRecord.tabColor != undefined)
-                newNode.tabColor = nodeRecord.tabColor
-            if (nodeRecord.prereqs == undefined)
-                newNode.prereqs = []
-            else
-                newNode.prereqs = nodeRecord.prereqs
-            this.addNode(newNode)
+            this.addNodeFromRecord(nodeRecord)
         }
     }
 

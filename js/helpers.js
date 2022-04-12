@@ -2,9 +2,8 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:19
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-07 13:10:16
+ * @ Modified time: 2022-04-07 14:46:12
  */
-
 
 // Helper function to perform a P5 action without
 // altering the draw state permenantly
@@ -12,6 +11,15 @@ function tempDrawState(p5, action) {
     p5.push()
     action()
     p5.pop()
+}
+
+function tryEndpointCall(method, url, onSuccess) {
+    const req = new XMLHttpRequest()
+    req.open(method, url, false)
+    req.onload(event => {
+        onSuccess(req.responseText)
+    })
+    req.send()
 }
 
 async function tryUploadPrompt(onResolve) {
