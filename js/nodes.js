@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:14
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-07 13:09:41
+ * @ Modified time: 2022-04-12 16:10:08
  */
 
 
@@ -74,6 +74,21 @@
             return { x: hitX, y: hitY }
             
         }
+    }
+
+    static fromJson(json) {
+        return this.fromSimilarRecord(JSON.parse(json))
+    }
+
+    static fromSimilarRecord(record) {
+        let ret = new FlowNode(0, 0)
+        const props = Object.keys(record)
+        for(const prop of props) {
+            if (Object.prototype.hasOwnProperty.call(ret, prop)) {
+                ret[prop] = record[prop]
+            }
+        }
+        return ret
     }
 
     isInVolume(_x, _y) {
