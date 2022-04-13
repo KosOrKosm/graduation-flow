@@ -47,15 +47,23 @@ function onClickDeleteSelectedNode() {
     
     mainCanvas.removeSelectedNode()
     mainCanvas.hideLastPopup()
+    document.getElementById('modify-node-form-over').style.display='none'
     popup.reset()
 }
 
 // Target HTML Element: modify-node-form
 // Used to confirm modifications to the selected node
 function onClickModifyNode() {
+    
+
     let popup = document.getElementById("modify-node-form-body")
 
     mainCanvas.realizeNodeModifications() 
     mainCanvas.hideLastPopup()
+    document.getElementById('modify-node-form-over').style.display='none'
     popup.reset()
+    
+    
+    
+    
 }
