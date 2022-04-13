@@ -2,17 +2,16 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-12 16:18:02
+ * @ Modified time: 2022-04-12 19:59:18
  */
 
 /**
  * This object contains all the app's runtime data
  * and P5 rendering hooks.
  */
-class MainCanvas {
+class MainCanvas extends Canvas {
 
     // PRIVATE
-    #canvas
     #nodes = []
     #dragging = false
     #currently_dragged = null
@@ -25,6 +24,7 @@ class MainCanvas {
     #curNode = null
 
     constructor() {
+        super()
         this.reset()
 
         // TEST NODES
@@ -126,33 +126,6 @@ class MainCanvas {
             )
         })
         
-    }
-
-    /**
-     * ======= P5 Renderer Hook =======
-     * This function is invoked when P5 begins rendering.
-     * The canvas should be created here.
-     */
-    setup(p5) {
-        this.#canvas = p5.createCanvas(100, 100);
-        this.windowResized(p5)
-    }
-    
-    /**
-     * ======= P5 Renderer Hook =======
-     * This function is invoked whenever the browser window is resized.
-     * The canvas should be resized to fit the new window here.
-     */
-    windowResized(p5) {
-        
-        const canvasRegion = document.getElementById("canvas-region").getBoundingClientRect()
-        // TODO: remove these magic number offsets in the Y coord
-        p5.resizeCanvas(p5.windowWidth - canvasRegion.left, p5.windowHeight - canvasRegion.top - 65);
-        
-        // Auto-lock the canvas to the max width it can occupy
-        // NOTE: this will not override the canvas's actual 
-        //       pixel width, just stretch to fit the screen
-        this.#canvas.style("width","100%")
     }
     
     /**
@@ -304,30 +277,5 @@ class MainCanvas {
     
 }
 
-var mainCanvasSketch = function(p5) {
-    mainCanvas = new MainCanvas()
-    
-    // Mount main canvas functions to the locations p5 expects them
-    p5.setup = () => {
-        mainCanvas.setup(p5)
-    }
-    p5.draw = () => {
-        mainCanvas.draw(p5)
-    }
-    p5.windowResized = () => {
-        mainCanvas.windowResized(p5)
-    }
-    p5.mousePressed = () => {
-        mainCanvas.mousePressed(p5)
-    }
-    p5.mouseDragged = () => {
-        mainCanvas.mouseDragged(p5)
-    }
-    p5.mouseReleased = () => { 
-        mainCanvas.mouseReleased(p5)
-    }
-
-}
-
-const canvasRegion = document.getElementById("canvas-region")
-new p5(mainCanvasSketch, canvasRegion)
+const mainCanvas = new MainCanvas()
+Canvas.injectInstance(mainCanvas, "canvas-container", "canvas-region")
