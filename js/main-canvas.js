@@ -273,6 +273,7 @@ class MainCanvas {
                     document.getElementById("c-color-modify").value = node.tabColor
                     document.getElementById("c-prereq-modify").value = node.prereqs.join(',')
 
+                    this.showPopup("modify-node-form-over")
                     this.showPopup("modify-node-form")
                     this.#curNode = node
                     break
