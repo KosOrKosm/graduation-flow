@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 19:02:12
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-12 20:25:54
+ * @ Modified time: 2022-04-12 20:32:18
  */
 
 class Canvas {
@@ -85,6 +85,10 @@ class Canvas {
         // Save the new p5 instance to the map for future recall
         Canvas.#instanceMap.set(canvasRegion, new p5(doConfigureP5, document.getElementById(canvasRegion)))
 
+    }
+
+    static getRegionP5(region) {
+        return Canvas.#instanceMap.get(region)
     }
 
 }
