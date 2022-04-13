@@ -42,104 +42,104 @@
       <a href="javascript:void(0)" onclick="jpeg()">EXPORT</a>
       <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
       <div class="gradflow-header-right">
-        <a href="javascript:void(0)" onclick="mainCanvas.showPopup('import-node-form'); mainCanvas.showPopup('import-node-form-over');">ADD</a>
+        <a href="javascript:void(0)" id="btn-add" onclick="mainCanvas.showPopup('import-node-form'); mainCanvas.showPopup('import-node-form-over');">ADD</a>
         <a href="javascript:void(0)" onclick="mainCanvas.reset()">RESET</a>
       </div>
     </div>
 
     <!--GRADFLOW PAGE MAIN-->
-    <main class="gradflow-main">
+    <main class="gradflow-main" id="canvas-region">
 
       <!--popups-->
 
-  <!-- Create Custom Node Popup-->
-  <div class="overlay" id="create-node-form-over">
-    <div class="form-popup create-node-form" id="create-node-form">
-      <form class="form-container" id="create-node-form-body">
-        <h1>Input Custom Course</h1>
-    
-        <label for="c-name"><b>Course Name</b></label>
-        <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" required>
-    
-        <label for="c-units"><b>Units</b></label>
-        <input type="text" placeholder="Enter Units" name="c-units" id="c-units-create" required>
-    
-        <label for="c-preReq"><b>Prereqs</b></label>
-        <input type="text" placeholder="Enter Prereq" name="c-preReq" id="c-prereq-create">
-    
-        <label for="c-Major"><b>Major</b></label>
-        <input type="text" placeholder="Enter Major" name="c-Major" id="c-major-create" required>
-    
-        <label for="c-color"><b>Tab Color</b></label>
-        <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
-    
-        <!-- node buton-->
-        <button id="btn-create-custom" type="button" class="btn btn-create-custom"
-          onclick="onClickCreateCustomNode()">Create
-          Custom Node</button>
-    
-        <!-- <button type="submit" class="btn">Create</button> -->
-        <button type="button" class="btn cancel" onclick="mainCanvas.hideLastPopup()">Close</button>
-      </form>
+    <!-- Create Custom Node Popup-->
+    <div class="overlay" id="create-node-form-over">
+      <div class="form-popup create-node-form" id="create-node-form">
+        <form class="form-container" id="create-node-form-body">
+          <h1>Input Custom Course</h1>
+      
+          <label for="c-name"><b>Course Name</b></label>
+          <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" required>
+      
+          <label for="c-units"><b>Units</b></label>
+          <input type="text" placeholder="Enter Units" name="c-units" id="c-units-create" required>
+      
+          <label for="c-preReq"><b>Prereqs</b></label>
+          <input type="text" placeholder="Enter Prereq" name="c-preReq" id="c-prereq-create">
+      
+          <label for="c-Major"><b>Major</b></label>
+          <input type="text" placeholder="Enter Major" name="c-Major" id="c-major-create" required>
+      
+          <label for="c-color"><b>Tab Color</b></label>
+          <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
+      
+          <!-- node buton-->
+          <button id="btn-create-custom" type="button" class="btn btn-create-custom"
+            onclick="onClickCreateCustomNode()">Create
+            Custom Node</button>
+      
+          <!-- <button type="submit" class="btn">Create</button> -->
+          <button type="button" class="btn cancel" onclick="mainCanvas.hideLastPopup()">Close</button>
+        </form>
+      </div>
     </div>
-  </div>
 
 
-  <!-- Modify Node Popup -->
-  <div class="overlay" id="modify-node-form-over">
-    <div class="form-popup modify-node-form" id="modify-node-form">
-      <form class="form-container" id="modify-node-form-body">
-        <h1>Modify a Node</h1>
+    <!-- Modify Node Popup -->
+    <div class="overlay" id="modify-node-form-over">
+      <div class="form-popup modify-node-form" id="modify-node-form">
+        <form class="form-container" id="modify-node-form-body">
+          <h1>Modify a Node</h1>
 
-        <label for="c-name"><b>Course Name</b></label>
-        <input type="text" name="c-name" id="c-name-modify" placeholder="N/A">
+          <label for="c-name"><b>Course Name</b></label>
+          <input type="text" name="c-name" id="c-name-modify" placeholder="N/A">
 
-        <label for="c-units"><b>Units</b></label>
-        <input type="text" name="c-units" id="c-units-modify" placeholder="N/A">
+          <label for="c-units"><b>Units</b></label>
+          <input type="text" name="c-units" id="c-units-modify" placeholder="N/A">
 
-        <label for="c-preReq"><b>Prereqs</b></label>
-        <input type="text" name="c-preReq" id="c-prereq-modify" placeholder="N/A">
+          <label for="c-preReq"><b>Prereqs</b></label>
+          <input type="text" name="c-preReq" id="c-prereq-modify" placeholder="N/A">
 
-        <label for="c-Major"><b>Major</b></label>
-        <input type="text" name="c-major" id="c-major-modify" placeholder="N/A">
+          <label for="c-Major"><b>Major</b></label>
+          <input type="text" name="c-major" id="c-major-modify" placeholder="N/A">
 
-        <label for="c-color"><b>Tab Color</b></label>
-        <input type="color" name="c-color" id="c-color-modify" value="#f6b73c">
+          <label for="c-color"><b>Tab Color</b></label>
+          <input type="color" name="c-color" id="c-color-modify" value="#f6b73c">
 
-        <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="onClickModifyNode()">Edit Node</button>
-        
-        <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete Node</button>
-      </form>
+          <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="onClickModifyNode()">Edit Node</button>
+          
+          <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete Node</button>
+        </form>
+      </div>
     </div>
-  </div>
   
 
 
-  <!-- Import Node Popup -->
-  <div class="overlay" id="import-node-form-over">
-    <div class="form-popup import-node-form" id="import-node-form">
-      <form class="form-container" id="import-node-form-body">
-        <h1>Import Course</h1>
-    
-        <label for="c-name"><b>Course Name</b></label>
-        <input list="c-name" type="text" name="c-name" id="c-name-create">
-        <div class="mini-canvas" id="mini-canvas"></div>
-        <br> <br> <br> <br>
+    <!-- Import Node Popup -->
+    <div class="overlay" id="import-node-form-over">
+      <div class="form-popup import-node-form" id="import-node-form">
+        <form class="form-container" id="import-node-form-body">
+          <h1>Import Course</h1>
+      
+          <label for="c-name"><b>Course Name</b></label>
+          <input list="c-name" type="text" name="c-name" id="c-name-create">
+          <div class="mini-canvas" id="mini-canvas"></div>
+          <br> <br> <br> <br>
 
-        <br> <br> <br> <br> <br>
-        <label for="c-color"><b>Tab Color</b></label>
-        <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
+          <br> <br> <br> <br> <br>
+          <label for="c-color"><b>Tab Color</b></label>
+          <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
 
-        <!-- Submit button-->
-        <button id="btn-import" type="button" class="btn btn-import" onclick="nothing">Import</button>
+          <!-- Submit button-->
+          <button id="btn-import" type="button" class="btn btn-import" onclick="nothing">Import</button>
 
-        <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="mainCanvas.hideLastPopup(); document.getElementById('import-node-form-over').style.display='none'; mainCanvas.showPopup('create-node-form'); mainCanvas.showPopup('create-node-form-over');">Create
-          Custom Node</button>
+          <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="mainCanvas.hideLastPopup(); document.getElementById('import-node-form-over').style.display='none'; mainCanvas.showPopup('create-node-form'); mainCanvas.showPopup('create-node-form-over');">Create
+            Custom Node</button>
 
-        <button type="button" class="btn cancel" onclick="mainCanvas.hideLastPopup(); document.getElementById('import-node-form-over').style.display='none'">Close</button>
-      </form>
+          <button type="button" class="btn cancel" onclick="mainCanvas.hideLastPopup(); document.getElementById('import-node-form-over').style.display='none'">Close</button>
+        </form>
+      </div>
     </div>
-  </div>
 
 
 
@@ -151,13 +151,15 @@
 
 
 
-  <div id="canvas-region">
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
-    <script src="./js/helpers.js"></script>
-    <script src="./js/nodes.js"></script>
-    <script src="./js/main-canvas.js"></script>
-    <script src="./js/handlers.js"></script>
-  </div>
+    <div id="canvas-container">
+      <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+      <script src="./js/helpers.js"></script>
+      <script src="./js/nodes.js"></script>
+      <script src="./js/generic-canvas.js"></script>
+      <script src="./js/main-canvas.js"></script>
+      <script src="./js/preview-canvas.js"></script>
+      <script src="./js/handlers.js"></script>
+    </div>
 
     </main>
 

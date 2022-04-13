@@ -113,6 +113,8 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 .page-wrapper { 
 	display: flex; 
 	flex-direction: column;
+	flex-flow: column;
+	height: 100%;
 	min-height: 100vh;
 }
 
@@ -245,6 +247,10 @@ STARTING AT MAIN- GRADFLOW.HTML
 	float: right;
   }
 
+  .gradflow-main {
+	  flex: 1 1 auto;
+  }
+
   #canvas-region { 
 	  /* border: 5px dashed black; */
   }
@@ -342,6 +348,7 @@ STARTING AT MAIN - ABOUT.HTML
 .page-footer {
 	display: flex;
 	flex-direction: column-reverse;
+	flex-grow: 0;
 	padding: 0px 10px 5px 10px;
 	/*background-image: linear-gradient(to bottom right, #004d7a, #008793); */
   }
