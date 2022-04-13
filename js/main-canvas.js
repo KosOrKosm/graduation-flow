@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-12 19:59:18
+ * @ Modified time: 2022-04-12 20:56:10
  */
 
 /**
@@ -35,6 +35,12 @@ class MainCanvas extends Canvas {
             node.tabColor = testNodeColors[i % testNodeColors.length]
             this.addNode(node)
         }
+    }
+
+    setFade(fade) {
+        if(this.#fadeForeground && !fade)
+            this.#fadeForegroundAlpha = 0
+        this.#fadeForeground = fade
     }
 
     addNode(node) {
@@ -258,21 +264,6 @@ class MainCanvas extends Canvas {
         this.#dragging = false
         this.#currently_dragged = null
     
-    }
-
-    // Hides the last popup the canvas is aware of being displayed
-    hideLastPopup() {
-        this.#fadeForegroundAlpha = 0
-        this.#fadeForeground = false
-        this.#curPopup.style.display="none"
-        this.#curPopup = null
-    }
-
-    // Shows a given popup
-    showPopup(popupName) {
-        this.#curPopup = document.getElementById(popupName)
-        this.#curPopup.style.display="block"
-        this.#fadeForeground = true
     }
     
 }

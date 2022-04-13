@@ -12,6 +12,12 @@
 </head>
 
 <body>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+  <script src="./js/helpers.js"></script>
+  <script src="./js/popup-manager.js"></script>
+  <script src="./js/nodes.js"></script>
+  <script src="./js/handlers.js"></script>
+  <script src="./js/generic-canvas.js"></script>
   <div class="page-wrapper">
 
     <!--PAGE HEADER-->
@@ -42,7 +48,7 @@
       <a href="javascript:void(0)" onclick="jpeg()">EXPORT</a>
       <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
       <div class="gradflow-header-right">
-        <a href="javascript:void(0)" id="btn-add" onclick="mainCanvas.showPopup('import-node-form'); mainCanvas.showPopup('import-node-form-over');">ADD</a>
+        <a href="javascript:void(0)" id="btn-add" onclick="popupManager.showPopup('import-node-form');">ADD</a>
         <a href="javascript:void(0)" onclick="mainCanvas.reset()">RESET</a>
       </div>
     </div>
@@ -79,7 +85,7 @@
             Custom Node</button>
       
           <!-- <button type="submit" class="btn">Create</button> -->
-          <button type="button" class="btn cancel" onclick="mainCanvas.hideLastPopup()">Close</button>
+          <button type="button" class="btn cancel" onclick="popupManager.hideLastPopup()">Close</button>
         </form>
       </div>
     </div>
@@ -123,7 +129,9 @@
       
           <label for="c-name"><b>Course Name</b></label>
           <input list="c-name" type="text" name="c-name" id="c-name-create">
-          <div class="mini-canvas" id="mini-canvas"></div>
+          <div class="mini-canvas" id="mini-canvas">
+            <script src="./js/preview-canvas.js"></script>
+          </div>
           <br> <br> <br> <br>
 
           <br> <br> <br> <br> <br>
@@ -133,10 +141,10 @@
           <!-- Submit button-->
           <button id="btn-import" type="button" class="btn btn-import" onclick="nothing">Import</button>
 
-          <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="mainCanvas.hideLastPopup(); document.getElementById('import-node-form-over').style.display='none'; mainCanvas.showPopup('create-node-form'); mainCanvas.showPopup('create-node-form-over');">Create
+          <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="popupManager.hideLastPopup(); popupManager.showPopup('create-node-form');">Create
             Custom Node</button>
 
-          <button type="button" class="btn cancel" onclick="mainCanvas.hideLastPopup(); document.getElementById('import-node-form-over').style.display='none'">Close</button>
+          <button type="button" class="btn cancel" onclick="popupManager.hideLastPopup();">Close</button>
         </form>
       </div>
     </div>
@@ -152,13 +160,7 @@
 
 
     <div id="canvas-container">
-      <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
-      <script src="./js/helpers.js"></script>
-      <script src="./js/nodes.js"></script>
-      <script src="./js/generic-canvas.js"></script>
       <script src="./js/main-canvas.js"></script>
-      <script src="./js/preview-canvas.js"></script>
-      <script src="./js/handlers.js"></script>
     </div>
 
     </main>
