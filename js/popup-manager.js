@@ -7,13 +7,21 @@
 
 class PopupManager {
 
-    popups = []
+    #popups = []
+
+    popupVisible() {
+        return this.#popups.length > 0
+    }
+
+    getCurPopupDim() {
+        return this.#popups[0].getBoundingClientRect()
+    }
 
     // Hides the last popup the canvas is aware of being displayed
     hideLastPopup() {
 
-        const popup = this.popups[0]
-        this.popups.pop()
+        const popup = this.#popups[0]
+        this.#popups.pop()
 
         if(popup == undefined)
             return
@@ -33,7 +41,7 @@ class PopupManager {
         let popup = document.getElementById(popupName)
         popup.style.display="block"
         mainCanvas.setFade(true)
-        this.popups.push(popup)
+        this.#popups.push(popup)
 
         const overlay = document.getElementById(popupName + "-over")
         if (overlay != undefined)

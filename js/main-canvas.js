@@ -184,17 +184,17 @@ class MainCanvas extends Canvas {
     
         if (this.#fadeForeground) {
 
-            if(this.#curPopup != null) {
+            if(popupManager.popupVisible()) {
 
                 // TODO: remove these magic number offsets in the Y coord
-                let dim = this.#curPopup.getBoundingClientRect()
+                let dim = popupManager.getCurPopupDim()
                 if(
                     p5.mouseX <= dim.left ||
                     p5.mouseY <= dim.top - 108 ||
                     p5.mouseX >= dim.left + dim.width ||
                     p5.mouseY >= dim.top - 108 + dim.height
                 ) {
-                    this.hideLastPopup()
+                    popupManager.hideLastPopup()
                 }
 
             } else {
@@ -252,8 +252,7 @@ class MainCanvas extends Canvas {
                     document.getElementById("c-color-modify").value = node.tabColor
                     document.getElementById("c-prereq-modify").value = node.prereqs.join(',')
 
-                    this.showPopup("modify-node-form-over")
-                    this.showPopup("modify-node-form")
+                    popupManager.showPopup("modify-node-form")
                     this.#curNode = node
                     break
                 }

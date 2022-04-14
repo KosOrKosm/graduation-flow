@@ -26,8 +26,8 @@ function onClickCreateCustomNode() {
     customNode.classCode = document.getElementById("c-major-create").value
     customNode.tabColor = document.getElementById("c-color-create").value
     customNode.prereqs = document.getElementById("c-prereq-create").value.split(',')
-    mainCanvas.addNode(customNode)
-    mainCanvas.hideLastPopup()
+    popupManager.addNode(customNode)
+    popupManager.hideLastPopup()
     popup.reset()
 
 }
@@ -36,7 +36,7 @@ function onClickCreate() {
     // let btn = document.getElementById("btn-create")
     // let popup = document.getElementById("create-node-form")
     
-    mainCanvas.showPopup("create-node-form")
+    popupManager.showPopup("create-node-form")
 
 }
 
@@ -46,7 +46,7 @@ function onClickDeleteSelectedNode() {
     let popup = document.getElementById("modify-node-form-body")
     
     mainCanvas.removeSelectedNode()
-    mainCanvas.hideLastPopup()
+    popupManager.hideLastPopup()
     document.getElementById('modify-node-form-over').style.display='none'
     popup.reset()
 }
@@ -59,7 +59,7 @@ function onClickModifyNode() {
     let popup = document.getElementById("modify-node-form-body")
 
     mainCanvas.realizeNodeModifications() 
-    mainCanvas.hideLastPopup()
+    popupManager.hideLastPopup()
     document.getElementById('modify-node-form-over').style.display='none'
     popup.reset()
     
