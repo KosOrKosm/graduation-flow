@@ -34,7 +34,7 @@ const NodesList = {
     findNodeByClassCode(code) {
         if(code == '')
             return undefined
-        return this.nodes.find(node => {return node.classCode == code})
+        return this.nodes.find(node => {return node.classPrefixNumber == code})
     }
     
 }

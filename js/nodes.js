@@ -17,16 +17,21 @@
     x = 0
     y = 0
 
+    classPrefixNumber = ""
     className = ""
-    classCode = ""
+    classUnit = ""
+    classMajor = ""
+    classDescription = ""
     tabColor = "white"
     prereqs = []
+    
 
     // PRIVATE
     static #sizeX = 100
     static #sizeY = 70
     static #tabSizeY = 20
     static #textPadding = 3
+   
 
     constructor(x, y) {
 
@@ -113,23 +118,41 @@
         p.rect(this.x, this.y, FlowNode.#sizeX, FlowNode.#tabSizeY, 5)
 
         p.strokeWeight(0)
+        
+        //draw Prefix Number on Node
         p.textSize(FlowNode.#tabSizeY - FlowNode.#textPadding * 2)
         p.textAlign(p.CENTER, p.TOP)
         p.fill('black')
         p.text(
-            this.classCode, 
+            this.classPrefixNumber.toUpperCase(), 
             this.x + FlowNode.#textPadding,
             this.y + FlowNode.#textPadding,
             FlowNode.#sizeX - FlowNode.#textPadding * 2,
             FlowNode.#sizeY - FlowNode.#textPadding * 2,
         )
+        
+        let classNameUnit = this.className + ' (' + this.classUnit + ')'
+        p.textSize(FlowNode.#tabSizeY - (FlowNode.#textPadding * 2.5))
         p.textAlign(p.CENTER, p.CENTER)
-        p.text(
-            this.className, 
+        //draw className(classUnit) or className 
+        if (this.classUnit.trim() !== '') {
+            p.text(
+            classNameUnit,
             this.x + FlowNode.#textPadding,
             this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
-            FlowNode.#sizeX - FlowNode.#textPadding * 2,
+            FlowNode.#sizeX - FlowNode.#textPadding * 3,
             FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
-        )
+            )
+            }
+        else {
+            p.text(
+                this.className,  
+                this.x + FlowNode.#textPadding,
+                this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
+                FlowNode.#sizeX - FlowNode.#textPadding * 3,
+                FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
+            )
+        }
+
     }
 }

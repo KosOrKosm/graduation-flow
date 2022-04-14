@@ -22,8 +22,11 @@ function onClickCreateCustomNode() {
     let popup = document.getElementById("create-node-form-body")
 
     let customNode = new FlowNode(0, 300)
+    customNode.classPrefixNumber = document.getElementById("c-prefixnum-create").value
     customNode.className = document.getElementById("c-name-create").value
-    customNode.classCode = document.getElementById("c-major-create").value
+    customNode.classUnit = document.getElementById("c-unit-create").value
+    customNode.classMajor = document.getElementById("c-major-create").value
+    customNode.classDescription = document.getElementById("c-description-create").value
     customNode.tabColor = document.getElementById("c-color-create").value
     customNode.prereqs = document.getElementById("c-prereq-create").value.split(',')
     mainCanvas.addNode(customNode)
@@ -55,8 +58,11 @@ function removeSelectedNode() {
 function realizeNodeModifications() {
     if (selectedNode == null)
         throw "No node selected!"
+    selectedNode.classPrefixNumber = document.getElementById("c-prefixnum-modify").value
     selectedNode.className = document.getElementById("c-name-modify").value
-    selectedNode.classCode = document.getElementById("c-major-modify").value
+    selectedNode.classUnit = document.getElementById("c-unit-modify").value
+    selectedNode.classMajor = document.getElementById("c-major-modify").value 
+    selectedNode.classDescription = document.getElementById("c-description-modify").value
     selectedNode.tabColor = document.getElementById("c-color-modify").value
     selectedNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
 }

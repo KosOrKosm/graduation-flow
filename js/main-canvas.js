@@ -114,8 +114,11 @@ class MainCanvas extends Canvas {
             for (let node of this.nodes) {
                 if (node.isInVolume(p5.mouseX, p5.mouseY)) {
 
+                    document.getElementById("c-prefixnum-modify").value = node.classPrefixNumber
                     document.getElementById("c-name-modify").value = node.className
-                    document.getElementById("c-major-modify").value = node.classCode
+                    document.getElementById("c-unit-modify").value = node.classUnit
+                    document.getElementById("c-major-modify").value = node.classMajor
+                    document.getElementById("c-description-modify").value = node.classDescription
                     document.getElementById("c-color-modify").value = node.tabColor
                     document.getElementById("c-prereq-modify").value = node.prereqs.join(',')
 
