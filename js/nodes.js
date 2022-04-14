@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:14
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-12 16:16:48
+ * @ Modified time: 2022-04-14 12:56:24
  */
 
 
@@ -11,7 +11,7 @@
  *  Contains all the data describing that node, as well as
  *  functions for rendering + interacting with the node.
  */
- class FlowNode {
+ export class FlowNode {
 
     // PUBLIC
     x = 0

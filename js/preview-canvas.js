@@ -5,6 +5,8 @@
  * @ Modified time: 2022-04-12 21:10:29
  */
 
+ import { Canvas } from "./generic-canvas.js"
+ 
 class PreviewCanvas extends Canvas {
 
     constructor() {

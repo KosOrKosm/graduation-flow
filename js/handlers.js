@@ -2,9 +2,10 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 11:32:51
+ * @ Modified time: 2022-04-14 13:03:06
  */
 
+import { tryDownloadPrompt, tryUploadPrompt } from "./helpers.js"
 
 // This file contains JS functions to be invoked by HTML buttons.
 // 
@@ -42,7 +43,7 @@ function onClickCreate() {
 
 let selectedNode = null
 
-function selectNode(node) { 
+export function selectNode(node) { 
     selectedNode = node
 }
 

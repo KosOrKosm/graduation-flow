@@ -2,18 +2,18 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:19
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 11:25:04
+ * @ Modified time: 2022-04-14 12:58:29
  */
 
 // Helper function to perform a P5 action without
 // altering the draw state permenantly
-function tempDrawState(p5, action) {
+export function tempDrawState(p5, action) {
     p5.push()
     action()
     p5.pop()
 }
 
-function tryEndpointCall(method, url, onSuccess) {
+export function tryEndpointCall(method, url, onSuccess) {
     const req = new XMLHttpRequest()
     req.open(method, url, false)
     req.onload(event => {
@@ -22,7 +22,7 @@ function tryEndpointCall(method, url, onSuccess) {
     req.send()
 }
 
-async function tryUploadPrompt(onResolve) {
+export async function tryUploadPrompt(onResolve) {
 
     // Modern download method using File System Access API
     if (window.showOpenFilePicker) {
@@ -61,7 +61,7 @@ async function tryUploadPrompt(onResolve) {
     tmpInput.click()
 }
 
-async function tryDownloadPrompt(data, filename, type) {
+export async function tryDownloadPrompt(data, filename, type) {
     var file = new Blob([data], {type: type})
 
     // Modern download method using File System Access API
@@ -94,50 +94,39 @@ async function tryDownloadPrompt(data, filename, type) {
 
 
 // Draws an arrow, starting at p1 and pointing to p2
-function drawArrow(p5, point1, point2, color) {
+export function drawArrow(p5, source, target, color) {
 
-    if(point1 == undefined || point2 == undefined)
+    if(target == undefined || source == undefined)
         return
     
     p5.strokeWeight(4)
 
-    // Dropshadow Effect
-    tempDrawState(p5, () => {
-        p5.stroke('black')
-        p5.fill('black')
-        p5.translate(3, 3)
-
+    const drawArrowBasis = () => {
         // Draw arrow body
-        p5.line(point1.x, point1.y, point2.x, point2.y)
+        p5.line(target.x, target.y, source.x, source.y)
 
-        // Draw the arrow head
+        // Draw arrow head
         tempDrawState(p5, () => {
-            p5.translate(point2.x, point2.y)
-            p5.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x))
+            p5.translate(target.x, target.y)
+            p5.rotate(Math.atan2(target.y - source.y, target.x - source.x))
             p5.triangle(
                 0, 0,
                 -20, -10,
                 -20, 10
             )
         })
+    }
 
+    // Dropshadow Effect
+    tempDrawState(p5, () => {
+        p5.stroke('black')
+        p5.fill('black')
+        p5.translate(3, 3)
+        drawArrowBasis()
     })
     
     p5.stroke(color)
     p5.fill(color)
-    
-    // Draw arrow body
-    p5.line(point1.x, point1.y, point2.x, point2.y)
-
-    // Draw arrow head
-    tempDrawState(p5, () => {
-        p5.translate(point2.x, point2.y)
-        p5.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x))
-        p5.triangle(
-            0, 0,
-            -20, -10,
-            -20, 10
-        )
-    })
+    drawArrowBasis()
     
 }

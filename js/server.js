@@ -2,15 +2,17 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-17 12:10:58
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-03-17 12:52:20
+ * @ Modified time: 2022-04-14 12:57:56
  */
 
+const cors = require('cors')
 const express = require('express')
 const app = express()
 const root = __dirname + '../../'
 app.set('port', 3000)
 
 // Host assets
+app.use(cors())
 app.use('/css', express.static(root + 'css/'))
 app.use('/img', express.static(root + 'img/'))
 app.use('/js', express.static(root + 'js/'))

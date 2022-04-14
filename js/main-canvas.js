@@ -2,8 +2,14 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 11:35:19
+ * @ Modified time: 2022-04-14 13:03:26
  */
+
+import { Canvas } from "./generic-canvas.js"
+import { popupManager } from "./popup-manager.js"
+import { NodesList } from "./node-list.js"
+import { FlowNode } from "./nodes.js"
+import { selectNode } from "./handlers.js"
 
 /**
  * This object contains all the app's runtime data
@@ -32,18 +38,30 @@ class MainCanvas extends Canvas {
         p5.clear()
 
         // Draw prereq indicators
-        for (let node of this.nodes) {
-            for(let prereq of node.prereqs) {
-                const found = this.findNodeByClassCode(prereq)
-                if(found != undefined) {
-                    drawArrow(p5, node.getCenter(), found.getIntersection(node.getCenter()), node.tabColor)
+        // We do this before nodes so the nodes render on top the arrows
+        this.nodes.forEach((dependentNode) => {
+            
+            dependentNode.prereqs.forEach((prereq) => {
+
+                const prereqNode = this.findNodeByClassCode(prereq)
+
+                if(prereqNode) {
+
+                    // Draw an arrow from the prereq node to the dependent noe
+                    drawArrow(p5, 
+                        prereqNode.getCenter(), 
+                        dependentNode.getIntersection(prereqNode.getCenter()), 
+                        prereqNode.tabColor
+                    )
+                    
                 }
-            }
-        }
-    
-        for (let node of this.nodes) {
-            node.draw(p5)
-        }
+                
+            })
+            
+        })
+
+        // Draw all nodes
+        this.nodes.forEach(node => node.draw(p5))
     
     }
     

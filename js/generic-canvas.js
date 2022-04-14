@@ -2,10 +2,10 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 19:02:12
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-12 20:32:18
+ * @ Modified time: 2022-04-14 13:02:19
  */
 
-class Canvas {
+export class Canvas {
 
     #canvas = undefined
     #parentDiv = undefined
