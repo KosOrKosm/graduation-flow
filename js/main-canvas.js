@@ -81,7 +81,7 @@ class MainCanvas extends Canvas {
         this.#nodes = []
     }
 
-    findNodeByClassCode(code) {
+    createPrereqLink(code) {
         if(code == '')
             return undefined
         return this.#nodes.find(node => {return node.classPrefixNumber == code})
@@ -153,7 +153,7 @@ class MainCanvas extends Canvas {
         // Draw prereq indicators
         for (let node of this.#nodes) {
             for(let prereq of node.prereqs) {
-                const found = this.findNodeByClassCode(prereq)
+                const found = this.createPrereqLink(prereq)
                 if(found != undefined) {
                     this.drawArrow(p5, node.getCenter(), found.getIntersection(node.getCenter()), node.tabColor)
                 }
