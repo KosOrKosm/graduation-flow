@@ -21,8 +21,10 @@
     className = ""
     classUnit = ""
     classCode = ""
+    classDescription = ""
     tabColor = "white"
     prereqs = []
+    
 
     // PRIVATE
     static #sizeX = 100

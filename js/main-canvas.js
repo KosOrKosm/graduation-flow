@@ -118,6 +118,7 @@ class MainCanvas extends Canvas {
                     document.getElementById("c-name-modify").value = node.className
                     document.getElementById("c-unit-modify").value = node.classUnit
                     document.getElementById("c-major-modify").value = node.classCode
+                    document.getElementById("c-description-modify").value = node.classDescription
                     document.getElementById("c-color-modify").value = node.tabColor
                     document.getElementById("c-prereq-modify").value = node.prereqs.join(',')
 

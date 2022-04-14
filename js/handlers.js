@@ -26,6 +26,7 @@ function onClickCreateCustomNode() {
     customNode.className = document.getElementById("c-name-create").value
     customNode.classUnit = document.getElementById("c-unit-create").value
     customNode.classCode = document.getElementById("c-major-create").value
+    customNode.classDescription = document.getElementById("c-description-create").value
     customNode.tabColor = document.getElementById("c-color-create").value
     customNode.prereqs = document.getElementById("c-prereq-create").value.split(',')
     mainCanvas.addNode(customNode)
@@ -60,7 +61,8 @@ function realizeNodeModifications() {
     selectedNode.classPrefixNumber = document.getElementById("c-prefixnum-modify").value
     selectedNode.className = document.getElementById("c-name-modify").value
     selectedNode.classUnit = document.getElementById("c-unit-modify").value
-    selectedNode.classCode = document.getElementById("c-major-modify").value
+    selectedNode.classCode = document.getElementById("c-major-modify").value //need to fix .classCode to .classMajor
+    selectedNode.classDescription = document.getElementById("c-description-modify").value
     selectedNode.tabColor = document.getElementById("c-color-modify").value
     selectedNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
 }
