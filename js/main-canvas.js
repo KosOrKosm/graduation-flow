@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 11:35:19
+ * @ Modified time: 2022-04-14 15:04:23
  */
 
 /**
@@ -36,7 +36,7 @@ class MainCanvas extends Canvas {
             for(let prereq of node.prereqs) {
                 const found = this.findNodeByClassCode(prereq)
                 if(found != undefined) {
-                    drawArrow(p5, node.getCenter(), found.getIntersection(node.getCenter()), node.tabColor)
+                    drawArrow(p5, found.getCenter(), node.getIntersection(found.getCenter()), found.tabColor)
                 }
             }
         }
