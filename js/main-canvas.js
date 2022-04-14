@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-12 20:56:10
+ * @ Modified time: 2022-04-14 11:35:19
  */
 
 /**
@@ -12,127 +12,10 @@
 class MainCanvas extends Canvas {
 
     // PRIVATE
-    #nodes = []
     #dragging = false
     #currently_dragged = null
     #drag_offx = 0
     #drag_offy = 0
-    #fadeForeground = false
-    #fadeForegroundAlpha = 0
-    #fadeForegroundAlphaTarget = 0.5
-    #curPopup = null
-    #curNode = null
-
-    constructor() {
-        super()
-        this.reset()
-
-        // TEST NODES
-        // TODO: remove from final build of website
-        let testNodeColors = ["#800000", "#EE82EE", "#00FFFF", "#008000", "#FFA500"]
-        for(let i = 0; i < 10; ++i) {
-            let node = new FlowNode(i * 100, 0)
-            node.tabColor = testNodeColors[i % testNodeColors.length]
-            this.addNode(node)
-        }
-    }
-
-    setFade(fade) {
-        if(this.#fadeForeground && !fade)
-            this.#fadeForegroundAlpha = 0
-        this.#fadeForeground = fade
-    }
-
-    addNode(node) {
-        this.#nodes.push(node)
-    }
-
-    removeNode(node) {
-        this.#nodes = this.#nodes.filter(item => item !== node)
-    }
-
-    removeSelectedNode() {
-        if (this.#curNode == null)
-            throw "No node selected!"
-        this.removeNode(this.#curNode)
-    }
-
-    realizeNodeModifications() {
-        if (this.#curNode == null)
-            throw "No node selected!"
-        this.#curNode.className = document.getElementById("c-name-modify").value
-        this.#curNode.classCode = document.getElementById("c-major-modify").value
-        this.#curNode.tabColor = document.getElementById("c-color-modify").value
-        this.#curNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
-    }
-
-    toJson() {
-        return JSON.stringify(this.#nodes)
-    }
-
-    fromJson(json) {
-        this.reset()
-        JSON.parse(json).forEach((record) => this.addNode(FlowNode.fromSimilarRecord(record)))
-    }
-
-    reset() {
-        this.#nodes = []
-    }
-
-    findNodeByClassCode(code) {
-        if(code == '')
-            return undefined
-        return this.#nodes.find(node => {return node.classCode == code})
-    }
-
-    // Draws an arrow, starting at p1 and pointing to p2
-    drawArrow(p5, point1, point2, color) {
-
-        if(point1 == undefined || point2 == undefined)
-            return
-        
-        p5.strokeWeight(4)
-
-        // Dropshadow Effect
-        tempDrawState(p5, () => {
-            p5.stroke('black')
-            p5.fill('black')
-            p5.translate(3, 3)
-
-            // Draw arrow body
-            p5.line(point1.x, point1.y, point2.x, point2.y)
-
-            // Draw the arrow head
-            tempDrawState(p5, () => {
-                p5.translate(point2.x, point2.y)
-                p5.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x))
-                p5.triangle(
-                    0, 0,
-                    -20, -10,
-                    -20, 10
-                )
-            })
-
-        })
-        
-        p5.stroke(color)
-        p5.fill(color)
-        
-        // Draw arrow body
-        p5.line(point1.x, point1.y, point2.x, point2.y)
-
-        // Draw arrow head
-        tempDrawState(p5, () => {
-            p5.translate(point2.x, point2.y)
-            p5.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x))
-            p5.triangle(
-                0, 0,
-                -20, -10,
-                -20, 10
-            )
-        })
-        
-    }
     
     /**
      * ======= P5 Renderer Hook =======
@@ -149,27 +32,17 @@ class MainCanvas extends Canvas {
         p5.clear()
 
         // Draw prereq indicators
-        for (let node of this.#nodes) {
+        for (let node of this.nodes) {
             for(let prereq of node.prereqs) {
                 const found = this.findNodeByClassCode(prereq)
                 if(found != undefined) {
-                    this.drawArrow(p5, node.getCenter(), found.getIntersection(node.getCenter()), node.tabColor)
+                    drawArrow(p5, node.getCenter(), found.getIntersection(node.getCenter()), node.tabColor)
                 }
             }
         }
     
-        for (let node of this.#nodes) {
+        for (let node of this.nodes) {
             node.draw(p5)
-        }
-    
-        if (this.#fadeForeground) {
-    
-            if(this.#fadeForegroundAlpha < this.#fadeForegroundAlphaTarget)
-                this.#fadeForegroundAlpha += this.#fadeForegroundAlphaTarget / 7
-    
-            p5.fill(`rgba(0,0,0,${this.#fadeForegroundAlpha})`);
-            p5.rect(-2, -2, p5.windowWidth, p5.windowHeight)
-    
         }
     
     }
@@ -182,28 +55,24 @@ class MainCanvas extends Canvas {
      */
     mousePressed(p5) {
     
-        if (this.#fadeForeground) {
+        if (popupManager.popupVisible()) {
 
-            if(popupManager.popupVisible()) {
-
-                // TODO: remove these magic number offsets in the Y coord
-                let dim = popupManager.getCurPopupDim()
-                if(
-                    p5.mouseX <= dim.left ||
-                    p5.mouseY <= dim.top - 108 ||
-                    p5.mouseX >= dim.left + dim.width ||
-                    p5.mouseY >= dim.top - 108 + dim.height
-                ) {
-                    popupManager.hideLastPopup()
-                }
-
-            } else {
-                this.#fadeForeground = false
+            // TODO: remove these magic number offsets in the Y coord
+            let dim = popupManager.getCurPopupDim()
+            if(
+                p5.mouseX <= dim.left ||
+                p5.mouseY <= dim.top - 108 ||
+                p5.mouseX >= dim.left + dim.width ||
+                p5.mouseY >= dim.top - 108 + dim.height
+            ) {
+                popupManager.hideLastPopup()
             }
     
-        } else if (this.#currently_dragged == null) {
+        }
+        
+        if (!popupManager.popupVisible() && this.#currently_dragged == null) {
 
-            for (let node of this.#nodes) {
+            for (let node of this.nodes) {
                 if (node.isInTabVolume(p5.mouseX, p5.mouseY)) {
                     this.#drag_offx = p5.mouseX - node.x
                     this.#drag_offy = p5.mouseY - node.y
@@ -240,11 +109,9 @@ class MainCanvas extends Canvas {
      */
     mouseReleased(p5) {
     
-        if (this.#fadeForeground) {
+        if (!this.#dragging && !popupManager.popupVisible()) {
     
-        } else if (!this.#dragging) {
-    
-            for (let node of this.#nodes) {
+            for (let node of this.nodes) {
                 if (node.isInVolume(p5.mouseX, p5.mouseY)) {
 
                     document.getElementById("c-name-modify").value = node.className
@@ -253,7 +120,7 @@ class MainCanvas extends Canvas {
                     document.getElementById("c-prereq-modify").value = node.prereqs.join(',')
 
                     popupManager.showPopup("modify-node-form")
-                    this.#curNode = node
+                    selectNode(node)
                     break
                 }
             }
@@ -265,7 +132,18 @@ class MainCanvas extends Canvas {
     
     }
     
-}
+} 
 
+
+Object.assign(MainCanvas.prototype, NodesList) // Node List functionality mixin
 const mainCanvas = new MainCanvas()
 Canvas.injectInstance(mainCanvas, "canvas-container", "canvas-region")
+
+// TEST NODES
+// TODO: remove from final build of website
+let testNodeColors = ["#800000", "#EE82EE", "#00FFFF", "#008000", "#FFA500"]
+for(let i = 0; i < 10; ++i) {
+    let node = new FlowNode(i * 100, 0)
+    node.tabColor = testNodeColors[i % testNodeColors.length]
+    mainCanvas.addNode(node)
+}
