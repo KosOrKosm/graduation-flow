@@ -34,7 +34,7 @@ class MainCanvas extends Canvas {
         // Draw prereq indicators
         for (let node of this.nodes) {
             for(let prereq of node.prereqs) {
-                const found = this.createPrereqLink(prereq)
+                const found = this.findNodeByClassCode(prereq)
                 if(found != undefined) {
                     drawArrow(p5, node.getCenter(), found.getIntersection(node.getCenter()), node.tabColor)
                 }

@@ -57,7 +57,9 @@ function removeSelectedNode() {
 function realizeNodeModifications() {
     if (selectedNode == null)
         throw "No node selected!"
+    selectedNode.classPrefixNumber = document.getElementById("c-prefixnum-modify").value
     selectedNode.className = document.getElementById("c-name-modify").value
+    selectedNode.classUnit = document.getElementById("c-unit-modify").value
     selectedNode.classCode = document.getElementById("c-major-modify").value
     selectedNode.tabColor = document.getElementById("c-color-modify").value
     selectedNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
