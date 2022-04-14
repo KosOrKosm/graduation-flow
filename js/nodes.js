@@ -129,15 +129,28 @@
             FlowNode.#sizeY - FlowNode.#textPadding * 2,
         )
         
-        //draw Name on Node 
+        let classNameUnit = this.className + ' (' + this.classUnit + ')'
         p.textSize(FlowNode.#tabSizeY - (FlowNode.#textPadding * 2.5))
         p.textAlign(p.CENTER, p.CENTER)
-        p.text(
-            this.className,  
+        //draw className(classUnit) or className 
+        if (this.classUnit.trim() !== '') {
+            p.text(
+            classNameUnit,
             this.x + FlowNode.#textPadding,
             this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
             FlowNode.#sizeX - FlowNode.#textPadding * 3,
             FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
-        )
+            )
+            }
+        else {
+            p.text(
+                this.className,  
+                this.x + FlowNode.#textPadding,
+                this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
+                FlowNode.#sizeX - FlowNode.#textPadding * 3,
+                FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
+            )
+        }
+
     }
 }
