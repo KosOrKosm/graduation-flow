@@ -18,6 +18,7 @@
     y = 0
 
     className = ""
+    classUnit = ""
     classCode = ""
     tabColor = "white"
     prereqs = []
@@ -117,19 +118,11 @@
         p.textAlign(p.CENTER, p.TOP)
         p.fill('black')
         p.text(
-            this.classCode, 
+            this.className, 
             this.x + FlowNode.#textPadding,
             this.y + FlowNode.#textPadding,
             FlowNode.#sizeX - FlowNode.#textPadding * 2,
             FlowNode.#sizeY - FlowNode.#textPadding * 2,
-        )
-        p.textAlign(p.CENTER, p.CENTER)
-        p.text(
-            this.className, 
-            this.x + FlowNode.#textPadding,
-            this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
-            FlowNode.#sizeX - FlowNode.#textPadding * 2,
-            FlowNode.#sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
         )
     }
 }

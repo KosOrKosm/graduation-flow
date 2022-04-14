@@ -61,6 +61,7 @@ class MainCanvas extends Canvas {
         if (this.#curNode == null)
             throw "No node selected!"
         this.#curNode.className = document.getElementById("c-name-modify").value
+        this.#curNode.classUnit = document.getElementById("c-unit-modify").value
         this.#curNode.classCode = document.getElementById("c-major-modify").value
         this.#curNode.tabColor = document.getElementById("c-color-modify").value
         this.#curNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
@@ -248,6 +249,7 @@ class MainCanvas extends Canvas {
                 if (node.isInVolume(p5.mouseX, p5.mouseY)) {
 
                     document.getElementById("c-name-modify").value = node.className
+                    document.getElementById("c-unit-modify").value = node.classUnit
                     document.getElementById("c-major-modify").value = node.classCode
                     document.getElementById("c-color-modify").value = node.tabColor
                     document.getElementById("c-prereq-modify").value = node.prereqs.join(',')

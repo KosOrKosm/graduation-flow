@@ -23,6 +23,7 @@ function onClickCreateCustomNode() {
 
     let customNode = new FlowNode(0, 300)
     customNode.className = document.getElementById("c-name-create").value
+    customNode.classUnit = document.getElementById("c-unit-create").value
     customNode.classCode = document.getElementById("c-major-create").value
     customNode.tabColor = document.getElementById("c-color-create").value
     customNode.prereqs = document.getElementById("c-prereq-create").value.split(',')
