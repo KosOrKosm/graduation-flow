@@ -84,7 +84,7 @@ class MainCanvas extends Canvas {
     findNodeByClassCode(code) {
         if(code == '')
             return undefined
-        return this.#nodes.find(node => {return node.classCode == code})
+        return this.#nodes.find(node => {return node.classPrefixNumber == code})
     }
 
     // Draws an arrow, starting at p1 and pointing to p2
