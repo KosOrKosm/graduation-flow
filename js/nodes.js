@@ -20,7 +20,7 @@
     classPrefixNumber = ""
     className = ""
     classUnit = ""
-    classCode = ""
+    classMajor = ""
     classDescription = ""
     tabColor = "white"
     prereqs = []
