@@ -62,7 +62,10 @@
       <div class="form-popup create-node-form" id="create-node-form">
         <form class="form-container" id="create-node-form-body">
           <h1>Input Custom Course</h1>
-      
+          
+          <label for="c-prefixnum"><b>Prefix Number</b></label>
+          <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create" required>
+
           <label for="c-name"><b>Course Name</b></label>
           <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" required>
       
@@ -94,7 +97,10 @@
     <div class="overlay" id="modify-node-form-over">
       <div class="form-popup modify-node-form" id="modify-node-form">
         <form class="form-container" id="modify-node-form-body">
-          <h1>Modify a Node</h1>
+          <h1>Modify a Course</h1>
+
+          <label for="c-prefixnum"><b>Prefix Number</b></label>
+          <input type="text" name="c-prefixnum" id="c-prefixnum-modify" placeholder="N/A">
 
           <label for="c-name"><b>Course Name</b></label>
           <input type="text" name="c-name" id="c-name-modify" placeholder="N/A">
@@ -111,9 +117,9 @@
           <label for="c-color"><b>Tab Color</b></label>
           <input type="color" name="c-color" id="c-color-modify" value="#f6b73c">
 
-          <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="onClickModifyNode()">Edit Node</button>
+          <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="onClickModifyNode()">Edit Course</button>
           
-          <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete Node</button>
+          <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete Course</button>
         </form>
       </div>
     </div>

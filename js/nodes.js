@@ -17,6 +17,7 @@
     x = 0
     y = 0
 
+    classPrefixNumber = ""
     className = ""
     classUnit = ""
     classCode = ""
@@ -118,7 +119,7 @@
         p.textAlign(p.CENTER, p.TOP)
         p.fill('black')
         p.text(
-            this.className, 
+            this.classPrefixNumber.toUpperCase(), 
             this.x + FlowNode.#textPadding,
             this.y + FlowNode.#textPadding,
             FlowNode.#sizeX - FlowNode.#textPadding * 2,

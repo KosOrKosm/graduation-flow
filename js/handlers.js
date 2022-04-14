@@ -22,6 +22,7 @@ function onClickCreateCustomNode() {
     let popup = document.getElementById("create-node-form-body")
 
     let customNode = new FlowNode(0, 300)
+    customNode.classPrefixNumber = document.getElementById("c-prefixnum-create").value
     customNode.className = document.getElementById("c-name-create").value
     customNode.classUnit = document.getElementById("c-unit-create").value
     customNode.classCode = document.getElementById("c-major-create").value
