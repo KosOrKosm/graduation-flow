@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-07 13:10:13
+ * @ Modified time: 2022-04-14 11:32:51
  */
 
 
@@ -28,7 +28,7 @@ function onClickCreateCustomNode() {
     customNode.classCode = document.getElementById("c-major-create").value
     customNode.tabColor = document.getElementById("c-color-create").value
     customNode.prereqs = document.getElementById("c-prereq-create").value.split(',')
-    popupManager.addNode(customNode)
+    mainCanvas.addNode(customNode)
     popupManager.hideLastPopup()
     popup.reset()
 
@@ -42,12 +42,34 @@ function onClickCreate() {
 
 }
 
+let selectedNode = null
+
+function selectNode(node) { 
+    selectedNode = node
+}
+
+function removeSelectedNode() {
+    if (selectedNode == null)
+        throw "No node selected!"
+    mainCanvas.removeNode(selectedNode)
+}
+
+function realizeNodeModifications() {
+    if (selectedNode == null)
+        throw "No node selected!"
+    selectedNode.className = document.getElementById("c-name-modify").value
+    selectedNode.classCode = document.getElementById("c-major-modify").value
+    selectedNode.tabColor = document.getElementById("c-color-modify").value
+    selectedNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
+}
+
+
 // Target HTML Element: modify-node-form
 // Used for the button to delete the selected node
 function onClickDeleteSelectedNode() {
     let popup = document.getElementById("modify-node-form-body")
     
-    mainCanvas.removeSelectedNode()
+    removeSelectedNode()
     popupManager.hideLastPopup()
     document.getElementById('modify-node-form-over').style.display='none'
     popup.reset()
@@ -60,7 +82,7 @@ function onClickModifyNode() {
 
     let popup = document.getElementById("modify-node-form-body")
 
-    mainCanvas.realizeNodeModifications() 
+    realizeNodeModifications() 
     popupManager.hideLastPopup()
     document.getElementById('modify-node-form-over').style.display='none'
     popup.reset()

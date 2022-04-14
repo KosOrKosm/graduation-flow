@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:19
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-07 14:46:12
+ * @ Modified time: 2022-04-14 11:25:04
  */
 
 // Helper function to perform a P5 action without
@@ -90,4 +90,54 @@ async function tryDownloadPrompt(data, filename, type) {
     setTimeout(() => {
         window.URL.revokeObjectURL(tmpURL)
     }, 0)
+}
+
+
+// Draws an arrow, starting at p1 and pointing to p2
+function drawArrow(p5, point1, point2, color) {
+
+    if(point1 == undefined || point2 == undefined)
+        return
+    
+    p5.strokeWeight(4)
+
+    // Dropshadow Effect
+    tempDrawState(p5, () => {
+        p5.stroke('black')
+        p5.fill('black')
+        p5.translate(3, 3)
+
+        // Draw arrow body
+        p5.line(point1.x, point1.y, point2.x, point2.y)
+
+        // Draw the arrow head
+        tempDrawState(p5, () => {
+            p5.translate(point2.x, point2.y)
+            p5.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x))
+            p5.triangle(
+                0, 0,
+                -20, -10,
+                -20, 10
+            )
+        })
+
+    })
+    
+    p5.stroke(color)
+    p5.fill(color)
+    
+    // Draw arrow body
+    p5.line(point1.x, point1.y, point2.x, point2.y)
+
+    // Draw arrow head
+    tempDrawState(p5, () => {
+        p5.translate(point2.x, point2.y)
+        p5.rotate(Math.atan2(point2.y - point1.y, point2.x - point1.x))
+        p5.triangle(
+            0, 0,
+            -20, -10,
+            -20, 10
+        )
+    })
+    
 }

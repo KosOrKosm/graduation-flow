@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 20:52:52
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-12 21:04:08
+ * @ Modified time: 2022-04-14 11:30:51
  */
 
 class PopupManager {
@@ -27,7 +27,7 @@ class PopupManager {
             return
 
         popup.style.display="none"
-        mainCanvas.setFade(false)
+        //mainCanvas.setFade(false)
 
         const overlay = document.getElementById(popup.id + "-over")
         if (overlay != undefined)
@@ -40,7 +40,7 @@ class PopupManager {
         
         let popup = document.getElementById(popupName)
         popup.style.display="block"
-        mainCanvas.setFade(true)
+        //mainCanvas.setFade(true)
         this.#popups.push(popup)
 
         const overlay = document.getElementById(popupName + "-over")
