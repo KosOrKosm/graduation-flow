@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-21 12:23:06
+ * @ Modified time: 2022-04-21 13:05:40
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -10,6 +10,7 @@ const anchor = document.getElementById('preview-anchor')
 const container = document.getElementById('mini-canvas')
 let scrolling = false
 let scrollPivotMouseY = 0, scrollPivotAnchorY = 0
+var containerYtoContentY
 
 class PreviewCanvas extends Canvas {
 
@@ -26,24 +27,31 @@ class PreviewCanvas extends Canvas {
         this._canvas.mouseWheel(this.mouseWheelListener.bind(this))
     }
 
-    scrollY(dY) {
-        
-        this.#curOffsetY += dY
-
-        // Bounds on Y offset
-        if (this.#curOffsetY > 0) {
-            this.#curOffsetY = 0
-        }
+    getContentHeight() {
+        let maxCanvasY = 0
+        this.nodes.forEach((node) => {
+            if (node.y > maxCanvasY)
+                maxCanvasY = node.y + FlowNode.sizeY + 4
+        })
+        return maxCanvasY
     }
 
     jumpToY(y) {
 
         this.#curOffsetY = y
 
+        const contentHeight = this.getContentHeight() 
         // Bounds on Y offset
-        if (this.#curOffsetY > 0) {
+        if (this.#curOffsetY < 0) {
             this.#curOffsetY = 0
+        } else if (this.#curOffsetY > contentHeight - container.offsetHeight) {
+            this.#curOffsetY = contentHeight - container.offsetHeight
         }
+        anchor.style.top = (this.#curOffsetY * containerYtoContentY) + 'px'
+    }
+
+    scrollY(dY) {
+        this.jumpToY(this.#curOffsetY - dY)
     }
 
     draw(p5) {
@@ -51,7 +59,7 @@ class PreviewCanvas extends Canvas {
 
         tempDrawState(p5, () => {
             // Offset the canvas to perform the scrolling effect
-            p5.translate(0, this.#curOffsetY)
+            p5.translate(0, -this.#curOffsetY)
             this.nodes.forEach(node => node.draw(p5))
         })
     }
@@ -73,8 +81,8 @@ class PreviewCanvas extends Canvas {
             p5.mouseY > 0 && 
             p5.mouseY < bounds.height
         ) {
-            const mouseYDiff = p5.mouseY - this.#lastMouseY
-            this.scrollY(mouseYDiff)
+            const mouseYDiff = this.#lastMouseY - p5.mouseY
+            this.scrollY(-mouseYDiff)
             this.#lastMouseY = p5.mouseY
 
         }
@@ -85,7 +93,7 @@ class PreviewCanvas extends Canvas {
     }
 
     mouseWheelListener(event) {
-        this.scrollY(-event.deltaY / 8)
+        this.scrollY(event.deltaY / 8)
     }
 
 }
@@ -106,24 +114,18 @@ for(let i = 0; i < 10; ++i) {
 
 // HTML Event Listeners associated with PreviewCanvas
 
-// TODO: make this height dynamic based on then number of nodes in the preview canvas
-const contentHeight = container.offsetHeight * 3
-anchor.style.height = Math.floor(container.offsetHeight / contentHeight * container.offsetHeight) + 'px'
-
 scrollbar.addEventListener('mousedown', (ev) => {
     if(ev.target.nodeName == 'DIV') {
         // clicked a position inside the scrollwheel, jump to that position
-        var offsetY = ev.clientY - container.offsetTop - container.offsetHeight / 2
-        var newAnchorY = offsetY - anchor.offsetHeight / 2
+        var offsetY = ev.clientY - container.offsetTop - container.offsetHeight / 2 - anchor.offsetHeight / 2
 
-        if (newAnchorY < 0) {
-            newAnchorY = 0
-        } else if (newAnchorY + anchor.offsetHeight > container.offsetHeight) {
-            newAnchorY = container.offsetHeight - anchor.offsetHeight
+        if (offsetY < 0) {
+            offsetY = 0
+        } else if (offsetY + anchor.offsetHeight > container.offsetHeight) {
+            offsetY = container.offsetHeight - anchor.offsetHeight
         }
         
-        anchor.style.top = newAnchorY + 'px'
-        previewCanvas.jumpToY(-offsetY)
+        previewCanvas.jumpToY((offsetY - scrollbar.offsetTop) / containerYtoContentY)
         
     } else if(ev.target.nodeName == 'SPAN') {
         // user is dragging the anchor, prepare to scroll
@@ -141,17 +143,15 @@ scrollbar.addEventListener('mousemove', (ev) => {
     if(!scrolling)
         return
     
-    var offsetY = ev.clientY - scrollPivotMouseY
-    var newAnchorY = scrollPivotAnchorY + offsetY
+    var offsetY = ev.clientY - scrollPivotMouseY + scrollPivotAnchorY
 
-    if (newAnchorY < 0) {
-        newAnchorY = 0
-    } else if (newAnchorY + anchor.offsetHeight > container.offsetHeight) {
-        newAnchorY = container.offsetHeight - anchor.offsetHeight
+    if (offsetY < 0) {
+        offsetY = 0
+    } else if (offsetY + anchor.offsetHeight > container.offsetHeight) {
+        offsetY = container.offsetHeight - anchor.offsetHeight
     }
 
-    anchor.style.top = newAnchorY + 'px'
-    previewCanvas.jumpToY(-offsetY)
+    previewCanvas.jumpToY((offsetY - scrollbar.offsetTop) / containerYtoContentY)
 
 })
 
@@ -167,5 +167,10 @@ document.getElementById('c-query-import').addEventListener('input', (event) => {
 // BUGFIX: force a window resize whenever the PreviewCanvas is display
 //         otherwise the PreviewCanvas will be size 0 until a window resize
 //         occurs while the PreviewCanvas is visible
-document.getElementById('btn-add').addEventListener('click', 
-    (event) => previewCanvas.windowResized(Canvas.getRegionP5("mini-canvas")))
+document.getElementById('btn-add').addEventListener('click', (event) => {
+
+        previewCanvas.windowResized(Canvas.getRegionP5("mini-canvas"))
+        containerYtoContentY = container.offsetHeight / previewCanvas.getContentHeight()
+        anchor.style.height = Math.floor(containerYtoContentY * container.offsetHeight) + 'px'
+        
+})
