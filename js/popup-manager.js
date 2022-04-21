@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 20:52:52
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 11:30:51
+ * @ Modified time: 2022-04-21 13:34:47
  */
 
 class PopupManager {
@@ -45,7 +45,7 @@ class PopupManager {
 
         const overlay = document.getElementById(popupName + "-over")
         if (overlay != undefined)
-            overlay.style.display="block"
+            overlay.style.display="flex"
     }
 
 }
