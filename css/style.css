@@ -255,6 +255,18 @@ STARTING AT MAIN- GRADFLOW.HTML
 	  /* border: 5px dashed black; */
   }
 
+.unselectable {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.p5Canvas {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
 /********************************
 STARTING AT MAIN - ABOUT.HTML
 ********************************/
