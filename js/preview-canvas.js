@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-21 13:57:22
+ * @ Modified time: 2022-04-21 15:49:36
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -81,6 +81,7 @@ class PreviewCanvas extends Canvas {
         })
     }
 
+    // MOUSE DOWN EVENT
     _mousePressed(p5) {
 
         if (scrolling)
@@ -90,6 +91,7 @@ class PreviewCanvas extends Canvas {
         
     }
 
+    // MOUSE DRAG EVENT
     _mouseDragged(p5) {
 
         if (scrolling)
@@ -110,8 +112,17 @@ class PreviewCanvas extends Canvas {
         }
     }
 
+    // MOUSE UP EVENT
     _mouseReleased(p5) {
         scrolling = false
+
+        /*
+        this.nodes.forEach((node) => {
+            node.isInVolume(p5.mouseX, p5.mouseY)
+            mainCanvas.addNode()
+        })
+        */
+
     }
 
     _mouseWheelListener(event) {
