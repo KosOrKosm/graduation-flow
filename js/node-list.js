@@ -2,13 +2,11 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-14 11:05:19
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 11:23:26
+ * @ Modified time: 2022-04-21 11:34:36
  */
 
 // Node list functionality mixin
 const NodesList = {
-    
-    nodes: [],
     
     addNode(node) {
         this.nodes.push(node)

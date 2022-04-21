@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 15:04:23
+ * @ Modified time: 2022-04-14 15:22:15
  */
 
 /**
@@ -10,6 +10,8 @@
  * and P5 rendering hooks.
  */
 class MainCanvas extends Canvas {
+
+    nodes = []
 
     // PRIVATE
     #dragging = false
@@ -32,18 +34,30 @@ class MainCanvas extends Canvas {
         p5.clear()
 
         // Draw prereq indicators
-        for (let node of this.nodes) {
-            for(let prereq of node.prereqs) {
-                const found = this.findNodeByClassCode(prereq)
-                if(found != undefined) {
-                    drawArrow(p5, found.getCenter(), node.getIntersection(found.getCenter()), found.tabColor)
+        // We do this before nodes so the nodes render on top the arrows
+        this.nodes.forEach((dependentNode) => {
+            
+            dependentNode.prereqs.forEach((prereq) => {
+
+                const prereqNode = this.findNodeByClassCode(prereq)
+
+                if(prereqNode) {
+
+                    // Draw an arrow from the prereq node to the dependent noe
+                    drawArrow(p5, 
+                        prereqNode.getCenter(), 
+                        dependentNode.getIntersection(prereqNode.getCenter()), 
+                        prereqNode.tabColor
+                    )
+
                 }
-            }
-        }
-    
-        for (let node of this.nodes) {
-            node.draw(p5)
-        }
+                
+            })
+            
+        })
+
+        // Draw all nodes
+        this.nodes.forEach(node => node.draw(p5))
     
     }
     
