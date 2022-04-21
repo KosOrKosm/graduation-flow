@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-21 13:53:44
+ * @ Modified time: 2022-04-21 13:57:22
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -26,7 +26,7 @@ class PreviewCanvas extends Canvas {
 
     _setup(p5) {
         super._setup(p5)
-        this._canvas.mouseWheel(this.mouseWheelListener.bind(this))
+        this._canvas.mouseWheel(this._mouseWheelListener.bind(this))
     }
 
     #getNodesPerRow() {
@@ -86,7 +86,6 @@ class PreviewCanvas extends Canvas {
         if (scrolling)
             return
 
-        console.log('scrolling')
         this.#lastMouseY = p5.mouseY
         
     }
@@ -115,8 +114,8 @@ class PreviewCanvas extends Canvas {
         scrolling = false
     }
 
-    mouseWheelListener(event) {
-        this.scrollY(event.deltaY / 8)
+    _mouseWheelListener(event) {
+        this.scrollY(-event.deltaY / 8)
     }
 
 }
