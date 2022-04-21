@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 15:22:15
+ * @ Modified time: 2022-04-21 13:53:35
  */
 
 /**
@@ -67,7 +67,7 @@ class MainCanvas extends Canvas {
      *      Pressed (ie. starting to click) 
      * anywhere in the browser
      */
-    mousePressed(p5) {
+    _mousePressed(p5) {
     
         if (popupManager.popupVisible()) {
 
@@ -104,7 +104,7 @@ class MainCanvas extends Canvas {
      *      Dragged (ie. moved during a press but before release) 
      * anywhere in the browser
      */
-    mouseDragged(p5) {
+    _mouseDragged(p5) {
     
         this.#dragging = true
     
@@ -121,7 +121,7 @@ class MainCanvas extends Canvas {
      *      Released (ie. ending a click or drag) 
      * anywhere in the browser
      */
-    mouseReleased(p5) {
+    _mouseReleased(p5) {
     
         if (!this.#dragging && !popupManager.popupVisible()) {
     

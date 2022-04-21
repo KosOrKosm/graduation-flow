@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 19:02:12
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-21 11:38:07
+ * @ Modified time: 2022-04-21 13:54:07
  */
 
 class Canvas {
@@ -17,7 +17,7 @@ class Canvas {
      * This function is invoked when P5 begins rendering.
      * The canvas should be created here.
      */
-    setup(p5) {
+    _setup(p5) {
         this._canvas = p5.createCanvas(100, 100)
         this._canvas.parent(this.#parentDiv)
         this.windowResized(p5)
@@ -62,7 +62,7 @@ class Canvas {
 
             // Mount main canvas functions to the locations p5 expects them
             p5.setup = () => {
-                canvasImpl.setup(p5)
+                canvasImpl._setup(p5)
             }
             p5.windowResized = () => {
                 canvasImpl.windowResized(p5)
@@ -71,13 +71,13 @@ class Canvas {
                 canvasImpl.draw(p5)
             }
             p5.mousePressed = () => {
-                canvasImpl.mousePressed(p5)
+                canvasImpl._mousePressed(p5)
             }
             p5.mouseDragged = () => {
-                canvasImpl.mouseDragged(p5)
+                canvasImpl._mouseDragged(p5)
             }
             p5.mouseReleased = () => { 
-                canvasImpl.mouseReleased(p5)
+                canvasImpl._mouseReleased(p5)
             }
 
         }

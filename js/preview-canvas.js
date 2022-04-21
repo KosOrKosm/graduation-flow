@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-21 13:51:45
+ * @ Modified time: 2022-04-21 13:53:44
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -24,8 +24,8 @@ class PreviewCanvas extends Canvas {
         super()
     }
 
-    setup(p5) {
-        super.setup(p5)
+    _setup(p5) {
+        super._setup(p5)
         this._canvas.mouseWheel(this.mouseWheelListener.bind(this))
     }
 
@@ -81,7 +81,7 @@ class PreviewCanvas extends Canvas {
         })
     }
 
-    mousePressed(p5) {
+    _mousePressed(p5) {
 
         if (scrolling)
             return
@@ -91,7 +91,7 @@ class PreviewCanvas extends Canvas {
         
     }
 
-    mouseDragged(p5) {
+    _mouseDragged(p5) {
 
         if (scrolling)
             return
@@ -111,7 +111,7 @@ class PreviewCanvas extends Canvas {
         }
     }
 
-    mouseReleased(p5) {
+    _mouseReleased(p5) {
         scrolling = false
     }
 
