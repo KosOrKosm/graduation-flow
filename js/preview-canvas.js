@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-21 13:15:21
+ * @ Modified time: 2022-04-21 13:51:45
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -18,6 +18,8 @@ class PreviewCanvas extends Canvas {
     #curOffsetY = 0
     #lastMouseY = 0
 
+    static #rowGap = 25
+
     constructor() {
         super()
     }
@@ -27,13 +29,14 @@ class PreviewCanvas extends Canvas {
         this._canvas.mouseWheel(this.mouseWheelListener.bind(this))
     }
 
+    #getNodesPerRow() {
+        const containerSpace = container.offsetWidth - scrollbar.offsetWidth
+        return Math.floor(containerSpace / (FlowNode.sizeX + PreviewCanvas.#rowGap))
+    }
+
     getContentHeight() {
-        let maxCanvasY = 0
-        this.nodes.forEach((node) => {
-            if (node.y > maxCanvasY)
-                maxCanvasY = node.y + FlowNode.sizeY + 4
-        })
-        return maxCanvasY
+        return Math.ceil(this.nodes.length / this.#getNodesPerRow()) * 
+            (FlowNode.sizeY + PreviewCanvas.#rowGap) + PreviewCanvas.#rowGap
     }
 
     jumpToY(y) {
@@ -54,29 +57,38 @@ class PreviewCanvas extends Canvas {
         this.jumpToY(this.#curOffsetY - dY)
     }
 
-    arrangeNodes() {
-        const rowGap = 25
-        const containerSpace = container.offsetWidth - scrollbar.offsetWidth
-        const maxNodesPerRow = Math.floor(containerSpace / (FlowNode.sizeX + rowGap))
-        const freeSpace = (containerSpace - FlowNode.sizeX * maxNodesPerRow - rowGap)
-        for (let i = 0; i < this.nodes.length; i++) {
-            this.nodes[i].x = freeSpace / 2 + (i % maxNodesPerRow) * (FlowNode.sizeX + rowGap)
-            this.nodes[i].y = freeSpace / 2 + Math.floor(i / maxNodesPerRow) * (FlowNode.sizeY + rowGap)
-        }
-    }
-
     draw(p5) {
         p5.background('white')
+
+        const containerSpace = container.offsetWidth - scrollbar.offsetWidth
+        const maxNodesPerRow = this.#getNodesPerRow()
+        const freeSpace = (containerSpace - FlowNode.sizeX * maxNodesPerRow - PreviewCanvas.#rowGap)
 
         tempDrawState(p5, () => {
             // Offset the canvas to perform the scrolling effect
             p5.translate(0, -this.#curOffsetY)
-            this.nodes.forEach(node => node.draw(p5))
+            for (let i = 0; i < this.nodes.length; i++) {
+                tempDrawState(p5, () => {
+                    p5.translate(
+                        freeSpace / 2 + (i % maxNodesPerRow) * (FlowNode.sizeX + PreviewCanvas.#rowGap),
+                        freeSpace / 2 + Math.floor(i / maxNodesPerRow) * (FlowNode.sizeY + PreviewCanvas.#rowGap)
+                    )
+                    this.nodes[i].x = 0
+                    this.nodes[i].y = 0
+                    this.nodes[i].draw(p5)
+                })
+            }
         })
     }
-    
+
     mousePressed(p5) {
+
+        if (scrolling)
+            return
+
+        console.log('scrolling')
         this.#lastMouseY = p5.mouseY
+        
     }
 
     mouseDragged(p5) {
@@ -126,9 +138,10 @@ for(let i = 0; i < 10; ++i) {
 // HTML Event Listeners associated with PreviewCanvas
 
 scrollbar.addEventListener('mousedown', (ev) => {
+    scrolling = true
     if(ev.target.nodeName == 'DIV') {
         // clicked a position inside the scrollwheel, jump to that position
-        var offsetY = ev.clientY - container.offsetTop - container.offsetHeight / 2 - anchor.offsetHeight / 2
+        var offsetY = ev.clientY - container.offsetTop - anchor.offsetHeight / 2
 
         if (offsetY < 0) {
             offsetY = 0
@@ -140,7 +153,6 @@ scrollbar.addEventListener('mousedown', (ev) => {
         
     } else if(ev.target.nodeName == 'SPAN') {
         // user is dragging the anchor, prepare to scroll
-        scrolling = true
         scrollPivotMouseY = ev.clientY
         scrollPivotAnchorY = anchor.offsetTop
     }
@@ -150,7 +162,10 @@ scrollbar.addEventListener('mouseup', (ev) => {
     scrollPivotMouseY = ev.clientY
     scrollPivotAnchorY = anchor.offsetTop
 })
-scrollbar.addEventListener('mousemove', (ev) => {
+document.addEventListener('mouseup', (ev) => {
+    scrolling = false
+})
+document.addEventListener('mousemove', (ev) => {
     if(!scrolling)
         return
     
@@ -181,7 +196,6 @@ document.getElementById('c-query-import').addEventListener('input', (event) => {
 document.getElementById('btn-add').addEventListener('click', (event) => {
 
         previewCanvas.windowResized(Canvas.getRegionP5("mini-canvas"))
-        previewCanvas.arrangeNodes()
         containerYtoContentY = container.offsetHeight / previewCanvas.getContentHeight()
         anchor.style.height = Math.floor(containerYtoContentY * container.offsetHeight) + 'px'
         
