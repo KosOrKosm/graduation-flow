@@ -2,12 +2,12 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 19:02:12
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-12 20:32:18
+ * @ Modified time: 2022-04-21 11:38:07
  */
 
 class Canvas {
 
-    #canvas = undefined
+    _canvas = undefined
     #parentDiv = undefined
 
     static #instanceMap = new Map()
@@ -18,8 +18,8 @@ class Canvas {
      * The canvas should be created here.
      */
     setup(p5) {
-        this.#canvas = p5.createCanvas(100, 100)
-        this.#canvas.parent(this.#parentDiv)
+        this._canvas = p5.createCanvas(100, 100)
+        this._canvas.parent(this.#parentDiv)
         this.windowResized(p5)
     }
     
@@ -33,7 +33,7 @@ class Canvas {
     windowResized(p5) {
         p5.resizeCanvas(0, 0)
         p5.resizeCanvas(this.#parentDiv.offsetWidth, this.#parentDiv.offsetHeight - 4)
-        this.#canvas.style("width","100%")
+        this._canvas.style("width","100%")
     }
 
     setParentDiv(div) {
