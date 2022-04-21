@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-21 13:05:40
+ * @ Modified time: 2022-04-21 13:15:21
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -52,6 +52,17 @@ class PreviewCanvas extends Canvas {
 
     scrollY(dY) {
         this.jumpToY(this.#curOffsetY - dY)
+    }
+
+    arrangeNodes() {
+        const rowGap = 25
+        const containerSpace = container.offsetWidth - scrollbar.offsetWidth
+        const maxNodesPerRow = Math.floor(containerSpace / (FlowNode.sizeX + rowGap))
+        const freeSpace = (containerSpace - FlowNode.sizeX * maxNodesPerRow - rowGap)
+        for (let i = 0; i < this.nodes.length; i++) {
+            this.nodes[i].x = freeSpace / 2 + (i % maxNodesPerRow) * (FlowNode.sizeX + rowGap)
+            this.nodes[i].y = freeSpace / 2 + Math.floor(i / maxNodesPerRow) * (FlowNode.sizeY + rowGap)
+        }
     }
 
     draw(p5) {
@@ -106,7 +117,7 @@ Canvas.injectInstance(previewCanvas, "mini-canvas", "mini-canvas")
 // TODO: remove from final build of website
 let testNodeColors2 = ["#800000", "#EE82EE", "#00FFFF", "#008000", "#FFA500"]
 for(let i = 0; i < 10; ++i) {
-    let node = new FlowNode(0, i * 100)
+    let node = new FlowNode(0, 0)
     node.tabColor = testNodeColors2[i % testNodeColors2.length]
     previewCanvas.addNode(node)
 }
@@ -170,6 +181,7 @@ document.getElementById('c-query-import').addEventListener('input', (event) => {
 document.getElementById('btn-add').addEventListener('click', (event) => {
 
         previewCanvas.windowResized(Canvas.getRegionP5("mini-canvas"))
+        previewCanvas.arrangeNodes()
         containerYtoContentY = container.offsetHeight / previewCanvas.getContentHeight()
         anchor.style.height = Math.floor(containerYtoContentY * container.offsetHeight) + 'px'
         
