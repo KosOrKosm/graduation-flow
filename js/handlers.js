@@ -17,6 +17,10 @@ function onClickLoad() {
     tryUploadPrompt((text) => mainCanvas.fromJson(text))
 }
 
+function onClickExport() { 
+    Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow','png')
+}
+
 function onClickCreateCustomNode() {
     // let btn = document.getElementById("btn-create-custom")
     let popup = document.getElementById("create-node-form-body")
