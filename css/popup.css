@@ -10,19 +10,21 @@
 
 /* Add styles to the form container */
 .form-container {
-  max-width: 300px;
-  padding: 10px;
+  min-width: 450px;
+  padding: 15px;
+  
   
   /*background-color: white; */
 }
 
 /* Full-width input fields */
 .form-container input[type=text], .form-container input[type=password] {
-  width: 100%;
+  width: 70%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
   background: #f1f1f1;
+  
 }
 
 /* Full-width color fields */
@@ -37,6 +39,15 @@
   background-color: #ddd;
   outline: none;
 }
+
+ .form-input-row { 
+  display:flex; 
+  flex-direction: row; 
+  justify-content: space-between;
+  align-items: baseline;
+  align-content: center;
+  flex-wrap: wrap;
+} 
 
 /* Set a style for the submit/login button */
 .form-container .btn {
