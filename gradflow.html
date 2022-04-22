@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/popup.css">
   <link rel="stylesheet" href="./css/dropdown.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body>
@@ -49,7 +48,7 @@
     <div class="gradflow-header">
       <a href="javascript:void(0)" onclick="onClickSave()">SAVE</a>
       <a href="javascript:void(0)" onclick="onClickLoad()">LOAD</a>
-      <a href="javascript:void(0)" onclick="myFunction()" class="dropbtn">EXPORT</a>  
+      <a href="javascript:void(0)" onclick="onClickDropdown()" class="dropbtn" id="dropbtn">EXPORT</a>  
       <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
       <div class="gradflow-header-right">
         <a href="javascript:void(0)" id="btn-add" onclick="popupManager.showPopup('import-node-form');">ADD</a>
@@ -168,10 +167,7 @@
       </div>
     </div>
 
-
-
-
-    <div class="yourclass">
+    <div class="export-container">
       <div class="dropdown">
         <div class="dropdown-content" id="myDropdown">
           <a href="javascript:void(0)" onclick="ExportPNG()">PNG</a>
