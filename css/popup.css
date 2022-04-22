@@ -5,11 +5,13 @@
   border: 3px solid #f1f1f1;
   z-index: 9;
   background: #fff;
+  border-radius:25px;
   
 }
 
 /* Add styles to the form container */
 .form-container {
+  max-width: 450px;
   min-width: 450px;
   padding: 15px;
   
@@ -88,7 +90,7 @@
   float: left;
   height: 300px;
   position: relative;
-  width: 280px;
+  width: 400px;
   border: 1px solid black;
 }
 
