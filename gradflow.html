@@ -64,27 +64,46 @@
         <div class="form-popup create-node-form" id="create-node-form">
           <form class="form-container" id="create-node-form-body">
             <h1>Input Custom Course</h1>
+            <ol>
 
-            <label for="c-prefixnum"><b>Prefix Number</b></label>
-            <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create" required>
+              <ol class="form-input-row">
+                <label for="c-prefixnum"><b>Prefix Number</b></label>
+                <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create"
+                  required>
+              </ol>
 
-            <label for="c-name"><b>Course Name</b></label>
-            <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" required>
+              <ol class="form-input-row">
+                <label for="c-name"><b>Course Name</b></label>
+                <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" required>
+              </ol>
 
-            <label for="c-units"><b>Units</b></label>
-            <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-create" required>
+              <ol class="form-input-row">
+                <label for="c-units"><b>Units</b></label>
+                <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-create" required>
+              </ol>
 
-            <label for="c-preReq"><b>Prereqs</b></label>
-            <input type="text" placeholder="Enter Prereq" name="c-preReq" id="c-prereq-create">
+              <ol class="form-input-row">
+                <label for="c-preReq"><b>Prereqs</b></label>
+                <input type="text" placeholder="Enter Prereq" name="c-preReq" id="c-prereq-create">
+              </ol>
 
-            <label for="c-major"><b>Major</b></label>
-            <input type="text" placeholder="Enter Major" name="c-major" id="c-major-create" required>
+              <ol class="form-input-row">
+                <label for="c-major"><b>Major</b></label>
+                <input type="text" placeholder="Enter Major" name="c-major" id="c-major-create" required>
+              </ol>
 
-            <label for="c-description"><b>Description</b></label>
-            <input type="text" placeholder="Enter Description" name="c-description" id="c-description-create" required>
+              <ol class="form-input-row">
+                <label for="c-description"><b>Description</b></label>
+                <input type="text" placeholder="Enter Description" name="c-description" id="c-description-create"
+                  required>
+              </ol>
 
-            <label for="c-color"><b>Tab Color</b></label>
-            <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
+              <ol class="form-input-row">
+                <label for="c-color"><b>Tab Color</b></label>
+                <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
+              </ol>
+
+            </ol>
 
             <!-- node buton-->
             <button id="btn-create-custom" type="button" class="btn btn-create-custom"
@@ -108,7 +127,7 @@
 
 
 
-            <!-- <button type="submit" class="btn">Create</button> -->
+        
             <button type="button" class="btn cancel" onclick="popupManager.hideLastPopup()">Close</button>
           </form>
         </div>
@@ -174,20 +193,28 @@
         <div class="form-popup import-node-form" id="import-node-form">
           <form class="form-container" id="import-node-form-body">
             <h1>Import Course</h1>
+            <ol>
 
+            <ol class="form-input-row">
             <label for="c-query"><b>Course Name</b></label>
             <input list="c-query" type="text" name="c-name" id="c-query-import">
+            </ol>
+            
+            <ol id="form-mini-canvas-row">
             <div class="unselectable mini-canvas" id="mini-canvas">
               <div id="preview-scroll" class="unselectable custom-scrollbar">
                 <span id="preview-anchor" class="unselectable custom-scrollbar-anchor"></span>
               </div>
               <script src="./js/preview-canvas.js"></script>
             </div>
-            <br> <br> <br> <br>
+            </ol>
 
-            <br> <br> <br> <br> <br>
+            <ol class="form-input-row">
             <label for="c-color"><b>Tab Color</b></label>
             <input type="color" name="c-color" id="c-color-import" value="#f6b73c">
+            </ol>
+
+          </ol>
 
             <!-- Submit button-->
             <button id="btn-import" type="button" class="btn btn-import" onclick="nothing">Import</button>

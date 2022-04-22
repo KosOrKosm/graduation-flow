@@ -49,6 +49,13 @@
   flex-wrap: wrap;
 } 
 
+#form-mini-canvas-row {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  margin:15px;
+}
+
 /* Set a style for the submit/login button */
 .form-container .btn {
   background-color: #04AA6D;
