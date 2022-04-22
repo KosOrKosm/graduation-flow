@@ -17,8 +17,12 @@ function onClickLoad() {
     tryUploadPrompt((text) => mainCanvas.fromJson(text))
 }
 
-function onClickExport() { 
+function ExportPNG() { 
     Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow','png')
+}
+
+function ExportJPEG() { 
+    Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow','jpeg')
 }
 
 function onClickCreateCustomNode() {
