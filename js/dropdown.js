@@ -2,6 +2,19 @@
 toggle between hiding and showing the dropdown content */
 function onClickDropdown() {
     
+    //Stop Propagation
+    document.getElementById('myDropdown').addEventListener('mousedown', (ev) => {
+        ev.preventDefault()
+        ev.stopImmediatePropagation()
+        ev.stopPropagation()
+    })
+
+    document.getElementById('myDropdown').addEventListener('mousemove', (ev) => {
+        ev.preventDefault()
+        ev.stopImmediatePropagation()
+        ev.stopPropagation()
+    })
+    
     //Toggle
     document.getElementById("myDropdown").classList.toggle("show");
 }
