@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/popup.css">
+  <link rel="stylesheet" href="./css/dropdown.css">
 </head>
 
 <body>
@@ -19,6 +20,7 @@
   <script src="./js/handlers.js"></script>
   <script src="./js/generic-canvas.js"></script>
   <script src="./js/node-list.js"></script>
+  <script src="./js/dropdown.js"></script>
   <div class="page-wrapper">
 
     <!--PAGE HEADER-->
@@ -46,6 +48,7 @@
     <div class="gradflow-header">
       <a href="javascript:void(0)" onclick="onClickSave()">SAVE</a>
       <a href="javascript:void(0)" onclick="onClickLoad()">LOAD</a>
+      <a href="javascript:void(0)" onclick="onClickDropdown()" class="dropbtn" id="dropbtn">EXPORT</a>  
       <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
       <div class="gradflow-header-right">
         <a href="javascript:void(0)" id="btn-add" onclick="popupManager.showPopup('import-node-form');">ADD</a>
@@ -163,6 +166,13 @@
         </form>
       </div>
     </div>
+
+    <div class="export-container">
+      <div class="dropdown">
+        <div class="dropdown-content" id="myDropdown">
+          <a href="javascript:void(0)" onclick="ExportPNG()">PNG</a>
+          <a href="javascript:void(0)" onclick="ExportJPEG()">JPEG</a>
+        </div>
 
 
 
