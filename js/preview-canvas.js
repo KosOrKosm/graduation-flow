@@ -11,6 +11,8 @@ const container = document.getElementById('mini-canvas')
 let scrolling = false
 let scrollPivotMouseY = 0, scrollPivotAnchorY = 0
 var containerYtoContentY
+let startTime = 0;
+let currentTime = 0;
 
 class PreviewCanvas extends Canvas {
 
@@ -69,12 +71,8 @@ class PreviewCanvas extends Canvas {
             p5.translate(0, -this.#curOffsetY)
             for (let i = 0; i < this.nodes.length; i++) {
                 tempDrawState(p5, () => {
-                    p5.translate(
-                        freeSpace / 2 + (i % maxNodesPerRow) * (FlowNode.sizeX + PreviewCanvas.#rowGap),
-                        freeSpace / 2 + Math.floor(i / maxNodesPerRow) * (FlowNode.sizeY + PreviewCanvas.#rowGap)
-                    )
-                    this.nodes[i].x = 0
-                    this.nodes[i].y = 0
+                    this.nodes[i].x = freeSpace / 2 + (i % maxNodesPerRow) * (FlowNode.sizeX + PreviewCanvas.#rowGap)
+                    this.nodes[i].y = freeSpace / 2 + Math.floor(i / maxNodesPerRow) * (FlowNode.sizeY + PreviewCanvas.#rowGap)
                     this.nodes[i].draw(p5)
                 })
             }
@@ -83,12 +81,12 @@ class PreviewCanvas extends Canvas {
 
     // MOUSE DOWN EVENT
     _mousePressed(p5) {
-
+        
         if (scrolling)
             return
-
+        startTime = new Date();
         this.#lastMouseY = p5.mouseY
-        
+
     }
 
     // MOUSE DRAG EVENT
@@ -115,14 +113,18 @@ class PreviewCanvas extends Canvas {
     // MOUSE UP EVENT
     _mouseReleased(p5) {
         scrolling = false
-
-        /*
-        this.nodes.forEach((node) => {
-            node.isInVolume(p5.mouseX, p5.mouseY)
-            mainCanvas.addNode()
-        })
-        */
-
+        currentTime = new Date();
+        let elapsedTime = currentTime - startTime;
+        if (elapsedTime < 200) {
+            p5.mouseY = p5.mouseY + this.#curOffsetY;
+            this.nodes.forEach(element => {
+                if(element.isInVolume(p5.mouseX, p5.mouseY)) {
+                    let clickedNode = FlowNode.fromSimilarRecord(element);
+                    mainCanvas.addNode(clickedNode);
+                    popupManager.hideLastPopup();
+                }
+            });
+        }
     }
 
     _mouseWheelListener(event) {
