@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/popup.css">
+  <link rel="stylesheet" href="./css/dropdown.css">
 </head>
 
 <body>
@@ -19,6 +20,7 @@
   <script src="./js/handlers.js"></script>
   <script src="./js/generic-canvas.js"></script>
   <script src="./js/node-list.js"></script>
+  <script src="./js/dropdown.js"></script>
   <div class="page-wrapper">
 
     <!--PAGE HEADER-->
@@ -46,6 +48,7 @@
     <div class="gradflow-header">
       <a href="javascript:void(0)" onclick="onClickSave()">SAVE</a>
       <a href="javascript:void(0)" onclick="onClickLoad()">LOAD</a>
+      <a href="javascript:void(0)" onclick="onClickDropdown()" class="dropbtn" id="dropbtn">EXPORT</a>
       <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
       <div class="gradflow-header-right">
         <a href="javascript:void(0)" id="btn-add" onclick="popupManager.showPopup('import-node-form');">ADD</a>
@@ -58,111 +61,123 @@
 
       <!--popups-->
 
-    <!-- Create Custom Node Popup-->
-    <div class="overlay" id="create-node-form-over">
-      <div class="form-popup create-node-form" id="create-node-form">
-        <form class="form-container" id="create-node-form-body">
-          <h1>Input Custom Course</h1>
-          
-          <label for="c-prefixnum"><b>Prefix Number</b></label>
-          <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create" required>
+      <!-- Create Custom Node Popup-->
+      <div class="overlay" id="create-node-form-over">
+        <div class="form-popup create-node-form" id="create-node-form">
+          <form class="form-container" id="create-node-form-body">
+            <h1>Input Custom Course</h1>
 
-          <label for="c-name"><b>Course Name</b></label>
-          <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" required>
-      
-          <label for="c-units"><b>Units</b></label>
-          <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-create" required>
-      
-          <label for="c-preReq"><b>Prereqs</b></label>
-          <input type="text" placeholder="Enter Prereq" name="c-preReq" id="c-prereq-create">
-      
-          <label for="c-major"><b>Major</b></label>
-          <input type="text" placeholder="Enter Major" name="c-major" id="c-major-create" required>
+            <label for="c-prefixnum"><b>Prefix Number</b></label>
+            <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create" required>
 
-          <label for="c-description"><b>Description</b></label>
-          <input type="text" placeholder="Enter Description" name="c-description" id="c-description-create" required>
-      
-          <label for="c-color"><b>Tab Color</b></label>
-          <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
-      
-          <!-- node buton-->
-          <button id="btn-create-custom" type="button" class="btn btn-create-custom"
-            onclick="onClickCreateCustomNode()">Create
-            Custom Node</button>
-      
-          <!-- <button type="submit" class="btn">Create</button> -->
-          <button type="button" class="btn cancel" onclick="popupManager.hideLastPopup()">Close</button>
-        </form>
+            <label for="c-name"><b>Course Name</b></label>
+            <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" required>
+
+            <label for="c-units"><b>Units</b></label>
+            <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-create" required>
+
+            <label for="c-preReq"><b>Prereqs</b></label>
+            <input type="text" placeholder="Enter Prereq" name="c-preReq" id="c-prereq-create">
+
+            <label for="c-major"><b>Major</b></label>
+            <input type="text" placeholder="Enter Major" name="c-major" id="c-major-create" required>
+
+            <label for="c-description"><b>Description</b></label>
+            <input type="text" placeholder="Enter Description" name="c-description" id="c-description-create" required>
+
+            <label for="c-color"><b>Tab Color</b></label>
+            <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
+
+            <!-- node buton-->
+            <button id="btn-create-custom" type="button" class="btn btn-create-custom"
+              onclick="onClickCreateCustomNode()">Create
+              Custom Node</button>
+
+            <!-- <button type="submit" class="btn">Create</button> -->
+            <button type="button" class="btn cancel" onclick="popupManager.hideLastPopup()">Close</button>
+          </form>
+        </div>
       </div>
-    </div>
 
 
-    <!-- Modify Node Popup -->
-    <div class="overlay" id="modify-node-form-over">
-      <div class="form-popup modify-node-form" id="modify-node-form">
-        <form class="form-container" id="modify-node-form-body">
-          <h1>Modify a Course</h1>
+      <!-- Modify Node Popup -->
+      <div class="overlay" id="modify-node-form-over">
+        <div class="form-popup modify-node-form" id="modify-node-form">
+          <form class="form-container" id="modify-node-form-body">
+            <h1>Modify a Course</h1>
 
-          <label for="c-prefixnum"><b>Prefix Number</b></label>
-          <input type="text" name="c-prefixnum" id="c-prefixnum-modify" placeholder="N/A">
+            <label for="c-prefixnum"><b>Prefix Number</b></label>
+            <input type="text" name="c-prefixnum" id="c-prefixnum-modify" placeholder="N/A">
 
-          <label for="c-name"><b>Course Name</b></label>
-          <input type="text" name="c-name" id="c-name-modify" placeholder="N/A">
+            <label for="c-name"><b>Course Name</b></label>
+            <input type="text" name="c-name" id="c-name-modify" placeholder="N/A">
 
-          <label for="c-units"><b>Units</b></label>
-          <input type="text" name="c-unit" id="c-unit-modify" placeholder="N/A">
+            <label for="c-units"><b>Units</b></label>
+            <input type="text" name="c-unit" id="c-unit-modify" placeholder="N/A">
 
-          <label for="c-preReq"><b>Prereqs</b></label>
-          <input type="text" name="c-preReq" id="c-prereq-modify" placeholder="N/A">
+            <label for="c-preReq"><b>Prereqs</b></label>
+            <input type="text" name="c-preReq" id="c-prereq-modify" placeholder="N/A">
 
-          <label for="c-major"><b>Major</b></label>
-          <input type="text" name="c-major" id="c-major-modify" placeholder="N/A">
+            <label for="c-major"><b>Major</b></label>
+            <input type="text" name="c-major" id="c-major-modify" placeholder="N/A">
 
-          <label for="c-description"><b>Description</b></label>
-          <input type="text" name="c-description" id="c-description-modify" placeholder="N/A">
+            <label for="c-description"><b>Description</b></label>
+            <input type="text" name="c-description" id="c-description-modify" placeholder="N/A">
 
-          <label for="c-color"><b>Tab Color</b></label>
-          <input type="color" name="c-color" id="c-color-modify" value="#f6b73c">
+            <label for="c-color"><b>Tab Color</b></label>
+            <input type="color" name="c-color" id="c-color-modify" value="#f6b73c">
 
-          <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="onClickModifyNode()">Edit Course</button>
-          
-          <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete Course</button>
-        </form>
+            <button id="btn-create-custom" type="button" class="btn btn-create-custom"
+              onclick="onClickModifyNode()">Edit Course</button>
+
+            <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete
+              Course</button>
+          </form>
+        </div>
       </div>
-    </div>
-  
 
 
-    <!-- Import Node Popup -->
-    <div class="overlay" id="import-node-form-over">
-      <div class="form-popup import-node-form" id="import-node-form">
-        <form class="form-container" id="import-node-form-body">
-          <h1>Import Course</h1>
-      
-          <label for="c-query"><b>Course Name</b></label>
-          <input list="c-query" type="text" name="c-name" id="c-query-import">
-          <div class="unselectable mini-canvas" id="mini-canvas">
-            <div id="preview-scroll" class="unselectable custom-scrollbar">
-              <span id="preview-anchor" class="unselectable custom-scrollbar-anchor"></span>
+
+      <!-- Import Node Popup -->
+      <div class="overlay" id="import-node-form-over">
+        <div class="form-popup import-node-form" id="import-node-form">
+          <form class="form-container" id="import-node-form-body">
+            <h1>Import Course</h1>
+
+            <label for="c-query"><b>Course Name</b></label>
+            <input list="c-query" type="text" name="c-name" id="c-query-import">
+            <div class="unselectable mini-canvas" id="mini-canvas">
+              <div id="preview-scroll" class="unselectable custom-scrollbar">
+                <span id="preview-anchor" class="unselectable custom-scrollbar-anchor"></span>
+              </div>
+              <script src="./js/preview-canvas.js"></script>
             </div>
-            <script src="./js/preview-canvas.js"></script>
-          </div>
-          <br> <br> <br> <br>
+            <br> <br> <br> <br>
 
-          <br> <br> <br> <br> <br>
-          <label for="c-color"><b>Tab Color</b></label>
-          <input type="color" name="c-color" id="c-color-import" value="#f6b73c">
+            <br> <br> <br> <br> <br>
+            <label for="c-color"><b>Tab Color</b></label>
+            <input type="color" name="c-color" id="c-color-import" value="#f6b73c">
 
-          <!-- Submit button-->
-          <button id="btn-import" type="button" class="btn btn-import" onclick="nothing">Import</button>
+            <!-- Submit button-->
+            <button id="btn-import" type="button" class="btn btn-import" onclick="nothing">Import</button>
 
-          <button id="btn-create-custom" type="button" class="btn btn-create-custom" onclick="popupManager.hideLastPopup(); popupManager.showPopup('create-node-form');">Create
-            Custom Node</button>
+            <button id="btn-create-custom" type="button" class="btn btn-create-custom"
+              onclick="popupManager.hideLastPopup(); popupManager.showPopup('create-node-form');">Create
+              Custom Node</button>
 
-          <button type="button" class="btn cancel" onclick="popupManager.hideLastPopup();">Close</button>
-        </form>
+            <button type="button" class="btn cancel" onclick="popupManager.hideLastPopup();">Close</button>
+          </form>
+        </div>
       </div>
-    </div>
+
+      <div class="export-container">
+        <div class="dropdown">
+          <div class="dropdown-content" id="myDropdown">
+            <a href="javascript:void(0)" onclick="ExportPNG()">PNG</a>
+            <a href="javascript:void(0)" onclick="ExportJPEG()">JPEG</a>
+          </div>
+        </div>
+      </div>
 
 
 
@@ -173,10 +188,9 @@
 
 
 
-
-    <div class="unselectable" id="canvas-container">
-      <script src="./js/main-canvas.js"></script>
-    </div>
+      <div class="unselectable" id="canvas-container">
+        <script src="./js/main-canvas.js"></script>
+      </div>
 
     </main>
 
