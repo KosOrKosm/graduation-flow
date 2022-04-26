@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-26 15:11:05
+ * @ Modified time: 2022-04-26 15:41:39
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -12,6 +12,8 @@ const container = document.getElementById('mini-canvas')
 class PreviewCanvas extends Canvas {
 
     nodes = []
+    queryString = ''
+
     #scroller = new ScrollbarLogic(scrollbar, anchor)
     #lastMouseY = 0
 
@@ -48,18 +50,24 @@ class PreviewCanvas extends Canvas {
         const maxNodesPerRow = this.#getNodesPerRow()
         const freeSpace = (containerSpace - FlowNode.sizeX * maxNodesPerRow - PreviewCanvas.#rowGap)
 
+        const filteredNodes = this.nodes.filter((node) => {
+            if(this.queryString === '' || this.queryString == undefined || this.queryString == null)
+                return true
+            return node.className.toLowerCase().startsWith(this.queryString.toLowerCase())
+        })
+
         tempDrawState(p5, () => {
             // Offset the canvas to perform the scrolling effect
             p5.translate(0, -this.#scroller.getCurPos())
-            for (let i = 0; i < this.nodes.length; i++) {
+            for (let i = 0; i < filteredNodes.length; i++) {
                 tempDrawState(p5, () => {
                     p5.translate(
                         freeSpace / 2 + (i % maxNodesPerRow) * (FlowNode.sizeX + PreviewCanvas.#rowGap),
                         freeSpace / 2 + Math.floor(i / maxNodesPerRow) * (FlowNode.sizeY + PreviewCanvas.#rowGap)
                     )
-                    this.nodes[i].x = 0
-                    this.nodes[i].y = 0
-                    this.nodes[i].draw(p5)
+                    filteredNodes[i].x = 0
+                    filteredNodes[i].y = 0
+                    filteredNodes[i].draw(p5)
                 })
             }
         })
@@ -124,6 +132,7 @@ document.getElementById('c-query-import').addEventListener('input', (event) => {
     //  TODO
     // query DB for nodes to preview
     // display nodes retrieved on canvas
+    previewCanvas.queryString = event.target.value
 
 })
 
