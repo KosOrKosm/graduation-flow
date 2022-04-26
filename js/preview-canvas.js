@@ -2,12 +2,14 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-26 15:41:39
+ * @ Modified time: 2022-04-26 16:01:11
  */
 
 const scrollbar = document.getElementById('preview-scroll')
 const anchor = document.getElementById('preview-anchor')
 const container = document.getElementById('mini-canvas')
+
+let startTime
 
 class PreviewCanvas extends Canvas {
 
@@ -61,13 +63,9 @@ class PreviewCanvas extends Canvas {
             p5.translate(0, -this.#scroller.getCurPos())
             for (let i = 0; i < filteredNodes.length; i++) {
                 tempDrawState(p5, () => {
-                    p5.translate(
-                        freeSpace / 2 + (i % maxNodesPerRow) * (FlowNode.sizeX + PreviewCanvas.#rowGap),
-                        freeSpace / 2 + Math.floor(i / maxNodesPerRow) * (FlowNode.sizeY + PreviewCanvas.#rowGap)
-                    )
-                    filteredNodes[i].x = 0
-                    filteredNodes[i].y = 0
-                    filteredNodes[i].draw(p5)
+                    this.nodes[i].x = freeSpace / 2 + (i % maxNodesPerRow) * (FlowNode.sizeX + PreviewCanvas.#rowGap)
+                    this.nodes[i].y = freeSpace / 2 + Math.floor(i / maxNodesPerRow) * (FlowNode.sizeY + PreviewCanvas.#rowGap)
+                    this.nodes[i].draw(p5)
                 })
             }
         })
@@ -78,9 +76,9 @@ class PreviewCanvas extends Canvas {
 
         if (this.#scroller.isScrolling())
             return
-
+        startTime = new Date();
         this.#lastMouseY = p5.mouseY
-        
+
     }
 
     // MOUSE DRAG EVENT
@@ -106,14 +104,18 @@ class PreviewCanvas extends Canvas {
 
     // MOUSE UP EVENT
     _mouseReleased(p5) {
-
-        /*
-        this.nodes.forEach((node) => {
-            node.isInVolume(p5.mouseX, p5.mouseY)
-            mainCanvas.addNode()
-        })
-        */
-
+        let currentTime = new Date();
+        let elapsedTime = currentTime - startTime;
+        if (elapsedTime < 200) {
+            p5.mouseY = p5.mouseY + this.#scroller.getCurPos();
+            this.nodes.forEach(element => {
+                if(element.isInVolume(p5.mouseX, p5.mouseY)) {
+                    let clickedNode = FlowNode.fromSimilarRecord(element);
+                    mainCanvas.addNode(clickedNode);
+                    popupManager.hideLastPopup();
+                }
+            });
+        }
     }
 
     _mouseWheelListener(event) {
