@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-17 12:10:58
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-26 14:41:02
+ * @ Modified time: 2022-04-26 16:02:11
  */
 
  class FlowNode {
@@ -41,7 +41,7 @@ app.get('/app', (req, res) => {
 // ========= DATABASE CONNECTION =========
 app.get('/query', (req, res) => {
     
-    /*
+    console.log('REQ RECIEVED: /query GET')
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -61,16 +61,6 @@ app.get('/query', (req, res) => {
     })
     
     connection.end()
-    */
-    console.log('REQ RECIEVED: /query GET')
-    let nodes = []
-    let testNodeColors2 = ["#800000", "#EE82EE", "#00FFFF", "#008000", "#FFA500"]
-    for(let i = 0; i < 10; ++i) {
-        let node = new FlowNode()
-        node.tabColor = testNodeColors2[i % testNodeColors2.length]
-        nodes.push(node)
-    }
-    res.status(200).send(JSON.stringify(nodes))
 
 })
 
