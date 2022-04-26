@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:19
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 15:03:43
+ * @ Modified time: 2022-04-26 14:13:19
  */
 
 // Helper function to perform a P5 action without
@@ -20,6 +20,32 @@ function tryEndpointCall(method, url, onSuccess) {
         onSuccess(req.responseText)
     })
     req.send()
+}
+
+function doRequest(method, URL, body) {
+    return new Promise(function (resolve, reject) {
+        const xhr = new XMLHttpRequest()
+        xhr.open(method, URL)
+        if(body != null && body != undefined)
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        xhr.onload = function () {
+            if (this.status >= 200 && this.status < 300) {
+                resolve(xhr.response)
+            } else {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                })
+            }
+        }
+        xhr.onerror = function () {
+            reject({
+                status: this.status,
+                statusText: xhr.statusText
+            })
+        }
+        xhr.send(body)
+    })
 }
 
 async function tryUploadPrompt(onResolve) {

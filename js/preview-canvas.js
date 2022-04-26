@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-26 15:10:30
+ * @ Modified time: 2022-04-26 15:11:05
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -132,6 +132,11 @@ document.getElementById('c-query-import').addEventListener('input', (event) => {
 //         occurs while the PreviewCanvas is visible
 document.getElementById('btn-add').addEventListener('click', (event) => {
     
-    previewCanvas.windowResized(Canvas.getRegionP5("mini-canvas"))
+    doRequest('GET', '/query').then(response => {
+        previewCanvas.fromJson(response)
+        previewCanvas.windowResized(Canvas.getRegionP5("mini-canvas"))
+    }).catch(err => {
+        console.log('unable to query database: ' + err)
+    })
         
 })
