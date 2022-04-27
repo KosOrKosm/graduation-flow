@@ -370,6 +370,12 @@ STARTING AT MAIN - ABOUT.HTML
 	width: clamp(22rem, 25vw, 37rem);
 	height: auto;
 	padding: 10px;
+
+	animation: fadeIn ease 12s;
+	-webkit-animation: fadeIn ease 12s;
+	-moz-animation: fadeIn ease 12s;
+	-o-animation: fadeIn ease 12s;
+	-ms-animation: fadeIn ease 12s;
 }
 
 .person-card h3 {
@@ -414,6 +420,99 @@ STARTING AT MAIN - ABOUT.HTML
 .person-card .avatar.jacob:hover {
 	color: rgb(225,122,197);
 	border-color: rgb(225,122,197);
+}
+
+.about-title {
+	animation-duration: 5s;
+	animation-name: slidein;
+	overflow: hidden;
+}
+
+@keyframes slidein {
+	from {
+		margin-left: 100%;
+		width: 300%;
+	}
+
+	to {
+		margin-left: 0%;
+		width: 100%;
+	}
+}
+
+
+.about-desc1 {
+	animation: fadeIn ease 5s;
+	-webkit-animation: fadeIn ease 5s;
+	-moz-animation: fadeIn ease 5s;
+	-o-animation: fadeIn ease 5s;
+	-ms-animation: fadeIn ease 5s;
+}
+
+.about-desc2 {
+	animation: fadeIn ease 8s;
+	-webkit-animation: fadeIn ease 8s;
+	-moz-animation: fadeIn ease 8s;
+	-o-animation: fadeIn ease 8s;
+	-ms-animation: fadeIn ease 8s;
+}
+
+.about-desc3 {
+	animation: fadeIn ease 10s;
+	-webkit-animation: fadeIn ease 10s;
+	-moz-animation: fadeIn ease 10s;
+	-o-animation: fadeIn ease 10s;
+	-ms-animation: fadeIn ease 10s;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-ms-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
 
 /********************************
