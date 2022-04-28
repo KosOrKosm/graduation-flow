@@ -436,11 +436,11 @@ STARTING AT MAIN - ABOUT.HTML
 
 
 .about-desc1 {
-	animation: fadeIn ease 5s;
-	-webkit-animation: fadeIn ease 5s;
-	-moz-animation: fadeIn ease 5s;
-	-o-animation: fadeIn ease 5s;
-	-ms-animation: fadeIn ease 5s;
+	animation: fadeIn ease 7s;
+	-webkit-animation: fadeIn ease 7s;
+	-moz-animation: fadeIn ease 7s;
+	-o-animation: fadeIn ease 7s;
+	-ms-animation: fadeIn ease 7s;
 }
 
 @keyframes fadeIn {
