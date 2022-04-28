@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-21 13:53:35
+ * @ Modified time: 2022-04-28 13:51:18
  */
 
 /**
@@ -18,6 +18,11 @@ class MainCanvas extends Canvas {
     #currently_dragged = null
     #drag_offx = 0
     #drag_offy = 0
+
+    _setup(p5) {
+        super._setup(p5)
+        FlowNode.font = p5.loadFont('css/font/robotoslab/robotoslab.ttf')
+    }
     
     /**
      * ======= P5 Renderer Hook =======

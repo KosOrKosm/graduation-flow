@@ -66,11 +66,11 @@ h1 {
 	font-family: 'righteous', sans-serif;
 }
 
-h2,h3,h4,h5,h6{
+h2,h3,h4,h5,h6,label{
 	font-family: "titilliumweb", sans-serif;
 }
 
-html {
+html, input {
 	font-family: 'robotoslab', sans-serif;
 }
 
@@ -528,8 +528,6 @@ STARTING AT MAIN - ABOUT.HTML
 		width: 100%;
 	}
 }
-
-
 
 /********************************
 			FOOTER

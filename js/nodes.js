@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:14
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-28 12:42:09
+ * @ Modified time: 2022-04-28 13:50:16
  */
 
 
@@ -31,7 +31,8 @@
     // PRIVATE
     static #tabSizeY = 20
     static #textPadding = 3
-   
+
+    static font = undefined
 
     constructor(x, y) {
 
@@ -132,7 +133,7 @@
         )
         
         //draw Prefix Number on Node
-        p.textSize(12)
+        p.textFont(FlowNode.font, 12)
         p.textAlign(p.CENTER, p.TOP)
         p.fill('black')
         p.text(

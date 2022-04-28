@@ -15,6 +15,11 @@ function onClickDropdown() {
         ev.stopPropagation()
     })
     
+    document.getElementById('myDropdown').addEventListener('touchstart', (ev) => {
+        ev.stopImmediatePropagation()
+        ev.stopPropagation()
+    })
+    
     //Toggle
     document.getElementById("myDropdown").classList.toggle("show");
 }
