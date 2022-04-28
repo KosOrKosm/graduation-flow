@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:14
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-21 12:52:04
+ * @ Modified time: 2022-04-28 12:42:09
  */
 
 
@@ -131,28 +131,27 @@
             FlowNode.sizeY - FlowNode.#textPadding * 2,
         )
         
-        let classNameUnit = this.className + ' (' + this.classUnit + ')'
-        p.textSize(FlowNode.tabSizeY - (FlowNode.#textPadding * 2.5))
-        p.textAlign(p.CENTER, p.CENTER)
-        //draw className(classUnit) or className 
-        if (this.classUnit.trim() !== '') {
-            p.text(
-            classNameUnit,
+        //draw Prefix Number on Node
+        p.textSize(12)
+        p.textAlign(p.CENTER, p.TOP)
+        p.fill('black')
+        p.text(
+            this.classPrefixNumber.toUpperCase(), 
             this.x + FlowNode.#textPadding,
-            this.y + FlowNode.tabSizeY + FlowNode.#textPadding,
-            FlowNode.sizeX - FlowNode.#textPadding * 3,
-            FlowNode.sizeY - FlowNode.tabSizeY - FlowNode.#textPadding,
-            )
-            }
-        else {
-            p.text(
-                this.className,  
-                this.x + FlowNode.#textPadding,
-                this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
-                FlowNode.sizeX - FlowNode.#textPadding * 3,
-                FlowNode.sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding,
-            )
-        }
+            this.y + FlowNode.#textPadding,
+            FlowNode.sizeX - FlowNode.#textPadding * 2,
+            FlowNode.sizeY - FlowNode.#textPadding * 2,
+        )
+        
+        p.textAlign(p.CENTER, p.CENTER)
+        p.textWrap(p.WORD)
+        p.text(
+            this.className.replace('-', ' '),
+            this.x,
+            this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
+            FlowNode.sizeX, 
+            FlowNode.sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding
+        )
 
     }
 }
