@@ -2,9 +2,7 @@
 /* The popup form - hidden by default */
 .form-popup {
   display: none;
-  position: absolute;
-  bottom: 90px;
-  right: 800px;
+  position: fixed;
   border: 3px solid hsl(0, 0%, 95%);
   z-index: 9;
   background: #fff;
