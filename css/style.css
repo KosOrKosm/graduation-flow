@@ -370,12 +370,6 @@ STARTING AT MAIN - ABOUT.HTML
 	width: clamp(22rem, 25vw, 37rem);
 	height: auto;
 	padding: 10px;
-
-	animation: fadeIn ease 12s;
-	-webkit-animation: fadeIn ease 12s;
-	-moz-animation: fadeIn ease 12s;
-	-o-animation: fadeIn ease 12s;
-	-ms-animation: fadeIn ease 12s;
 }
 
 .person-card h3 {
@@ -449,22 +443,6 @@ STARTING AT MAIN - ABOUT.HTML
 	-ms-animation: fadeIn ease 5s;
 }
 
-.about-desc2 {
-	animation: fadeIn ease 8s;
-	-webkit-animation: fadeIn ease 8s;
-	-moz-animation: fadeIn ease 8s;
-	-o-animation: fadeIn ease 8s;
-	-ms-animation: fadeIn ease 8s;
-}
-
-.about-desc3 {
-	animation: fadeIn ease 10s;
-	-webkit-animation: fadeIn ease 10s;
-	-moz-animation: fadeIn ease 10s;
-	-o-animation: fadeIn ease 10s;
-	-ms-animation: fadeIn ease 10s;
-}
-
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
@@ -514,6 +492,44 @@ STARTING AT MAIN - ABOUT.HTML
 		opacity: 1;
 	}
 }
+
+.about-desc2 {
+	animation-duration: 8s;
+	animation-name: slideinRight;
+	overflow: hidden;
+}
+
+@keyframes slideinRight {
+	from {
+		margin-right: 100%;
+		width: 300%;
+	}
+
+	to {
+		margin-right: 0%;
+		width: 100%;
+	}
+}
+
+.about-desc3 {
+	animation-duration: 8s;
+	animation-name: slideinBottom;
+	overflow: hidden;
+}
+
+@keyframes slideinBottom {
+	from {
+		margin-top: 100%;
+		width: 300%;
+	}
+
+	to {
+		margin-top: 0%;
+		width: 100%;
+	}
+}
+
+
 
 /********************************
 			FOOTER
