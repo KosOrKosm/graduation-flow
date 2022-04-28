@@ -13,6 +13,7 @@
 
 <body>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+  <script src="https://kit.fontawesome.com/961d2be7f5.js" crossorigin="anonymous"></script>
   <script src="./js/helpers.js"></script>
   <script src="./js/popup-manager.js"></script>
   <script src="./js/nodes.js"></script>
@@ -47,7 +48,6 @@
       <a href="javascript:void(0)" onclick="onClickSave()">SAVE</a>
       <a href="javascript:void(0)" onclick="onClickLoad()">LOAD</a>
       <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
-      <a href="javascript:void(0)" id="btn-view" onclick="popupManager.showPopup('view-node-form');">VIEW</a>
       <div class="gradflow-header-right">
         <a href="javascript:void(0)" id="btn-add" onclick="popupManager.showPopup('import-node-form');">ADD</a>
         <a href="javascript:void(0)" onclick="mainCanvas.reset()">RESET</a>
@@ -63,6 +63,10 @@
       <div class="overlay" id="create-node-form-over">
         <div class="form-popup create-node-form" id="create-node-form">
           <form class="form-container" id="create-node-form-body">
+            <div class="close-button-container">
+              <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
+                  class="fa-solid fa-xmark"></i></button>
+            </div>
             <h1 class="form-title">Input Custom Course</h1>
 
             <ol class="form-input-wrapper">
@@ -105,13 +109,10 @@
 
             </ol>
 
-            <!-- node buton-->
-            <button id="btn-create-custom" type="button" class="btn btn-create-custom"
-              onclick="onClickCreateCustomNode()">Create
-              Custom Node</button>
-
-            <!-- <button type="submit" class="btn">Create</button> -->
-            <button type="button" class="btn cancel" onclick="popupManager.hideLastPopup()">Close</button>
+            <div class="buttons-container">
+              <button id="btn-create-popup" type="button" class="btn btn-create-custom"
+                onclick="onClickCreateCustomNode()"><i class="fa-solid fa-circle-arrow-down"></i></button>
+            </div>
           </form>
         </div>
       </div>
@@ -119,17 +120,44 @@
       <!-- *************************************************************************************************-->
       <!-- Create View Node Popup-->
       <div class="overlay" id="view-node-form-over">
-        <div class="form-popup view-node-form" id="view-node-form">
-          <form class="form-container" id="view-node-form-body">
-            <h1 class="form-title">View Course</h1>
+        <div class="view-popup view-node-form" id="view-node-form">
+          <div class="form-container" id="view-node-body">
+            <div class="close-button-container">
+              <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
+                  class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div>
+              <h1 class="form-title" id="viewPrefixNumber"></h1>
+
+              <h2 class="view-subtitle">
+                <span id="viewClassName"></span><span id="viewClassUnit"></span>
+              </h2>
+              <div class="view-item prereq">
+                <h3>Prerequisite(s)</h3>
+                <div id="viewPrereqs"></div>
+              </div>
+
+              <div class="view-item major">
+                <h3 id="viewMajorLabel"></h3>
+                <div id="viewClassMajor"></div>
+              </div>
+
+              <div class="view-item">
+                <h3 id="viewDescLabel"></h3>
+                <div id="viewClassDescription"></div>
+              </div>
+            </div>
 
 
 
+            <div class="buttons-container">
+              <button id="btn-view" type="button" class="btn btn-create-modify"
+                onclick="popupManager.hideLastPopup(); popupManager.showPopup('modify-node-form'); onClickView()"><i
+                  class="fa-solid fa-pen-to-square"></i></button>
+            </div>
 
-
-
-            <button type="button" class="btn cancel" onclick="popupManager.hideLastPopup()">Close</button>
-          </form>
+          </div>
         </div>
       </div>
       <!-- *************************************************************************************************-->
@@ -139,6 +167,10 @@
       <div class="overlay" id="modify-node-form-over">
         <div class="form-popup modify-node-form" id="modify-node-form">
           <form class="form-container" id="modify-node-form-body">
+            <div class="close-button-container">
+              <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
+                  class="fa-solid fa-xmark"></i></button>
+            </div>
             <h1 class="form-title">Modify Course</h1>
 
             <ol class="form-input-wrapper">
@@ -178,13 +210,15 @@
               </ol>
             </ol>
 
+            <div class="buttons-container">
+              <button id="btn-create-custom" type="button" class="btn btn-create-custom"
+                onclick="onClickModifyNode()"><i class="fa-solid fa-floppy-disk"></i></button>
+              <button id="btn-view" type="button" class="btn btn-view" onclick="viewNode()"><i
+                  class="fa-solid fa-eye"></i></button>
+              <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()"><i
+                  class="fa-solid fa-trash"></i></button>
+            </div>
 
-
-            <button id="btn-create-custom" type="button" class="btn btn-create-custom"
-              onclick="onClickModifyNode()">Modify Course</button>
-
-            <button id="btn-delete" type="button" class="btn btn-delete" onclick="onClickDeleteSelectedNode()">Delete
-              Course</button>
           </form>
         </div>
       </div>
@@ -195,12 +229,16 @@
       <div class="overlay" id="import-node-form-over">
         <div class="form-popup import-node-form" id="import-node-form">
           <form class="form-container" id="import-node-form-body">
+            <div class="close-button-container">
+              <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
+                  class="fa-solid fa-xmark"></i></button>
+            </div>
 
 
             <h1 class="form-title">Import Course</h1>
 
 
-            <ol >
+            <ol>
 
               <ol class="form-input-item">
                 <label for="c-query"><b>Course Name</b></label>
@@ -224,14 +262,13 @@
             </ol>
 
             <!-- Submit button-->
-            
-            <button id="btn-import" type="button" class="btn btn-import" onclick="nothing">Import</button>
-
-            <button id="btn-create-custom" type="button" class="btn btn-create-custom"
-              onclick="popupManager.hideLastPopup(); popupManager.showPopup('create-node-form');">Create
-              Custom Node</button>
-
-            <button type="button" class="btn cancel" onclick="popupManager.hideLastPopup();">Close</button>
+            <div class="buttons-container import-buttons">
+              <button id="btn-import" type="button" class="btn btn-import" onclick="nothing"><i
+                  class="fa-solid fa-file-arrow-down"></i></button>
+              <button id="btn-create-custom" type="button" class="btn btn-create-custom"
+                onclick="popupManager.hideLastPopup(); popupManager.showPopup('create-node-form');"><i
+                  class="fa-solid fa-circle-plus"></i></button>
+            </div>
           </form>
         </div>
       </div>

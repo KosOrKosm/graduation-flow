@@ -8,6 +8,13 @@
 
 }
 
+.form-popup {
+  display: none;
+  z-index: 9;
+  border-radius: 20px;
+
+}
+
 /* Add styles to the form container */
 .form-container {
   max-width: 450px;
@@ -16,6 +23,17 @@
 
 
   /*background-color: white; */
+}
+
+#view-node-body {
+  min-height:350px;
+  min-width: 350px; 
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border: 10px solid greenyellow;
+  border-radius: 20px;
+  background: #fff;
 }
 
 /* Full-width input fields */
@@ -59,11 +77,42 @@
   flex-wrap: wrap;
 }
 
+.view-item { 
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  align-content: center;
+  flex-wrap: nowrap;
+  padding:10px 5px; 
+  gap:44px;
+}
+
+.view-item.prereq {
+  gap:20px; 
+}
+
+.view-item.major {
+  gap:87px; 
+}
+
+.view-subtitle {
+  text-align: center;
+  padding: 5px; 
+}
+
 #form-mini-canvas-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 10px; 
+}
+
+.form-container .buttons-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
 }
 
 /* Set a style for the submit/login button */
@@ -73,15 +122,31 @@
   padding: 16px 20px;
   border: none;
   cursor: pointer;
-  width: 100%;
+  min-width: 20%;
   margin-bottom: 10px;
   opacity: 0.8;
   border-radius: 5px;
 }
 
+#btn-create-popup {
+  width:100%;
+}
+
+.import-buttons .btn {
+width:40%;
+}
+
 /* Add a red background color to the cancel button */
-.form-container .cancel {
-  background-color: red;
+.form-container .close-button {
+  background-color: #fff;
+  width:1vw;
+  height:2vh;  
+}
+
+.form-container .close-button-container {
+  display: flex; 
+  flex-direction: row;
+  justify-content: flex-end; 
 }
 
 /* Add some hover effects to buttons */
@@ -92,6 +157,10 @@
 
 .form-container .btn-delete {
   background-color: red;
+}
+
+.form-container .btn-view {
+  background-color: blue;
 }
 
 .mini-canvas {

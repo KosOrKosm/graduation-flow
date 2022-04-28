@@ -38,14 +38,14 @@ function onClickCreateCustomNode() {
 function onClickCreate() {
     // let btn = document.getElementById("btn-create")
     // let popup = document.getElementById("create-node-form")
-    
+
     popupManager.showPopup("create-node-form")
 
 }
 
 let selectedNode = null
 
-function selectNode(node) { 
+function selectNode(node) {
     selectedNode = node
 }
 
@@ -61,18 +61,75 @@ function realizeNodeModifications() {
     selectedNode.classPrefixNumber = document.getElementById("c-prefixnum-modify").value
     selectedNode.className = document.getElementById("c-name-modify").value
     selectedNode.classUnit = document.getElementById("c-unit-modify").value
-    selectedNode.classMajor = document.getElementById("c-major-modify").value 
+    selectedNode.classMajor = document.getElementById("c-major-modify").value
     selectedNode.classDescription = document.getElementById("c-description-modify").value
     selectedNode.tabColor = document.getElementById("c-color-modify").value
     selectedNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
 }
 
+function viewNode() {
+    
+    popupManager.hideLastPopup();
+    popupManager.showPopup('view-node-form');
+
+    //viewing variables
+    let viewPrefixNumber = document.getElementById("viewPrefixNumber");
+    let viewClassName = document.getElementById("viewClassName");
+    let viewClassUnit = document.getElementById("viewClassUnit");
+    let viewClassMajor = document.getElementById("viewClassMajor");
+    let viewClassDescription = document.getElementById("viewClassDescription");
+    let viewPrereqs = document.getElementById("viewPrereqs");
+
+    //viewing label variables
+    let viewDescLabel = document.getElementById("viewDescLabel");
+    let viewMajorLabel = document.getElementById("viewMajorLabel");
+   
+    //view PrefixNumber
+    viewPrefixNumber.innerHTML = selectedNode.classPrefixNumber.toUpperCase();
+
+    //view ClassName
+    viewClassName.innerHTML = selectedNode.className;
+
+    //view ClassUnit 
+    if (selectedNode.classUnit) {
+        viewClassUnit.innerHTML = " (" + selectedNode.classUnit + ")"
+    }
+    else {
+        viewClassUnit.innerHTML = null;
+    }
+
+    //view Major
+    if (selectedNode.classMajor){
+        viewClassMajor.innerHTML = selectedNode.classMajor;
+        viewMajorLabel.innerHTML = "Major"; 
+    }
+    else {
+        viewMajorLabel.innerHTML = "";
+        viewClassMajor.innerHTML = null;
+    }
+
+    //view Description 
+    if (selectedNode.classDescription){
+        viewClassDescription.innerHTML = selectedNode.classDescription;
+        viewDescLabel.innerHTML = "Description"; 
+    }
+    else {
+        viewDescLabel.innerHTML = "";
+        viewClassDescription.innerHTML = null;
+    }
+
+    viewPrereqs.innerHTML = selectedNode.prereqs;
+
+    //view tabColor as Border on viewNode PopUp
+    document.getElementById("view-node-body").style.borderColor = selectedNode.tabColor;
+
+}
 
 // Target HTML Element: modify-node-form
 // Used for the button to delete the selected node
 function onClickDeleteSelectedNode() {
     let popup = document.getElementById("modify-node-form-body")
-    
+
     removeSelectedNode()
     popupManager.hideLastPopup()
     document.getElementById('modify-node-form-over').style.display='none'
@@ -82,16 +139,16 @@ function onClickDeleteSelectedNode() {
 // Target HTML Element: modify-node-form
 // Used to confirm modifications to the selected node
 function onClickModifyNode() {
-    
+
 
     let popup = document.getElementById("modify-node-form-body")
 
-    realizeNodeModifications() 
-    popupManager.hideLastPopup()
-    document.getElementById('modify-node-form-over').style.display='none'
-    popup.reset()
-    
-    
-    
-    
+    realizeNodeModifications()
+    //popupManager.hideLastPopup()
+    //document.getElementById('modify-node-form-over').style.display='none'
+    //popup.reset()
+
+
+
+
 }
