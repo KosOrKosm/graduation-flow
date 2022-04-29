@@ -79,6 +79,10 @@ function viewNode() {
 
     popupManager.hideLastPopup();
     popupManager.showPopup('view-node-form');
+    
+    let viewEmpty = true; 
+    let viewEmptyTitle = document.getElementById("viewEmptyTitle"); 
+    let viewEmptySubTitle = document.getElementById("viewEmptySubtitle");
 
     //viewing variables
     let viewPrefixNumber = document.getElementById("viewPrefixNumber");
@@ -94,14 +98,21 @@ function viewNode() {
     let viewPrereqsLabel = document.getElementById("viewPrereqsLabel");
 
     //view PrefixNumber
+    if (selectedNode.classPrefixNumber){
     viewPrefixNumber.innerHTML = selectedNode.classPrefixNumber.toUpperCase();
-
+    viewEmpty = false; 
+    }
+    
     //view ClassName
+    if(selectedNode.className){
     viewClassName.innerHTML = selectedNode.className;
+    viewEmpty = false; 
+    }
 
     //view ClassUnit 
     if (selectedNode.classUnit) {
         viewClassUnit.innerHTML = " (" + selectedNode.classUnit + ")"
+        viewEmpty = false; 
     }
     else {
         viewClassUnit.innerHTML = null;
@@ -111,6 +122,7 @@ function viewNode() {
     if (selectedNode.classMajor) {
         viewClassMajor.innerHTML = selectedNode.classMajor;
         viewMajorLabel.innerHTML = "Major";
+        viewEmpty = false; 
     }
     else {
         viewMajorLabel.innerHTML = "";
@@ -121,6 +133,7 @@ function viewNode() {
     if (selectedNode.classDescription) {
         viewClassDescription.innerHTML = selectedNode.classDescription;
         viewDescLabel.innerHTML = "Description";
+        viewEmpty = false; 
     }
     else {
         viewDescLabel.innerHTML = "";
@@ -131,6 +144,7 @@ function viewNode() {
     if (selectedNode.prereqs.length > 1) {
         viewPrereqsLabel.innerHTML = "Prerequisite(s)";
         viewPrereqs.innerHTML = selectedNode.prereqs;
+        viewEmpty = false; 
 
         console.log("There exists more than one prereq element");
         console.log(selectedNode.prereqs);
@@ -144,6 +158,7 @@ function viewNode() {
         } else {
             viewPrereqsLabel.innerHTML = "Prerequisite(s)";
             viewPrereqs.innerHTML = selectedNode.prereqs;
+            viewEmpty = false; 
             console.log("There exists exactly one prereq element");
             console.log(selectedNode.prereqs);
         }
@@ -154,14 +169,19 @@ function viewNode() {
         console.log(selectedNode.prereqs);
     }
 
-
-
-
-
-
     //view tabColor as Border on viewNode PopUp
     document.getElementById("view-node-body").style.borderColor = selectedNode.tabColor;
 
+    if (viewEmpty){
+    viewPrefixNumber.innerHTML = "No Data Set";
+    viewClassName.innerHTML = "Please enter class information and save your changes";
+    }
+    else{
+        viewPrefixNumber.innerHTML = selectedNode.classPrefixNumber.toUpperCase();
+        viewClassName.innerHTML = selectedNode.className;
+
+    }
+    
 }
 
 // Target HTML Element: modify-node-form
