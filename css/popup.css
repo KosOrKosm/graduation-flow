@@ -141,11 +141,11 @@
 	width: 40%;
 }
 
-/* Add a red background color to the cancel button */
+/* close button */
 .form-container .close-button {
 	background-color: #fff;
-	min-width: 1vw;
-	height: 2vh;
+	min-width: 20px;
+	height: 20px;
 }
 
 .form-container .close-button-container {
