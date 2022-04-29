@@ -17,12 +17,12 @@ function onClickLoad() {
     tryUploadPrompt((text) => mainCanvas.fromJson(text))
 }
 
-function ExportPNG() { 
-    Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow','png')
+function ExportPNG() {
+    Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow', 'png')
 }
 
-function ExportJPEG() { 
-    Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow','jpeg')
+function ExportJPEG() {
+    Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow', 'jpeg')
 }
 
 function onClickCreateCustomNode() {
@@ -76,7 +76,7 @@ function realizeNodeModifications() {
 }
 
 function viewNode() {
-    
+
     popupManager.hideLastPopup();
     popupManager.showPopup('view-node-form');
 
@@ -91,7 +91,8 @@ function viewNode() {
     //viewing label variables
     let viewDescLabel = document.getElementById("viewDescLabel");
     let viewMajorLabel = document.getElementById("viewMajorLabel");
-   
+    let viewPrereqsLabel = document.getElementById("viewPrereqsLabel");
+
     //view PrefixNumber
     viewPrefixNumber.innerHTML = selectedNode.classPrefixNumber.toUpperCase();
 
@@ -107,9 +108,9 @@ function viewNode() {
     }
 
     //view Major
-    if (selectedNode.classMajor){
+    if (selectedNode.classMajor) {
         viewClassMajor.innerHTML = selectedNode.classMajor;
-        viewMajorLabel.innerHTML = "Major"; 
+        viewMajorLabel.innerHTML = "Major";
     }
     else {
         viewMajorLabel.innerHTML = "";
@@ -117,16 +118,44 @@ function viewNode() {
     }
 
     //view Description 
-    if (selectedNode.classDescription){
+    if (selectedNode.classDescription) {
         viewClassDescription.innerHTML = selectedNode.classDescription;
-        viewDescLabel.innerHTML = "Description"; 
+        viewDescLabel.innerHTML = "Description";
     }
     else {
         viewDescLabel.innerHTML = "";
         viewClassDescription.innerHTML = null;
     }
 
-    viewPrereqs.innerHTML = selectedNode.prereqs;
+
+    if (selectedNode.prereqs.length > 1) {
+        viewPrereqs.innerHTML = selectedNode.prereqs;
+        viewPrereqsLabel.innerHTML = "Prerequisite(s)";
+        console.log(selectedNode.prereqs);
+        console.log("There exists more than one prereq element");
+    } else if (selectedNode.prereqs.length == 1) {
+        viewPrereqsLabel.innerHTML = "Prerequisite(s)";
+        console.log("There exists exactly ONE prereq element");
+        viewPrereqs.innerHTML = selectedNode.prereqs;
+        console.log(selectedNode.prereqs);
+
+        if (selectedNode.prereqs.includes("", 0)) {
+            console.log(selectedNode.prereqs.includes("", 0));
+            viewPrereqs.innerHTML = null;
+            viewPrereqsLabel.innerHTML = null;
+            console.log("The one element is empty");
+        }
+    } else if (selectedNode.prereqs.length <= 0) {
+        viewPrereqs.innerHTML = null;
+        viewPrereqsLabel.innerHTML = null;
+        console.log("I am less than or equal to 0");
+        console.log(selectedNode.prereqs);
+    }
+
+
+
+
+
 
     //view tabColor as Border on viewNode PopUp
     document.getElementById("view-node-body").style.borderColor = selectedNode.tabColor;
@@ -140,7 +169,7 @@ function onClickDeleteSelectedNode() {
 
     removeSelectedNode()
     popupManager.hideLastPopup()
-    document.getElementById('modify-node-form-over').style.display='none'
+    document.getElementById('modify-node-form-over').style.display = 'none'
     popup.reset()
 }
 
