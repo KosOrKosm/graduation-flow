@@ -127,27 +127,29 @@ function viewNode() {
         viewClassDescription.innerHTML = null;
     }
 
-
+    //view Prerequisites
     if (selectedNode.prereqs.length > 1) {
-        viewPrereqs.innerHTML = selectedNode.prereqs;
         viewPrereqsLabel.innerHTML = "Prerequisite(s)";
-        console.log(selectedNode.prereqs);
+        viewPrereqs.innerHTML = selectedNode.prereqs;
+
         console.log("There exists more than one prereq element");
-    } else if (selectedNode.prereqs.length == 1) {
-        viewPrereqsLabel.innerHTML = "Prerequisite(s)";
-        console.log("There exists exactly ONE prereq element");
-        viewPrereqs.innerHTML = selectedNode.prereqs;
         console.log(selectedNode.prereqs);
 
+    } else if (selectedNode.prereqs.length == 1) {
         if (selectedNode.prereqs.includes("", 0)) {
-            console.log(selectedNode.prereqs.includes("", 0));
-            viewPrereqs.innerHTML = null;
             viewPrereqsLabel.innerHTML = null;
+            viewPrereqs.innerHTML = null;
             console.log("The one element is empty");
+            console.log(selectedNode.prereqs.includes("", 0));
+        } else {
+            viewPrereqsLabel.innerHTML = "Prerequisite(s)";
+            viewPrereqs.innerHTML = selectedNode.prereqs;
+            console.log("There exists exactly one prereq element");
+            console.log(selectedNode.prereqs);
         }
     } else if (selectedNode.prereqs.length <= 0) {
-        viewPrereqs.innerHTML = null;
         viewPrereqsLabel.innerHTML = null;
+        viewPrereqs.innerHTML = null;
         console.log("I am less than or equal to 0");
         console.log(selectedNode.prereqs);
     }
