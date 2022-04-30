@@ -189,11 +189,11 @@ STARTING AT MAIN - INDEX.HTML
 }
 
 .index-main .title {
-	font-size: clamp(1rem, 9vw, 10rem);
+	font-size: clamp(1rem, 8.5vw, 9.5rem);
 }
 
 .index-main .heading {
-	font-size: clamp(1rem, 3vw, 3rem);
+	font-size: clamp(1rem, 2.5vw, 2.5rem);
 }
 
 .index-main .button {
@@ -235,7 +235,7 @@ STARTING AT MAIN - INDEX.HTML
 		-webkit-text-fill-color: transparent;
 		animation: textclip 2s linear infinite;
 		display: inline-block;
-		font-size: clamp(1rem, 9vw, 10rem);
+		font-size: clamp(1rem, 8.5vw, 9.5rem);
 		margin-left: 5px;
 		margin-right: 5px;
 	}
@@ -248,7 +248,7 @@ STARTING AT MAIN - INDEX.HTML
 
 
 	.sub-title {
-		font-size: clamp(1rem, 3vw, 3rem);
+		font-size: clamp(1rem, 2.5vw, 2.5rem);
 		overflow: hidden;
 		border-right: .15em solid black;
 		white-space: nowrap;
