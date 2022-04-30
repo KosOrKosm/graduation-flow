@@ -141,8 +141,8 @@ class MainCanvas extends Canvas {
                     document.getElementById("c-color-modify").value = node.tabColor
                     document.getElementById("c-prereq-modify").value = node.prereqs.join(',')
 
-                    popupManager.showPopup("modify-node-form")
                     selectNode(node)
+                    viewNode()
                     break
                 }
             }

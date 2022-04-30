@@ -1,210 +1,211 @@
 /* The popup form - hidden by default */
 .form-popup {
-  display: none;
-  border: 3px solid hsl(0, 0%, 95%);
-  z-index: 9;
-  background: #fff;
-  border-radius: 20px;
+	display: none;
+	border: 3px solid hsl(0, 0%, 95%);
+	z-index: 9;
+	background: #fff;
+	border-radius: 20px;
 
 }
 
 .form-popup {
-  display: none;
-  z-index: 9;
-  border-radius: 20px;
+	display: none;
+	z-index: 9;
+	border-radius: 20px;
 
 }
 
 /* Add styles to the form container */
 .form-container {
-  max-width: 450px;
-  min-width: 450px;
-  padding: 15px;
+	max-width: 450px;
+	min-width: 450px;
+	padding: 15px;
 
 
-  /*background-color: white; */
+	/*background-color: white; */
 }
 
 #view-node-body {
-  min-height:350px;
-  min-width: 350px; 
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  border: 10px solid greenyellow;
-  border-radius: 20px;
-  background: #fff;
+	min-width: 300px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	border: 10px solid greenyellow;
+	border-radius: 20px;
+	background: #fff;
+}
+
+.view-data-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	justify-items: center;
+	gap: 5px 5px;
 }
 
 /* Full-width input fields */
 .form-container input[type=text],
 .form-container input[type=password] {
-  width: 70%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-  border-radius: 5px;
+	width: 70%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	border: none;
+	background: #f1f1f1;
+	border-radius: 5px;
 
 }
 
 /* Full-width color fields */
 .form-container input[type=color],
 .form-container input[type=password] {
-  width: 70%;
-  min-height: 30px;
-  margin: 5px 0 22px 0;
-  border: none;
+	width: 70%;
+	min-height: 30px;
+	margin: 5px 0 22px 0;
+	border: none;
 }
 
 /* When the inputs get focus, do something */
 .form-container input[type=text]:focus,
 .form-container input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+	background-color: #ddd;
+	outline: none;
 }
 
 .form-title {
-  text-align: center;
+	text-align: center;
 }
 
 .form-input-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-  align-content: center;
-  flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
+	align-content: center;
+	flex-wrap: wrap;
 }
 
-.view-item { 
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: baseline;
-  align-content: center;
-  flex-wrap: nowrap;
-  padding:10px 5px; 
-  gap:44px;
+.view-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: baseline;
+	align-content: center;
+	flex-wrap: nowrap;
+	/* padding:10px 5px;   */
+	gap: 44px;
 }
 
 .view-item.prereq {
-  gap:20px; 
+	gap: 20px;
 }
 
 .view-item.major {
-  gap:87px; 
+	gap: 87px;
 }
 
 .view-subtitle {
-  text-align: center;
-  padding: 5px; 
+	text-align: center;
 }
 
 #form-mini-canvas-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px; 
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 10px;
 }
 
 .form-container .buttons-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
 }
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  min-width: 20%;
-  margin-bottom: 10px;
-  opacity: 0.8;
-  border-radius: 5px;
+	background-color: #04AA6D;
+	color: white;
+	padding: 16px 20px;
+	border: none;
+	cursor: pointer;
+	min-width: 20%;
+	opacity: 0.8;
+	border-radius: 5px;
 }
 
-#btn-create-popup {
-  width:100%;
+#btn-create-popup, #btn-import-popup {
+	width: 100%;
 }
 
-.import-buttons .btn {
-width:40%;
-}
-
-/* Add a red background color to the cancel button */
+/* close button */
 .form-container .close-button {
-  background-color: #fff;
-  min-width:1vw;
-  height:2vh;  
+	background-color: #fff;
+	min-width: 20px;
+	height: 20px;
 }
 
 .form-container .close-button-container {
-  display: flex; 
-  flex-direction: row;
-  justify-content: flex-end; 
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
 }
 
 /* Add some hover effects to buttons */
 .form-container .btn:hover,
 .open-button:hover {
-  opacity: 1;
+	opacity: 1;
 }
 
 .form-container .btn-delete {
-  background-color: red;
+	background-color: red;
 }
 
 .form-container .btn-view {
-  background-color: blue;
+	background-color: blue;
 }
 
 .mini-canvas {
-  float: left;
-  height: 300px;
-  position: relative;
-  width: 420px;
-  border: 1px solid black;
+	float: left;
+	height: 300px;
+	position: relative;
+	width: 420px;
+	border: 1px solid black;
 }
 
 .mini-canvas .custom-scrollbar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 17px;
-  height: 100%;
-  border-left: 1px solid #3e3e3e;
-  background-color: #eee;
-  z-index: 22;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 17px;
+	height: 100%;
+	border-left: 1px solid #3e3e3e;
+	background-color: #eee;
+	z-index: 22;
 }
 
 .mini-canvas .custom-scrollbar-anchor {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 17px;
-  height: 10px;
-  background-color: #aaa;
-  z-index: 22;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 17px;
+	height: 10px;
+	background-color: #aaa;
+	z-index: 22;
 }
 
 .mini-canvas .custom-scrollbar-anchor:hover,
 .custom-scrollbar-anchor:active {
-  background-color: #333;
+	background-color: #333;
 }
 
 .overlay {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  opacity: 1;
-  position: absolute;
-  top: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	opacity: 1;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
 }

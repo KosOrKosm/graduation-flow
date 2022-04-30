@@ -1,6 +1,6 @@
 /********************************
 				FONTS
-********************************/ 
+********************************/
 
 /* font 1 of 3 for Titles (h1)*/
 @font-face {
@@ -11,8 +11,7 @@
 	url('./font/righteous/righteous-regular.woff2') format('woff2'), /* Super Modern Browsers */
 	url('./font/righteous/righteous-regular.woff') format('woff'), /* Pretty Modern Browsers */
 	url('./font/righteous/righteous-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-	url('./font/righteous/righteous-regular.svg#righteous') format('svg');
-	/* Legacy iOS */
+	url('./font/righteous/righteous-regular.svg#righteous') format('svg'); /* Legacy iOS */
 	font-weight: normal;
 	font-style: normal;
 }
@@ -21,10 +20,10 @@
 @font-face {
 	font-family: 'titilliumweb';
 	src: url('./font/titilliumweb/titilliumweb-regular.eot');
-	src: url('./font/titilliumweb/titilliumweb-regular.eot?#iefix') format('embedded-opentype'), 
-	url('./font/titilliumweb/titilliumweb-regular.woff') format('woff'), 
-	url('./font/titilliumweb/titilliumweb-regular.ttf') format('truetype'), 
-	url('./font/titilliumweb/titilliumweb-regular.svg#titilliumweb') format('svg');
+	src: url('./font/titilliumweb/titilliumweb-regular.eot?#iefix') format('embedded-opentype'),
+		url('./font/titilliumweb/titilliumweb-regular.woff') format('woff'),
+		url('./font/titilliumweb/titilliumweb-regular.ttf') format('truetype'),
+		url('./font/titilliumweb/titilliumweb-regular.svg#titilliumweb') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -33,27 +32,27 @@
 @font-face {
 	font-family: 'robotoslab';
 	src: url('./font/robotoslab/robotoslab.eot');
-	src: url('./font/robotoslab/robotoslab.eot?#iefix') format('embedded-opentype'), 
-	url('./font/robotoslab/robotoslab.woff2') format('woff2'), 
-	url('./font/robotoslab/robotoslab.woff') format('woff'), 
-	url('./font/robotoslab/robotoslab.ttf') format('truetype'), 
-	url('./font/robotoslab/robotoslab.svg#robotoslab') format('svg');
+	src: url('./font/robotoslab/robotoslab.eot?#iefix') format('embedded-opentype'),
+		url('./font/robotoslab/robotoslab.woff2') format('woff2'),
+		url('./font/robotoslab/robotoslab.woff') format('woff'),
+		url('./font/robotoslab/robotoslab.ttf') format('truetype'),
+		url('./font/robotoslab/robotoslab.svg#robotoslab') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 /********************************
 			GENERAL CSS
-********************************/ 
+********************************/
 
-/* resetting css */ 
+/* resetting css */
 * {
-	margin: 0; 
-	padding: 0; 
+	margin: 0;
+	padding: 0;
 	box-sizing: border-box;
 }
 
-/*background gradient*/ 
+/*background gradient*/
 body {
 	background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
 	background-repeat: no-repeat;
@@ -66,15 +65,21 @@ h1 {
 	font-family: 'righteous', sans-serif;
 }
 
-h2,h3,h4,h5,h6,label{
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
 	font-family: "titilliumweb", sans-serif;
 }
 
-html, input {
+html,
+input {
 	font-family: 'robotoslab', sans-serif;
 }
 
-/* general links */ 
+/* general links */
 ul {
 	list-style: none;
 }
@@ -112,8 +117,8 @@ a {
 
 /*page wrapper for flex page layout. 
 wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pages*/
-.page-wrapper { 
-	display: flex; 
+.page-wrapper {
+	display: flex;
 	flex-direction: column;
 	flex-flow: column;
 	height: 100%;
@@ -122,21 +127,21 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 
 /********************************
 			HEADER
-********************************/ 
+********************************/
 .page-header {
 	display: flex;
 	justify-content: space-between;
-    font-size: 1.5rem;
-	padding: 10px; 
-	margin: 10px; 
-	height: 40px; 
+	font-size: 1.5rem;
+	padding: 10px;
+	margin: 10px;
+	height: 40px;
 }
 
-.page-header ul { 
+.page-header ul {
 	display: flex;
 	list-style: none;
 	gap: 16px;
-} 
+}
 
 .left-side,
 .right-side {
@@ -145,10 +150,10 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	gap: 16px;
 }
 
-.page-header .logo{
+.page-header .logo {
 	display: flex;
 	width: 48px;
-    height:auto; 
+	height: auto;
 }
 
 /* currently unused css for page header, to implement or delete by iteration 3
@@ -171,44 +176,45 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 
 /********************************
 STARTING AT MAIN - INDEX.HTML
-********************************/ 
-.index-main  {
-display: flex;
-flex-grow: 1;
-flex-direction: column;
-justify-content: center;
+********************************/
+.index-main {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	justify-content: center;
 }
 
-.index-main > div{ 
+.index-main>div {
 	text-align: center;
-} 
-
- .index-main .title { 
-	font-size: clamp(1rem, 9vw, 10rem);	
 }
 
-.index-main .heading { 
-	font-size: clamp(1rem, 3vw, 3rem);	
+.index-main .title {
+	font-size: clamp(1rem, 8.5vw, 9.5rem);
 }
 
-.index-main .button { 
+.index-main .heading {
+	font-size: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+.index-main .button {
 	align-self: center;
-	font-size: clamp(1rem, 3vw, 3rem);	
+	font-size: clamp(1rem, 3vw, 3rem);
 	line-height: .5;
-	border: 4px solid black; 
+	border: 4px solid black;
 	border-radius: 180px;
 	background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
 	min-width: 100px;
-	padding: 15px 30px; 
-	font-weight:bold;
+	padding: 15px 30px;
+	font-weight: bold;
 	margin-top: 15px;
 }
-.index-main .button:hover::before { 
+
+.index-main .button:hover::before {
 	transform: scale(1.1);
 	box-shadow: 0 0 15px black;
 }
 
-.index-main .button:hover { 
+.index-main .button:hover {
 	color: white;
 	box-shadow: 0 0 5px black;
 	text-shadow: 0 0 5px black;
@@ -229,7 +235,9 @@ justify-content: center;
 		-webkit-text-fill-color: transparent;
 		animation: textclip 2s linear infinite;
 		display: inline-block;
-		font-size: 190px;
+		font-size: clamp(1rem, 8.5vw, 9.5rem);
+		margin-left: 5px;
+		margin-right: 5px;
 	}
 
 	@keyframes textclip {
@@ -240,7 +248,7 @@ justify-content: center;
 
 
 	.sub-title {
-		font-size: 40px;
+		font-size: clamp(1rem, 2.5vw, 2.5rem);
 		overflow: hidden;
 		border-right: .15em solid black;
 		white-space: nowrap;
@@ -284,37 +292,42 @@ STARTING AT MAIN- GRADFLOW.HTML
 .gradflow-header {
 	background-color: #333;
 	overflow: hidden;
-  }
-  
-  /* Style the links inside the navigation bar */
-  .gradflow-header a {
+}
+
+/* Style the links inside the navigation bar */
+.gradflow-header a {
 	float: left;
 	color: #f2f2f2;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
 	font-size: 17px;
-  }
-  
-  /* Change the color of links on hover */
-  .gradflow-header a:hover {
+}
+
+/* Change the color of links on hover */
+.gradflow-header a:hover {
 	background-color: #ddd;
 	color: black;
-  }
-  
-  /* Add a color to the active/current link */
-  .gradflow-header a.active {
-	background-color: #04AA6D; 
+}
+
+/* Add a color to the active/current link */
+.gradflow-header a.active {
+	background-color: #04AA6D;
 	color: white;
-  }
+}
 
-  .gradflow-header-right {
+.gradflow-header-right {
 	float: right;
-  }
+}
 
-  .gradflow-main {
-	  flex: 1 1 auto;
-  }
+#btn-reset:hover {
+	background-color: rgb(118, 21, 21);
+	color:white;
+}
+
+.gradflow-main {
+	flex: 1 1 auto;
+}
 
 
 .unselectable {
@@ -332,28 +345,28 @@ STARTING AT MAIN- GRADFLOW.HTML
 /********************************
 STARTING AT MAIN - ABOUT.HTML
 ********************************/
-.about-main { 
+.about-main {
 	display: flex;
 	flex-grow: 1;
 	flex-direction: column;
-	justify-content:space-evenly;
+	justify-content: space-evenly;
 	padding: clamp(.5rem, 2vw, 2.5rem);
 	align-items: center;
 	margin: 10px;
 	text-align: center;
 }
 
-.about-main h1 { 
+.about-main h1 {
 	font-size: clamp(2.5rem, 5vw, 5.5rem);
 }
 
-.about-main h2 { 
+.about-main h2 {
 	margin-top: 10px;
 	font-size: clamp(2rem, 3.5vw, 4.5rem);
 }
 
-.about-main p { 
-	font-size: clamp(1rem, 1.5vw, 3.5rem);	
+.about-main p {
+	font-size: clamp(1rem, 1.5vw, 3.5rem);
 
 }
 
@@ -362,11 +375,12 @@ STARTING AT MAIN - ABOUT.HTML
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
-	gap:30px;
+	gap: 30px;
 }
+
 .person-card {
 	text-align: center;
-	margin:10px;
+	margin: 10px;
 	width: clamp(22rem, 25vw, 37rem);
 	height: auto;
 	padding: 10px;
@@ -377,43 +391,49 @@ STARTING AT MAIN - ABOUT.HTML
 }
 
 .person-card p {
-	font-size: clamp(1rem, 1vw, 3.5rem);	
+	font-size: clamp(1rem, 1vw, 3.5rem);
 }
-.person-card .avatar { 
+
+.person-card .avatar {
 	width: 100px;
-    height:auto; 
+	height: auto;
 	align-self: center;
 	border-radius: 50%;
 	border: 3px solid black;
 }
 
-.person-card .avatar:hover{ 
+.person-card .avatar:hover {
 	box-shadow: 0px 0px 10px 5px;
 }
 
 .person-card .avatar.alfredo:hover {
-	color: rgb(225,180,143);
-	border-color: rgb(225,180,143);
+	color: rgb(225, 180, 143);
+	border-color: rgb(225, 180, 143);
 }
 
 .person-card .avatar.andrew:hover {
-	color: rgb(117,221,143);
-	border-color: rgb(117,221,143);
+	color: rgb(117, 221, 143);
+	border-color: rgb(117, 221, 143);
 }
 
 .person-card .avatar.anthony:hover {
-	color: rgb(147,116,217);
-	border-color: rgb(147,116,217);
+	color: rgb(147, 116, 217);
+	border-color: rgb(147, 116, 217);
 }
 
 .person-card .avatar.daisy:hover {
-	color: rgb(147,116,217);
-	border-color: rgb(147,116,217);
+	color: rgb(147, 116, 217);
+	border-color: rgb(147, 116, 217);
 }
 
 .person-card .avatar.jacob:hover {
-	color: rgb(225,122,197);
-	border-color: rgb(225,122,197);
+	color: rgb(225, 122, 197);
+	border-color: rgb(225, 122, 197);
+}
+
+.person-card .avatar.brandon:hover {
+	color: rgb(166, 219, 120);
+	border-color: rgb(166, 219, 120);
 }
 
 
@@ -534,37 +554,32 @@ STARTING AT MAIN - ABOUT.HTML
 
 /********************************
 			FOOTER
-********************************/ 
+********************************/
 .page-footer {
 	display: flex;
 	flex-direction: column-reverse;
 	flex-grow: 0;
 	padding: 0px 10px 5px 10px;
 	/*background-image: linear-gradient(to bottom right, #004d7a, #008793); */
-  }
-   
-  .page-footer ul {
+}
+
+.page-footer ul {
 	display: flex;
-  }
+}
 
-  .page-footer .logo { 
-    width: 40px;
-    height:auto; 
-  }
-   
-  @media screen and (min-width: 550px) {
+.page-footer .logo {
+	width: 40px;
+	height: auto;
+}
+
+@media screen and (min-width: 550px) {
 	.page-footer {
-	  flex-direction: row;
-	  justify-content: space-between;
-	  align-items: center;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
 	}
-   
+
 	.page-footer ul {
-	  margin-bottom: 0;
+		margin-bottom: 0;
 	}
-  }
-
-
-
-
-  
+}

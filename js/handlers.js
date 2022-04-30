@@ -17,12 +17,12 @@ function onClickLoad() {
     tryUploadPrompt((text) => mainCanvas.fromJson(text))
 }
 
-function ExportPNG() { 
-    Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow','png')
+function ExportPNG() {
+    Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow', 'png')
 }
 
-function ExportJPEG() { 
-    Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow','jpeg')
+function ExportJPEG() {
+    Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow', 'jpeg')
 }
 
 function onClickCreateCustomNode() {
@@ -76,9 +76,11 @@ function realizeNodeModifications() {
 }
 
 function viewNode() {
-    
+
     popupManager.hideLastPopup();
     popupManager.showPopup('view-node-form');
+
+    let viewEmpty = true;
 
     //viewing variables
     let viewPrefixNumber = document.getElementById("viewPrefixNumber");
@@ -91,45 +93,88 @@ function viewNode() {
     //viewing label variables
     let viewDescLabel = document.getElementById("viewDescLabel");
     let viewMajorLabel = document.getElementById("viewMajorLabel");
-   
+    let viewPrereqsLabel = document.getElementById("viewPrereqsLabel");
+
     //view PrefixNumber
-    viewPrefixNumber.innerHTML = selectedNode.classPrefixNumber.toUpperCase();
+    if (selectedNode.classPrefixNumber) {
+        viewPrefixNumber.innerHTML = selectedNode.classPrefixNumber.toUpperCase();
+        viewEmpty = false;
+    }
 
     //view ClassName
-    viewClassName.innerHTML = selectedNode.className;
+    if (selectedNode.className) {
+        viewClassName.innerHTML = selectedNode.className;
+        viewEmpty = false;
+    }
 
     //view ClassUnit 
     if (selectedNode.classUnit) {
         viewClassUnit.innerHTML = " (" + selectedNode.classUnit + ")"
-    }
-    else {
+        viewEmpty = false;
+    } else {
         viewClassUnit.innerHTML = null;
     }
 
     //view Major
-    if (selectedNode.classMajor){
+    if (selectedNode.classMajor) {
         viewClassMajor.innerHTML = selectedNode.classMajor;
-        viewMajorLabel.innerHTML = "Major"; 
-    }
-    else {
+        viewMajorLabel.innerHTML = "Major";
+        viewEmpty = false;
+    } else {
         viewMajorLabel.innerHTML = "";
         viewClassMajor.innerHTML = null;
     }
 
     //view Description 
-    if (selectedNode.classDescription){
+    if (selectedNode.classDescription) {
         viewClassDescription.innerHTML = selectedNode.classDescription;
-        viewDescLabel.innerHTML = "Description"; 
-    }
-    else {
+        viewDescLabel.innerHTML = "Description";
+        viewEmpty = false;
+    } else {
         viewDescLabel.innerHTML = "";
         viewClassDescription.innerHTML = null;
     }
 
-    viewPrereqs.innerHTML = selectedNode.prereqs;
+    //view Prerequisites
+    if (selectedNode.prereqs.length > 1) {
+        viewPrereqsLabel.innerHTML = "Prerequisite(s)";
+        viewPrereqs.innerHTML = selectedNode.prereqs;
+        viewEmpty = false;
+
+        console.log("There exists more than one prereq element");
+        console.log(selectedNode.prereqs);
+
+    } else if (selectedNode.prereqs.length == 1) {
+        if (selectedNode.prereqs.includes("", 0)) {
+            viewPrereqsLabel.innerHTML = null;
+            viewPrereqs.innerHTML = null;
+            console.log("The one element is empty");
+            console.log(selectedNode.prereqs.includes("", 0));
+        } else {
+            viewPrereqsLabel.innerHTML = "Prerequisite(s)";
+            viewPrereqs.innerHTML = selectedNode.prereqs;
+            viewEmpty = false;
+            console.log("There exists exactly one prereq element");
+            console.log(selectedNode.prereqs);
+        }
+    } else if (selectedNode.prereqs.length <= 0) {
+        viewPrereqsLabel.innerHTML = null;
+        viewPrereqs.innerHTML = null;
+        console.log("I am less than or equal to 0");
+        console.log(selectedNode.prereqs);
+    }
 
     //view tabColor as Border on viewNode PopUp
     document.getElementById("view-node-body").style.borderColor = selectedNode.tabColor;
+
+    if (viewEmpty) {
+        viewPrefixNumber.innerHTML = "NO DATA SET";
+        viewClassName.innerHTML = "Please enter class information and save your changes";
+    } else {
+        viewPrefixNumber.innerHTML = selectedNode.classPrefixNumber.toUpperCase();
+        viewClassName.innerHTML = selectedNode.className;
+
+    }
 
 }
 
@@ -140,7 +185,7 @@ function onClickDeleteSelectedNode() {
 
     removeSelectedNode()
     popupManager.hideLastPopup()
-    document.getElementById('modify-node-form-over').style.display='none'
+    document.getElementById('modify-node-form-over').style.display = 'none'
     popup.reset()
 }
 
