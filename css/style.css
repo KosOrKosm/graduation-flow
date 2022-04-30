@@ -236,6 +236,8 @@ STARTING AT MAIN - INDEX.HTML
 		animation: textclip 2s linear infinite;
 		display: inline-block;
 		font-size: clamp(1rem, 9vw, 10rem);
+		margin-left: 5px;
+		margin-right: 5px;
 	}
 
 	@keyframes textclip {
