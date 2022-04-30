@@ -235,7 +235,7 @@ STARTING AT MAIN - INDEX.HTML
 		-webkit-text-fill-color: transparent;
 		animation: textclip 2s linear infinite;
 		display: inline-block;
-		font-size: 190px;
+		font-size: clamp(1rem, 9vw, 10rem);
 	}
 
 	@keyframes textclip {
@@ -246,7 +246,7 @@ STARTING AT MAIN - INDEX.HTML
 
 
 	.sub-title {
-		font-size: 40px;
+		font-size: clamp(1rem, 3vw, 3rem);
 		overflow: hidden;
 		border-right: .15em solid black;
 		white-space: nowrap;
