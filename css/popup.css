@@ -133,12 +133,8 @@
 	border-radius: 5px;
 }
 
-#btn-create-popup {
+#btn-create-popup, #btn-import-popup {
 	width: 100%;
-}
-
-.import-buttons .btn {
-	width: 40%;
 }
 
 /* close button */

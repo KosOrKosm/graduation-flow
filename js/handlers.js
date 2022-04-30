@@ -168,7 +168,7 @@ function viewNode() {
     document.getElementById("view-node-body").style.borderColor = selectedNode.tabColor;
 
     if (viewEmpty) {
-        viewPrefixNumber.innerHTML = "No Data Set";
+        viewPrefixNumber.innerHTML = "NO DATA SET";
         viewClassName.innerHTML = "Please enter class information and save your changes";
     } else {
         viewPrefixNumber.innerHTML = selectedNode.classPrefixNumber.toUpperCase();

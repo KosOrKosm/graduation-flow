@@ -320,6 +320,11 @@ STARTING AT MAIN- GRADFLOW.HTML
 	float: right;
 }
 
+#btn-reset:hover {
+	background-color: rgb(118, 21, 21);
+	color:white;
+}
+
 .gradflow-main {
 	flex: 1 1 auto;
 }
