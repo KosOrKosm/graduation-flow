@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-26 16:01:11
+ * @ Modified time: 2022-05-03 15:30:40
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -63,9 +63,9 @@ class PreviewCanvas extends Canvas {
             p5.translate(0, -this.#scroller.getCurPos())
             for (let i = 0; i < filteredNodes.length; i++) {
                 tempDrawState(p5, () => {
-                    this.nodes[i].x = freeSpace / 2 + (i % maxNodesPerRow) * (FlowNode.sizeX + PreviewCanvas.#rowGap)
-                    this.nodes[i].y = freeSpace / 2 + Math.floor(i / maxNodesPerRow) * (FlowNode.sizeY + PreviewCanvas.#rowGap)
-                    this.nodes[i].draw(p5)
+                    filteredNodes[i].x = freeSpace / 2 + (i % maxNodesPerRow) * (FlowNode.sizeX + PreviewCanvas.#rowGap)
+                    filteredNodes[i].y = freeSpace / 2 + Math.floor(i / maxNodesPerRow) * (FlowNode.sizeY + PreviewCanvas.#rowGap)
+                    filteredNodes[i].draw(p5)
                 })
             }
         })
@@ -108,7 +108,12 @@ class PreviewCanvas extends Canvas {
         let elapsedTime = currentTime - startTime;
         if (elapsedTime < 200) {
             p5.mouseY = p5.mouseY + this.#scroller.getCurPos();
-            this.nodes.forEach(element => {
+            const filteredNodes = this.nodes.filter((node) => {
+                if(this.queryString === '' || this.queryString == undefined || this.queryString == null)
+                    return true
+                return node.className.toLowerCase().startsWith(this.queryString.toLowerCase())
+            })
+            filteredNodes.forEach(element => {
                 if(element.isInVolume(p5.mouseX, p5.mouseY)) {
                     let clickedNode = FlowNode.fromSimilarRecord(element);
                     mainCanvas.addNode(clickedNode);
@@ -141,7 +146,7 @@ document.getElementById('c-query-import').addEventListener('input', (event) => {
 // BUGFIX: force a window resize whenever the PreviewCanvas is display
 //         otherwise the PreviewCanvas will be size 0 until a window resize
 //         occurs while the PreviewCanvas is visible
-document.getElementById('btn-add').addEventListener('click', (event) => {
+document.getElementById('btn-import').addEventListener('click', (event) => {
     
     doRequest('GET', '/query').then(response => {
         previewCanvas.fromJson(response)
