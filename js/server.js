@@ -39,6 +39,7 @@ app.get('/app', (req, res) => {
     res.sendFile('gradflow.html', { root: root})
 })
 // ========= DATABASE CONNECTION =========
+// ========= DATABASE CONNECTION =========
 app.get('/query', (req, res) => {
     
     console.log('REQ RECIEVED: /query GET')
@@ -46,16 +47,22 @@ app.get('/query', (req, res) => {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'college_planner'
+        database: 'student'
     })
       
     connection.connect()
     
-    connection.query(`SELECT Course as classCode, Description as className from class_list where Course = ${req.query.entry}`, (err, rows, fields) => {
+    //made some changes to the information that is being returned
+    connection.query(`SELECT  CODE_ as classPrefixNumber, TITLE as className, UNITS as classUnit, MAJOR as classMajor, DESCR as classDescription, TABCOLOR as tabColor, PREREQ as prereqs from stats `, (err, rows, fields) => {
+        // console.log(rows[20].prereqs)
+        for (row of rows) {
+             row.prereqs = row.prereqs.split(',')
+        }
+
     if (err) throw err
     //*here we are sending the result of the query.
-    res.status(200).send(JSON.stringify(rows[0]))
-    
+    res.status(200).send(JSON.stringify(rows))
+    console.log(JSON.stringify(rows))
     //console.log(rows[0].Course + rows[0].Dept)
     //* this can be used to test the values that are coming in from the query*\\
     })
