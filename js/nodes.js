@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:14
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-28 13:50:16
+ * @ Modified time: 2022-04-28 14:53:04
  */
 
 
@@ -119,18 +119,6 @@
         p.rect(this.x, this.y, FlowNode.sizeX, FlowNode.#tabSizeY, 5)
 
         p.strokeWeight(0)
-        
-        //draw Prefix Number on Node
-        p.textSize(FlowNode.tabSizeY - FlowNode.#textPadding * 2)
-        p.textAlign(p.CENTER, p.TOP)
-        p.fill('black')
-        p.text(
-            this.classPrefixNumber.toUpperCase(), 
-            this.x + FlowNode.#textPadding,
-            this.y + FlowNode.#textPadding,
-            FlowNode.sizeX - FlowNode.#textPadding * 2,
-            FlowNode.sizeY - FlowNode.#textPadding * 2,
-        )
         
         //draw Prefix Number on Node
         p.textFont(FlowNode.font, 12)
