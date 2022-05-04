@@ -156,24 +156,6 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	height: auto;
 }
 
-/* currently unused css for page header, to implement or delete by iteration 3
-
-/* .page-header button {
-	border: none;
-	border-radius: 8px;
-	background: black;
-	color: white;
-	padding: 8px 24px;
-}
-
-.profile-image {
-	background: white;
-	box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .5);
-	border-radius: 50%;
-	width: 48px;
-	height: 48px; 
-} */
-
 /********************************
 STARTING AT MAIN - INDEX.HTML
 ********************************/
