@@ -553,6 +553,34 @@ STARTING AT MAIN - ABOUT.HTML
 }
 
 /********************************
+STARTING AT MAIN - FINDER.HTML
+********************************/
+
+/* boilerplate css copied from about.html - feel free to modify! */
+.finder-main {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	justify-content: space-evenly;
+	padding: clamp(.5rem, 2vw, 2.5rem);
+	align-items: center;
+	margin: 10px;
+	text-align: center;
+}
+
+.finder-main h1 {
+	font-size: clamp(2.5rem, 5vw, 5.5rem);
+}
+
+.finder-main h2 {
+	font-size: clamp(2rem, 3.5vw, 4.5rem);
+}
+
+.finder-main p {
+	font-size: clamp(1rem, 1.5vw, 3.5rem);
+}
+
+/********************************
 			FOOTER
 ********************************/
 .page-footer {
