@@ -156,24 +156,6 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	height: auto;
 }
 
-/* currently unused css for page header, to implement or delete by iteration 3
-
-/* .page-header button {
-	border: none;
-	border-radius: 8px;
-	background: black;
-	color: white;
-	padding: 8px 24px;
-}
-
-.profile-image {
-	background: white;
-	box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .5);
-	border-radius: 50%;
-	width: 48px;
-	height: 48px; 
-} */
-
 /********************************
 STARTING AT MAIN - INDEX.HTML
 ********************************/
@@ -550,6 +532,34 @@ STARTING AT MAIN - ABOUT.HTML
 			width: 100%;
 		}
 }
+}
+
+/********************************
+STARTING AT MAIN - FINDER.HTML
+********************************/
+
+/* boilerplate css copied from about.html - feel free to modify! */
+.finder-main {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	justify-content: space-evenly;
+	padding: clamp(.5rem, 2vw, 2.5rem);
+	align-items: center;
+	margin: 10px;
+	text-align: center;
+}
+
+.finder-main h1 {
+	font-size: clamp(2.5rem, 5vw, 5.5rem);
+}
+
+.finder-main h2 {
+	font-size: clamp(2rem, 3.5vw, 4.5rem);
+}
+
+.finder-main p {
+	font-size: clamp(1rem, 1.5vw, 3.5rem);
 }
 
 /********************************
