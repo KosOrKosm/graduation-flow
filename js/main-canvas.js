@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-05 13:34:34
+ * @ Modified time: 2022-05-05 13:34:55
  */
 
 /**
@@ -157,6 +157,19 @@ class MainCanvas extends Canvas {
     askToReset() {
         if(window.confirm('Are you sure you want to reset the canvas?'))
             this.reset()
+    }
+
+    saveToBrowser() {
+        const saveData = this.toJson()
+        localStorage.setItem('GRADFLOW-DATA-LOCAL', saveData)
+    }
+
+    loadFromBrowser() {
+        const saveData = localStorage.getItem('GRADFLOW-DATA-LOCAL')
+        if (!saveData)
+            alert("No save data found!")
+        else
+            this.fromJson(saveData)
     }
     
 } 
