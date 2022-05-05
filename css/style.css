@@ -540,13 +540,11 @@ STARTING AT MAIN - FINDER.HTML
 
 /* boilerplate css copied from about.html - feel free to modify! */
 .finder-main {
+/*insert code here for GradFlush css*/ 
 	display: flex;
 	flex-grow: 1;
 	flex-direction: column;
-	justify-content: space-evenly;
-	padding: clamp(.5rem, 2vw, 2.5rem);
-	align-items: center;
-	margin: 10px;
+	justify-content: center;
 	text-align: center;
 }
 
