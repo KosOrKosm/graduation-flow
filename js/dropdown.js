@@ -1,27 +1,27 @@
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function onClickDropdown() {
+function onClickDropdown(idOfTheDiv) {
 
     //Stop Propagation
-    document.getElementById('myDropdown').addEventListener('mousedown', (ev) => {
+    document.getElementById(idOfTheDiv).addEventListener('mousedown', (ev) => {
        ev.preventDefault()
        ev.stopImmediatePropagation()
        ev.stopPropagation()
     })
  
-    document.getElementById('myDropdown').addEventListener('mousemove', (ev) => {
+    document.getElementById(idOfTheDiv).addEventListener('mousemove', (ev) => {
        ev.preventDefault()
        ev.stopImmediatePropagation()
        ev.stopPropagation()
     })
  
-    document.getElementById('myDropdown').addEventListener('touchstart', (ev) => {
+    document.getElementById(idOfTheDiv).addEventListener('touchstart', (ev) => {
        ev.stopImmediatePropagation()
        ev.stopPropagation()
     })
  
     //Toggle
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById(idOfTheDiv).classList.toggle("show");
  }
  
  // Close the dropdown menu if the user clicks outside of it
