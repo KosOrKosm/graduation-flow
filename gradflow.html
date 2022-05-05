@@ -40,9 +40,9 @@
       </header>
       <!--GRADFLOW MENU HEADER-->
       <div class="gradflow-header">
-         <a href="javascript:void(0)" onclick="onClickSave()">SAVE</a>
+         <a href="javascript:void(0)" onclick="onClickDropdown('saveDropdown')" class="dropbtn" id="save-dropbtn">SAVE</a> 
          <a href="javascript:void(0)" onclick="onClickLoad()">LOAD</a>
-         <a href="javascript:void(0)" onclick="onClickDropdown()" class="dropbtn" id="dropbtn">EXPORT</a>
+         <a href="javascript:void(0)" onclick="onClickDropdown('exportDropdown')" class="dropbtn" id="export-dropbtn">EXPORT</a>
          <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
          <div class="gradflow-header-right">
             <a href="javascript:void(0)" onclick="popupManager.showPopup('create-node-form');">CREATE</a>
@@ -224,11 +224,19 @@
                </form>
             </div>
          </div>
-         <div class="export-container">
+         <div class="dropdown-container">
             <div class="dropdown">
-               <div class="dropdown-content" id="myDropdown">
-                  <a href="javascript:void(0)" onclick="ExportPNG()">PNG</a>
-                  <a href="javascript:void(0)" onclick="ExportJPEG()">JPEG</a>
+               <div class="dropdown-content" id="exportDropdown">
+                  <a href="javascript:void(0)" onclick="ExportPNG()">png</a>
+                  <a href="javascript:void(0)" onclick="ExportJPEG()">jpeg</a>
+               </div>
+            </div>
+         </div>
+         <div class="dropdown-container">
+            <div class="dropdown">
+               <div class="dropdown-content" id="saveDropdown">
+                  <a href="javascript:void(0)" onclick="onClickSave()">file</a>
+                  <a href="javascript:void(0)" onClick="INSERTNAME">browser</a>
                </div>
             </div>
          </div>
