@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-28 13:51:18
+ * @ Modified time: 2022-05-05 13:34:34
  */
 
 /**
@@ -152,6 +152,11 @@ class MainCanvas extends Canvas {
         this.#dragging = false
         this.#currently_dragged = null
     
+    }
+
+    askToReset() {
+        if(window.confirm('Are you sure you want to reset the canvas?'))
+            this.reset()
     }
     
 } 
