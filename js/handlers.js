@@ -207,6 +207,7 @@ function onClickModifyNode() {
     if(validateInput() == true){
     let popup = document.getElementById("modify-node-form-body")
     realizeNodeModifications()
+    viewNode()
     //popupManager.hideLastPopup()
     //document.getElementById('modify-node-form-over').style.display='none'
     //popup.reset()
