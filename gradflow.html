@@ -150,7 +150,7 @@
                   <ol class="form-input-wrapper">
                      <ol class="form-input-item">
                         <label for="c-prefixnum"><b>Prefix Number</b></label>
-                        <input type="text" name="c-prefixnum" id="c-prefixnum-modify" placeholder="Enter Prefix Number" pattern="^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$" title="3-4 letters, space, 3 digits, optional letter. ex: ABCD 123A" required>
+                        <input type="text" name="c-prefixnum" id="c-prefixnum-modify" placeholder="Enter Prefix Number" pattern="^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$" title="3-4 letters, optional space, 3 digits, optional letter. ex: ABCD 123A" required>
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-name"><b>Course Name</b></label>
@@ -158,7 +158,7 @@
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-units"><b>Units</b></label>
-                        <input type="number" min="0" max="12" name="c-unit" id="c-unit-modify" placeholder="N/A">
+                        <input type="text" min="0" max="12" name="c-unit" id="c-unit-modify" placeholder="Enter Units" pattern="(^[0-9]{1}[0-2]?$)|^$" title="A number between 0 and 12, or no input">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-preReq"><b>Prereqs</b></label>

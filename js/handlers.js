@@ -189,10 +189,21 @@ function onClickDeleteSelectedNode() {
     popup.reset()
 }
 
-function validateInput() { 
+function validatePreInput() { 
     let validatePrefixNumber = document.getElementById("c-prefixnum-modify").value;
     let regularExpression = /^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$/;
     if (regularExpression.test(validatePrefixNumber)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function validateUnitInput() { 
+    let validateUnitNumber = document.getElementById("c-unit-modify").value;
+    let regularExpression = /(^[0-9]{1}[0-2]?$)|^$/;
+    if (regularExpression.test(validateUnitNumber)) {
         return true;
     }
     else {
@@ -204,7 +215,7 @@ function validateInput() {
 // Used to confirm modifications to the selected node
 function onClickModifyNode() {
 
-    if(validateInput() == true){
+    if(validatePreInput() == true && validateUnitInput() == true){
     let popup = document.getElementById("modify-node-form-body")
     realizeNodeModifications()
     viewNode()
