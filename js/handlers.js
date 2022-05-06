@@ -25,7 +25,30 @@ function ExportJPEG() {
     Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow', 'jpeg')
 }
 
+function validatePreInputC() { 
+    let validatePrefixNumber = document.getElementById("c-prefixnum-create").value;
+    let regularExpression = /^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$/;
+    if (regularExpression.test(validatePrefixNumber)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function validateUnitInputC() { 
+    let validateUnitNumber = document.getElementById("c-unit-create").value;
+    let regularExpression = /(^[0-9]{1}[0-2]?$)|^$/;
+    if (regularExpression.test(validateUnitNumber)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 function onClickCreateCustomNode() {
+    if(validatePreInputC() == true && validateUnitInputC() == true){
     // let btn = document.getElementById("btn-create-custom")
     let popup = document.getElementById("create-node-form-body")
 
@@ -40,6 +63,7 @@ function onClickCreateCustomNode() {
     mainCanvas.addNode(customNode)
     popupManager.hideLastPopup()
     popup.reset()
+    }
 
 }
 
@@ -189,7 +213,7 @@ function onClickDeleteSelectedNode() {
     popup.reset()
 }
 
-function validatePreInput() { 
+function validatePreInputM() { 
     let validatePrefixNumber = document.getElementById("c-prefixnum-modify").value;
     let regularExpression = /^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$/;
     if (regularExpression.test(validatePrefixNumber)) {
@@ -200,7 +224,7 @@ function validatePreInput() {
     }
 }
 
-function validateUnitInput() { 
+function validateUnitInputM() { 
     let validateUnitNumber = document.getElementById("c-unit-modify").value;
     let regularExpression = /(^[0-9]{1}[0-2]?$)|^$/;
     if (regularExpression.test(validateUnitNumber)) {
@@ -215,7 +239,7 @@ function validateUnitInput() {
 // Used to confirm modifications to the selected node
 function onClickModifyNode() {
 
-    if(validatePreInput() == true && validateUnitInput() == true){
+    if(validatePreInputM() == true && validateUnitInputM() == true){
     let popup = document.getElementById("modify-node-form-body")
     realizeNodeModifications()
     viewNode()

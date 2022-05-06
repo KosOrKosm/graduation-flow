@@ -57,7 +57,7 @@
          <!-- Create Custom Node Popup-->
          <div class="overlay" id="create-node-form-over">
             <div class="form-popup create-node-form" id="create-node-form">
-               <form class="form-container" id="create-node-form-body">
+               <form class="form-container" id="create-node-form-body" onsubmit="return false;">
                   <div class="close-button-container">
                      <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
                         class="fa-solid fa-xmark"></i></button>
@@ -66,29 +66,27 @@
                   <ol class="form-input-wrapper">
                      <ol class="form-input-item">
                         <label for="c-prefixnum"><b>Prefix Number</b></label>
-                        <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create"
-                           required>
+                        <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create" pattern="^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$" title="3-4 letters, optional space, 3 digits, optional letter. ex: ABCD 123A" required>
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-name"><b>Course Name</b></label>
-                        <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" required>
+                        <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" maxlength="100">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-units"><b>Units</b></label>
-                        <input type="number" min="0" max="19" placeholder="Enter Units" name="c-unit" id="c-unit-create" required>
+                        <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-create" pattern="(^[0-9]{1}[0-2]?$)|^$" title="A number between 0 and 12, or no input">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-preReq"><b>Prereqs</b></label>
-                        <input type="text" placeholder="Enter Prereq" name="c-preReq" id="c-prereq-create">
+                        <input type="text" placeholder="Enter Prerequisite(s)" name="c-preReq" id="c-prereq-create" maxlength="250">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-major"><b>Major</b></label>
-                        <input type="text" placeholder="Enter Major" name="c-major" id="c-major-create" required>
+                        <input type="text" placeholder="Enter Major" name="c-major" id="c-major-create" maxlength="100">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-description"><b>Description</b></label>
-                        <input type="text" placeholder="Enter Description" name="c-description" id="c-description-create"
-                           required>
+                        <input type="text" placeholder="Enter Description" name="c-description" id="c-description-create" maxlength="1000">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-color"><b>Tab Color</b></label>
@@ -96,7 +94,7 @@
                      </ol>
                   </ol>
                   <div class="buttons-container">
-                     <button id="btn-create-popup" type="button" class="btn btn-create-custom"
+                     <button id="btn-create-popup" type="submit" class="btn btn-create-custom"
                         onclick="onClickCreateCustomNode()"><i class="fa-solid fa-circle-arrow-down fa-2xl"></i></button>
                   </div>
                </form>
@@ -150,23 +148,23 @@
                   <ol class="form-input-wrapper">
                      <ol class="form-input-item">
                         <label for="c-prefixnum"><b>Prefix Number</b></label>
-                        <input type="text" name="c-prefixnum" id="c-prefixnum-modify" placeholder="Enter Prefix Number" pattern="^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$" title="3-4 letters, optional space, 3 digits, optional letter. ex: ABCD 123A" required>
+                        <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-modify" pattern="^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$" title="3-4 letters, optional space, 3 digits, optional letter. ex: ABCD 123A" required>
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-name"><b>Course Name</b></label>
-                        <input type="text" name="c-name" id="c-name-modify" placeholder="Enter Course Name" maxlength="100">
+                        <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-modify" maxlength="100">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-units"><b>Units</b></label>
-                        <input type="text" name="c-unit" id="c-unit-modify" placeholder="Enter Units" pattern="(^[0-9]{1}[0-2]?$)|^$" title="A number between 0 and 12, or no input">
+                        <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-modify" pattern="(^[0-9]{1}[0-2]?$)|^$" title="A number between 0 and 12, or no input">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-preReq"><b>Prereqs</b></label>
-                        <input type="text" name="c-preReq" id="c-prereq-modify" placeholder="Enter Prereq">
+                        <input type="text" placeholder="Enter Prerequisite(s)" name="c-preReq" id="c-prereq-modify" maxlength="250">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-major"><b>Major</b></label>
-                        <input type="text" name="c-major" id="c-major-modify" placeholder="Enter Major" maxlength="100">
+                        <input type="text" placeholder="Enter Major" name="c-major" id="c-major-modify" maxlength="100">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-description"><b>Description</b></label>
