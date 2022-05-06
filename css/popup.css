@@ -102,6 +102,12 @@
 	gap: 87px;
 }
 
+#viewClassDescription {
+	overflow: auto; 
+	overflow-wrap: break-word;
+	max-height: 200px;
+}
+
 .view-subtitle {
 	text-align: center;
 }
