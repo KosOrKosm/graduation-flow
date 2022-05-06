@@ -189,19 +189,26 @@ function onClickDeleteSelectedNode() {
     popup.reset()
 }
 
+function validateInput() { 
+    let validatePrefixNumber = document.getElementById("c-prefixnum-modify").value;
+    let regularExpression = /^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$/;
+    if (regularExpression.test(validatePrefixNumber)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 // Target HTML Element: modify-node-form
 // Used to confirm modifications to the selected node
 function onClickModifyNode() {
 
-
+    if(validateInput() == true){
     let popup = document.getElementById("modify-node-form-body")
-
     realizeNodeModifications()
     //popupManager.hideLastPopup()
     //document.getElementById('modify-node-form-over').style.display='none'
     //popup.reset()
-
-
-
-
+    }
 }
