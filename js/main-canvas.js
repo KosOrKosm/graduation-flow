@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-28 13:51:18
+ * @ Modified time: 2022-05-05 13:38:42
  */
 
 /**
@@ -153,6 +153,28 @@ class MainCanvas extends Canvas {
         this.#currently_dragged = null
     
     }
+
+    askToReset() {
+        if(window.confirm('Are you sure you want to reset the canvas?'))
+            this.reset()
+    }
+
+    saveToBrowser() {
+        const saveData = this.toJson()
+        localStorage.setItem('GRADFLOW-DATA-LOCAL', saveData)
+    }
+
+    loadFromBrowser() {
+        const saveData = localStorage.getItem('GRADFLOW-DATA-LOCAL')
+        if(saveData)
+            this.fromJson(saveData)
+        return saveData != undefined
+    }
+
+    tryToLoadFromBrowser() {
+        if (!loadFromBrowser())
+            alert("No save data found!")
+    }
     
 } 
 
@@ -160,6 +182,11 @@ class MainCanvas extends Canvas {
 Object.assign(MainCanvas.prototype, NodesList) // Node List functionality mixin
 const mainCanvas = new MainCanvas()
 Canvas.injectInstance(mainCanvas, "canvas-container", "canvas-region")
+
+// Auto load the last canvas when the canvas page is loaded
+window.addEventListener('load', (ev) => {
+    mainCanvas.loadFromBrowser()
+})
 
 // TEST NODES
 // TODO: remove from final build of website
