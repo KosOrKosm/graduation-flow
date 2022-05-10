@@ -8,6 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+
+    <!--mapbox includes-->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.css' rel='stylesheet' />
+	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">	
+	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.js'></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
 </head>
 
 <body id="index" onload="document.body.style.opacity='1'">
@@ -23,23 +32,24 @@
             <div class="right-side">
                 <ul>
                     <li><a class="link-animation-1" href="./gradflow.html">GradFlow</a></li>
-                    <li><a class="link-animation-1" href="./finder.html">Finder</a></li>
+                    <li><a class="link-animation-1" href="./gradflush.html">GradFlush</a></li>
                     <li><a class="link-animation-1" href="./about.html">About</a></li>
                 </ul>
             </div>
         </header>
         <!--FINDER PAGE MAIN-->
+
         <main class="finder-main">
             <div class="finder-title">
-                <h1>Insert Title Here</h1>
+                <h1>GradFlush</h1>
             </div>
             <div class="finder-heading">
-                <h2 class="finder-sub-title">Insert a subheading here</h2>
+                <h2 class="finder-sub-title">Toilet Needs</h2>
             </div>
-            <div>
-                <!-- map stuff -->
-                map div
-            </div>
+            <!-- map stuff -->
+            <div id="geocoder"></div>
+            <div id='map'></div>
+            
         </main>
         <!--PAGE FOOTER-->
         <footer class="page-footer">
@@ -50,6 +60,9 @@
             </ul>
         </footer>
     </div>
+
+    <!--map box-->
+    <script src="./js/map.js"></script>
 </body>
 
 </html>

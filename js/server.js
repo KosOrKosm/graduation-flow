@@ -22,6 +22,7 @@
  }
 
 const express = require('express')
+const mysql = require('mysql')
 const app = express()
 const root = __dirname + '../../'
 app.set('port', 3000)
