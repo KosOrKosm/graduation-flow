@@ -57,7 +57,7 @@
          <!-- Create Custom Node Popup-->
          <div class="overlay" id="create-node-form-over">
             <div class="form-popup create-node-form" id="create-node-form">
-               <form class="form-container" id="create-node-form-body">
+               <form class="form-container" id="create-node-form-body" onsubmit="return false;">
                   <div class="close-button-container">
                      <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
                         class="fa-solid fa-xmark"></i></button>
@@ -66,29 +66,27 @@
                   <ol class="form-input-wrapper">
                      <ol class="form-input-item">
                         <label for="c-prefixnum"><b>Prefix Number</b></label>
-                        <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create"
-                           required>
+                        <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create" pattern="^([A-Za-z]{3,4}\s?)?[0-9]{3}([A-Za-z])?$" title="optional 3-4 letters + optional space, 3 digits, optional letter. ex: ABCD 123A" required>
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-name"><b>Course Name</b></label>
-                        <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" required>
+                        <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create" maxlength="100">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-units"><b>Units</b></label>
-                        <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-create" required>
+                        <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-create" pattern="(^[0-9]{1}[0-2]?$)|^$" title="A number between 0 and 12, or no input">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-preReq"><b>Prereqs</b></label>
-                        <input type="text" placeholder="Enter Prereq" name="c-preReq" id="c-prereq-create">
+                        <input type="text" placeholder="Enter Prerequisite(s)" name="c-preReq" id="c-prereq-create" maxlength="250">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-major"><b>Major</b></label>
-                        <input type="text" placeholder="Enter Major" name="c-major" id="c-major-create" required>
+                        <input type="text" placeholder="Enter Major" name="c-major" id="c-major-create" maxlength="100">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-description"><b>Description</b></label>
-                        <input type="text" placeholder="Enter Description" name="c-description" id="c-description-create"
-                           required>
+                        <input type="text" placeholder="Enter Description" name="c-description" id="c-description-create" maxlength="1000">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-color"><b>Tab Color</b></label>
@@ -96,7 +94,7 @@
                      </ol>
                   </ol>
                   <div class="buttons-container">
-                     <button id="btn-create-popup" type="button" class="btn btn-create-custom"
+                     <button id="btn-create-popup" type="submit" class="btn btn-create-custom"
                         onclick="onClickCreateCustomNode()"><i class="fa-solid fa-circle-arrow-down fa-2xl"></i></button>
                   </div>
                </form>
@@ -130,7 +128,7 @@
                      </div>
                      <div class="buttons-container">
                         <button id="btn-view" type="button" class="btn btn-create-modify"
-                           onclick="popupManager.hideLastPopup(); popupManager.showPopup('modify-node-form'); onClickView()"><i
+                           onclick="popupManager.hideLastPopup(); popupManager.showPopup('modify-node-form');"><i
                            class="fa-solid fa-pen-to-square fa-xl"></i></button>
                      </div>
                   </div>
@@ -141,7 +139,7 @@
          <!-- Modify Node Popup -->
          <div class="overlay" id="modify-node-form-over">
             <div class="form-popup modify-node-form" id="modify-node-form">
-               <form class="form-container" id="modify-node-form-body">
+               <form class="form-container" id="modify-node-form-body" onsubmit="return false;">
                   <div class="close-button-container">
                      <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
                         class="fa-solid fa-xmark"></i></button>
@@ -150,27 +148,27 @@
                   <ol class="form-input-wrapper">
                      <ol class="form-input-item">
                         <label for="c-prefixnum"><b>Prefix Number</b></label>
-                        <input type="text" name="c-prefixnum" id="c-prefixnum-modify" placeholder="N/A">
+                        <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-modify" pattern="^([A-Za-z]{3,4}\s?)?[0-9]{3}([A-Za-z])?$" title="optional 3-4 letters + optional space, 3 digits, optional letter. ex: ABCD 123A" required>
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-name"><b>Course Name</b></label>
-                        <input type="text" name="c-name" id="c-name-modify" placeholder="N/A">
+                        <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-modify" maxlength="100">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-units"><b>Units</b></label>
-                        <input type="text" name="c-unit" id="c-unit-modify" placeholder="N/A">
+                        <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-modify" pattern="(^[0-9]{1}[0-2]?$)|^$" title="A number between 0 and 12, or no input">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-preReq"><b>Prereqs</b></label>
-                        <input type="text" name="c-preReq" id="c-prereq-modify" placeholder="N/A">
+                        <input type="text" placeholder="Enter Prerequisite(s)" name="c-preReq" id="c-prereq-modify" maxlength="250">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-major"><b>Major</b></label>
-                        <input type="text" name="c-major" id="c-major-modify" placeholder="N/A">
+                        <input type="text" placeholder="Enter Major" name="c-major" id="c-major-modify" maxlength="100">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-description"><b>Description</b></label>
-                        <input type="text" name="c-description" id="c-description-modify" placeholder="N/A">
+                        <input type="text" name="c-description" id="c-description-modify" placeholder="Enter Description" maxlength="1000">
                      </ol>
                      <ol class="form-input-item">
                         <label for="c-color"><b>Tab Color</b></label>
@@ -178,7 +176,7 @@
                      </ol>
                   </ol>
                   <div class="buttons-container">
-                     <button id="btn-create-custom" type="button" class="btn btn-create-custom"
+                     <button id="btn-create-custom" type="submit" class="btn btn-create-custom"
                         onclick="onClickModifyNode()"><i class="fa-solid fa-floppy-disk fa-xl"></i></button>
                      <button id="btn-view" type="button" class="btn btn-view" onclick="viewNode()"><i
                         class="fa-solid fa-eye fa-xl"></i></button>

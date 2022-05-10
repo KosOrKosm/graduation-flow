@@ -33,22 +33,46 @@ function ExportJPEG() {
     Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow', 'jpeg')
 }
 
+function validatePreInput(id) { 
+    let validatePrefixNumber = document.getElementById(id).value;
+    let regularExpression = /^([A-Za-z]{3,4}\s?)?[0-9]{3}([A-Za-z])?$/;
+    if (regularExpression.test(validatePrefixNumber)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function validateUnitInput(id) { 
+    let validateUnitNumber = document.getElementById(id).value;
+    let regularExpression = /(^[0-9]{1}[0-2]?$)|^$/;
+    if (regularExpression.test(validateUnitNumber)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 function onClickCreateCustomNode() {
+    if(validatePreInput("c-prefixnum-create") == true && validateUnitInput("c-unit-create") == true){
     // let btn = document.getElementById("btn-create-custom")
     let popup = document.getElementById("create-node-form-body")
 
     let customNode = new FlowNode(0, 300)
-    customNode.classPrefixNumber = document.getElementById("c-prefixnum-create").value
+    customNode.classPrefixNumber = (document.getElementById("c-prefixnum-create").value).toUpperCase()
     customNode.className = document.getElementById("c-name-create").value
     customNode.classUnit = document.getElementById("c-unit-create").value
     customNode.classMajor = document.getElementById("c-major-create").value
     customNode.classDescription = document.getElementById("c-description-create").value
     customNode.tabColor = document.getElementById("c-color-create").value
-    customNode.prereqs = document.getElementById("c-prereq-create").value.split(',')
+    customNode.prereqs = (document.getElementById("c-prereq-create").value.toUpperCase()).trim().split(/\s*,\s*/).filter(entry => /\S/.test(entry));
     mainCanvas.addNode(customNode)
     mainCanvas.scheduleAutosave()
     popupManager.hideLastPopup()
     popup.reset()
+    }
 
 }
 
@@ -76,14 +100,15 @@ function removeSelectedNode() {
 function realizeNodeModifications() {
     if (selectedNode == null)
         throw "No node selected!"
-    selectedNode.classPrefixNumber = document.getElementById("c-prefixnum-modify").value
+    selectedNode.classPrefixNumber = (document.getElementById("c-prefixnum-modify").value).toUpperCase()
     selectedNode.className = document.getElementById("c-name-modify").value
     selectedNode.classUnit = document.getElementById("c-unit-modify").value
     selectedNode.classMajor = document.getElementById("c-major-modify").value
     selectedNode.classDescription = document.getElementById("c-description-modify").value
     selectedNode.tabColor = document.getElementById("c-color-modify").value
-    selectedNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
+    selectedNode.prereqs = (document.getElementById("c-prereq-modify").value.toUpperCase()).trim().split(/\s*,\s*/).filter(entry => /\S/.test(entry));
     mainCanvas.scheduleAutosave()
+
 }
 
 function viewNode() {
@@ -204,15 +229,12 @@ function onClickDeleteSelectedNode() {
 // Used to confirm modifications to the selected node
 function onClickModifyNode() {
 
-
+    if(validatePreInput("c-prefixnum-modify") == true && validateUnitInput("c-unit-modify") == true){
     let popup = document.getElementById("modify-node-form-body")
-
     realizeNodeModifications()
+    viewNode()
     //popupManager.hideLastPopup()
     //document.getElementById('modify-node-form-over').style.display='none'
     //popup.reset()
-
-
-
-
+    }
 }
