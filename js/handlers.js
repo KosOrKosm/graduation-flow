@@ -25,8 +25,8 @@ function ExportJPEG() {
     Canvas.getRegionP5("canvas-container").saveCanvas('myGradFlow', 'jpeg')
 }
 
-function validatePreInputC() { 
-    let validatePrefixNumber = document.getElementById("c-prefixnum-create").value;
+function validatePreInput(id) { 
+    let validatePrefixNumber = document.getElementById(id).value;
     let regularExpression = /^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$/;
     if (regularExpression.test(validatePrefixNumber)) {
         return true;
@@ -36,8 +36,8 @@ function validatePreInputC() {
     }
 }
 
-function validateUnitInputC() { 
-    let validateUnitNumber = document.getElementById("c-unit-create").value;
+function validateUnitInput(id) { 
+    let validateUnitNumber = document.getElementById(id).value;
     let regularExpression = /(^[0-9]{1}[0-2]?$)|^$/;
     if (regularExpression.test(validateUnitNumber)) {
         return true;
@@ -48,7 +48,7 @@ function validateUnitInputC() {
 }
 
 function onClickCreateCustomNode() {
-    if(validatePreInputC() == true && validateUnitInputC() == true){
+    if(validatePreInput("c-prefixnum-create") == true && validateUnitInput("c-unit-create") == true){
     // let btn = document.getElementById("btn-create-custom")
     let popup = document.getElementById("create-node-form-body")
 
@@ -213,33 +213,11 @@ function onClickDeleteSelectedNode() {
     popup.reset()
 }
 
-function validatePreInputM() { 
-    let validatePrefixNumber = document.getElementById("c-prefixnum-modify").value;
-    let regularExpression = /^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$/;
-    if (regularExpression.test(validatePrefixNumber)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-function validateUnitInputM() { 
-    let validateUnitNumber = document.getElementById("c-unit-modify").value;
-    let regularExpression = /(^[0-9]{1}[0-2]?$)|^$/;
-    if (regularExpression.test(validateUnitNumber)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 // Target HTML Element: modify-node-form
 // Used to confirm modifications to the selected node
 function onClickModifyNode() {
 
-    if(validatePreInputM() == true && validateUnitInputM() == true){
+    if(validatePreInput("c-prefixnum-modify") == true && validateUnitInput("c-unit-modify") == true){
     let popup = document.getElementById("modify-node-form-body")
     realizeNodeModifications()
     viewNode()
