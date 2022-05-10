@@ -94,6 +94,10 @@
 	gap: 44px;
 }
 
+#viewClassName {
+	word-break: break-all;
+}
+
 .view-item.prereq {
 	gap: 20px;
 }
