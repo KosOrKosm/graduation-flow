@@ -2,19 +2,27 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 11:32:51
+ * @ Modified time: 2022-05-10 11:59:38
  */
 
 
 // This file contains JS functions to be invoked by HTML buttons.
 // 
 
-function onClickSave() {
+function onClickSaveFile() {
     tryDownloadPrompt(mainCanvas.toJson(), 'canvas.json', 'text/plain')
 }
 
-function onClickLoad() {
+function onClickSaveBrowser() {
+    mainCanvas.saveToBrowserPrompt()
+}
+
+function onClickLoadFile() {
     tryUploadPrompt((text) => mainCanvas.fromJson(text))
+}
+
+function onClickLoadBrowser() {
+    mainCanvas.loadFromBrowser()
 }
 
 function ExportPNG() {
@@ -61,6 +69,7 @@ function onClickCreateCustomNode() {
     customNode.tabColor = document.getElementById("c-color-create").value
     customNode.prereqs = (document.getElementById("c-prereq-create").value.toUpperCase()).trim().split(/\s*,\s*/).filter(entry => /\S/.test(entry));
     mainCanvas.addNode(customNode)
+    mainCanvas.scheduleAutosave()
     popupManager.hideLastPopup()
     popup.reset()
     }
@@ -85,6 +94,7 @@ function removeSelectedNode() {
     if (selectedNode == null)
         throw "No node selected!"
     mainCanvas.removeNode(selectedNode)
+    mainCanvas.scheduleAutosave()
 }
 
 function realizeNodeModifications() {
@@ -97,6 +107,8 @@ function realizeNodeModifications() {
     selectedNode.classDescription = document.getElementById("c-description-modify").value
     selectedNode.tabColor = document.getElementById("c-color-modify").value
     selectedNode.prereqs = (document.getElementById("c-prereq-modify").value.toUpperCase()).trim().split(/\s*,\s*/).filter(entry => /\S/.test(entry));
+    mainCanvas.scheduleAutosave()
+
 }
 
 function viewNode() {

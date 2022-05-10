@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-05 13:38:42
+ * @ Modified time: 2022-05-10 13:04:17
  */
 
 /**
@@ -18,6 +18,10 @@ class MainCanvas extends Canvas {
     #currently_dragged = null
     #drag_offx = 0
     #drag_offy = 0
+    #autosaveTimer
+
+    static #defaultSaveKey = 'GRADFLOW-DATA-LOCAL'
+    static autosaveKey = `${MainCanvas.#defaultSaveKey}-AUTOSAVE`
 
     _setup(p5) {
         super._setup(p5)
@@ -96,6 +100,7 @@ class MainCanvas extends Canvas {
                     this.#drag_offx = p5.mouseX - node.x
                     this.#drag_offy = p5.mouseY - node.y
                     this.#currently_dragged = node
+                    this.#cancelPendingAutosave()
                 }
             }
             
@@ -128,7 +133,11 @@ class MainCanvas extends Canvas {
      */
     _mouseReleased(p5) {
     
-        if (!this.#dragging && !popupManager.popupVisible()) {
+        if (this.#dragging) {
+            
+            this.scheduleAutosave()
+
+        } else if (!popupManager.popupVisible()) {
     
             for (let node of this.nodes) {
                 if (node.isInVolume(p5.mouseX, p5.mouseY)) {
@@ -159,20 +168,44 @@ class MainCanvas extends Canvas {
             this.reset()
     }
 
-    saveToBrowser() {
-        const saveData = this.toJson()
-        localStorage.setItem('GRADFLOW-DATA-LOCAL', saveData)
+    #cancelPendingAutosave() {
+        
+        if(this.#autosaveTimer != undefined) {
+            clearTimeout(this.#autosaveTimer)
+            this.#autosaveTimer = undefined
+        }
+        
     }
 
-    loadFromBrowser() {
-        const saveData = localStorage.getItem('GRADFLOW-DATA-LOCAL')
+    scheduleAutosave() {
+        
+        this.#cancelPendingAutosave()
+        // Autosave if a second pass after a change without new changes
+        this.#autosaveTimer = setTimeout(() => {
+            this.saveToBrowser(MainCanvas.autosaveKey)
+            this.#autosaveTimer = undefined
+        }, 1000)
+        
+    }
+
+    saveToBrowser(key) {
+        const saveData = this.toJson()
+        localStorage.setItem(key, saveData)
+    }
+
+    saveToBrowserPrompt() {
+        this.saveToBrowser(prompt('What would you like to name the save?', MainCanvas.#defaultSaveKey))
+    }
+
+    loadFromBrowser(key) {
+        const saveData = localStorage.getItem(key)
         if(saveData)
             this.fromJson(saveData)
         return saveData != undefined
     }
 
-    tryToLoadFromBrowser() {
-        if (!loadFromBrowser())
+    loadFromBrowserPrompt() {
+        if (!this.loadFromBrowser(prompt('What is the name of the save you would like to load?', MainCanvas.#defaultSaveKey)))
             alert("No save data found!")
     }
     
@@ -185,14 +218,5 @@ Canvas.injectInstance(mainCanvas, "canvas-container", "canvas-region")
 
 // Auto load the last canvas when the canvas page is loaded
 window.addEventListener('load', (ev) => {
-    mainCanvas.loadFromBrowser()
+    mainCanvas.loadFromBrowser(MainCanvas.autosaveKey)
 })
-
-// TEST NODES
-// TODO: remove from final build of website
-let testNodeColors = ["#800000", "#EE82EE", "#00FFFF", "#008000", "#FFA500"]
-for(let i = 0; i < 10; ++i) {
-    let node = new FlowNode(i * 100, 0)
-    node.tabColor = testNodeColors[i % testNodeColors.length]
-    mainCanvas.addNode(node)
-}

@@ -32,7 +32,7 @@ const NodesList = {
     findNodeByClassCode(code) {
         if(code == '')
             return undefined
-        return this.nodes.find(node => {return node.classPrefixNumber == code})
+        return this.nodes.find(node => {return (node.classPrefixNumber.replace(/\s+/g, '')).toUpperCase() == (code.replace(/\s+/g, '')).toUpperCase()}) 
     }
     
 }
