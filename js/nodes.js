@@ -37,9 +37,9 @@
     constructor(x, y) {
 
         if(x != undefined)
-            this.x = x
+            this.x = 1210
         if(y != undefined)
-            this.y = y
+            this.y = 25
 
     }
 
