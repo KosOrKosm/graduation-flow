@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-10 11:41:11
+ * @ Modified time: 2022-05-10 11:55:13
  */
 
 /**
@@ -18,6 +18,10 @@ class MainCanvas extends Canvas {
     #currently_dragged = null
     #drag_offx = 0
     #drag_offy = 0
+    #autosaveTimer
+
+    static #defaultSaveKey = 'GRADFLOW-DATA-LOCAL'
+    static autosaveKey = `${MainCanvas.#defaultSaveKey}-AUTOSAVE`
 
     _setup(p5) {
         super._setup(p5)
@@ -128,7 +132,11 @@ class MainCanvas extends Canvas {
      */
     _mouseReleased(p5) {
     
-        if (!this.#dragging && !popupManager.popupVisible()) {
+        if (this.#dragging) {
+
+            this.scheduleAutosave()
+
+        } else if (!popupManager.popupVisible()) {
     
             for (let node of this.nodes) {
                 if (node.isInVolume(p5.mouseX, p5.mouseY)) {
@@ -159,13 +167,27 @@ class MainCanvas extends Canvas {
             this.reset()
     }
 
+    scheduleAutosave() {
+        
+        if(this.#autosaveTimer != undefined) {
+            clearTimeout(this.#autosaveTimer)
+        }
+
+        // Autosave if a second pass after a change without new changes
+        this.#autosaveTimer = setTimeout(() => {
+            this.saveToBrowser(MainCanvas.autosaveKey)
+            this.#autosaveTimer = undefined
+        }, 1000)
+        
+    }
+
     saveToBrowser(key) {
         const saveData = this.toJson()
         localStorage.setItem(key, saveData)
     }
 
     saveToBrowserPrompt() {
-        this.saveToBrowser(prompt('What would you like to name the save?', 'GRADFLOW-DATA-LOCAL'))
+        this.saveToBrowser(prompt('What would you like to name the save?', MainCanvas.#defaultSaveKey))
     }
 
     loadFromBrowser(key) {
@@ -176,7 +198,7 @@ class MainCanvas extends Canvas {
     }
 
     loadFromBrowserPrompt() {
-        if (!this.loadFromBrowser(promt('What is the name of the save you would like to load?')))
+        if (!this.loadFromBrowser(prompt('What is the name of the save you would like to load?', MainCanvas.#defaultSaveKey)))
             alert("No save data found!")
     }
     
@@ -189,5 +211,5 @@ Canvas.injectInstance(mainCanvas, "canvas-container", "canvas-region")
 
 // Auto load the last canvas when the canvas page is loaded
 window.addEventListener('load', (ev) => {
-    mainCanvas.loadFromBrowser('GRADFLOW-DATA-LOCAL')
+    mainCanvas.loadFromBrowser(MainCanvas.autosaveKey)
 })

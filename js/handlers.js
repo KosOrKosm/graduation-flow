@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-14 11:32:51
+ * @ Modified time: 2022-05-10 11:56:45
  */
 
 
@@ -38,6 +38,7 @@ function onClickCreateCustomNode() {
     customNode.tabColor = document.getElementById("c-color-create").value
     customNode.prereqs = document.getElementById("c-prereq-create").value.split(',')
     mainCanvas.addNode(customNode)
+    mainCanvas.scheduleAutosave()
     popupManager.hideLastPopup()
     popup.reset()
 
@@ -61,6 +62,7 @@ function removeSelectedNode() {
     if (selectedNode == null)
         throw "No node selected!"
     mainCanvas.removeNode(selectedNode)
+    mainCanvas.scheduleAutosave()
 }
 
 function realizeNodeModifications() {
@@ -73,6 +75,7 @@ function realizeNodeModifications() {
     selectedNode.classDescription = document.getElementById("c-description-modify").value
     selectedNode.tabColor = document.getElementById("c-color-modify").value
     selectedNode.prereqs = document.getElementById("c-prereq-modify").value.split(',')
+    mainCanvas.scheduleAutosave()
 }
 
 function viewNode() {
