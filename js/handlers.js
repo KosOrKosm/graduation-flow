@@ -27,7 +27,7 @@ function ExportJPEG() {
 
 function validatePreInput(id) { 
     let validatePrefixNumber = document.getElementById(id).value;
-    let regularExpression = /^[A-Za-z]{3,4}\s?[0-9]{3}[A-Za-z]?$/;
+    let regularExpression = /^([A-Za-z]{3,4}\s?)?[0-9]{3}([A-Za-z])?$/;
     if (regularExpression.test(validatePrefixNumber)) {
         return true;
     }
