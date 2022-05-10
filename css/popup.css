@@ -95,7 +95,15 @@
 }
 
 #viewClassName {
-	word-break: break-all;
+	word-break: break-word;
+}
+
+#viewPrereqs {
+	word-break: break-word;
+}
+
+#viewClassMajor {
+	word-break: break-word;
 }
 
 .view-item.prereq {
