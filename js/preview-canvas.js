@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-05 15:43:50
+ * @ Modified time: 2022-05-10 12:46:38
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -51,7 +51,8 @@ class PreviewCanvas extends Canvas {
         this.#filteredNodes = this.nodes.filter((node) => {
             if(filterString === '' || filterString == undefined || filterString == null)
                 return true
-            return node.className.toLowerCase().startsWith(filterString.toLowerCase())
+            return  node.className.toLowerCase().startsWith(filterString.toLowerCase()) ||
+                    node.classPrefixNumber.toLowerCase().startsWith(filterString.toLowerCase())
         })
         
     }
