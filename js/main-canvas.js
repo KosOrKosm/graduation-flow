@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-05 15:36:25
+ * @ Modified time: 2022-05-10 11:41:11
  */
 
 /**
@@ -191,12 +191,3 @@ Canvas.injectInstance(mainCanvas, "canvas-container", "canvas-region")
 window.addEventListener('load', (ev) => {
     mainCanvas.loadFromBrowser('GRADFLOW-DATA-LOCAL')
 })
-
-// TEST NODES
-// TODO: remove from final build of website
-let testNodeColors = ["#800000", "#EE82EE", "#00FFFF", "#008000", "#FFA500"]
-for(let i = 0; i < 10; ++i) {
-    let node = new FlowNode(i * 100, 0)
-    node.tabColor = testNodeColors[i % testNodeColors.length]
-    mainCanvas.addNode(node)
-}
