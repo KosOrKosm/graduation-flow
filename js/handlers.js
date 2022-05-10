@@ -2,19 +2,27 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-10 11:56:45
+ * @ Modified time: 2022-05-10 11:59:38
  */
 
 
 // This file contains JS functions to be invoked by HTML buttons.
 // 
 
-function onClickSave() {
+function onClickSaveFile() {
     tryDownloadPrompt(mainCanvas.toJson(), 'canvas.json', 'text/plain')
 }
 
-function onClickLoad() {
+function onClickSaveBrowser() {
+    mainCanvas.saveToBrowserPrompt()
+}
+
+function onClickLoadFile() {
     tryUploadPrompt((text) => mainCanvas.fromJson(text))
+}
+
+function onClickLoadBrowser() {
+    mainCanvas.loadFromBrowser()
 }
 
 function ExportPNG() {
