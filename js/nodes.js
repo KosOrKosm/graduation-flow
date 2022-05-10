@@ -117,7 +117,7 @@
         p.rect(this.x, this.y, FlowNode.sizeX, FlowNode.sizeY, 5)
         p.fill(this.tabColor)
         p.rect(this.x, this.y, FlowNode.sizeX, FlowNode.#tabSizeY, 5)
-
+       
         p.strokeWeight(0)
         
         //draw Prefix Number on Node
@@ -135,10 +135,10 @@
         p.textAlign(p.CENTER, p.CENTER)
         p.textWrap(p.WORD)
         p.text(
-            this.className.replace('-', ' '),
+            (this.className.replace('-', ' ')).slice(0,35),
             this.x,
             this.y + FlowNode.#tabSizeY + FlowNode.#textPadding,
-            FlowNode.sizeX, 
+            FlowNode.sizeX,
             FlowNode.sizeY - FlowNode.#tabSizeY - FlowNode.#textPadding
         )
 
