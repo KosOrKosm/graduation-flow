@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-10 11:55:13
+ * @ Modified time: 2022-05-10 13:04:17
  */
 
 /**
@@ -100,6 +100,7 @@ class MainCanvas extends Canvas {
                     this.#drag_offx = p5.mouseX - node.x
                     this.#drag_offy = p5.mouseY - node.y
                     this.#currently_dragged = node
+                    this.#cancelPendingAutosave()
                 }
             }
             
@@ -133,7 +134,7 @@ class MainCanvas extends Canvas {
     _mouseReleased(p5) {
     
         if (this.#dragging) {
-
+            
             this.scheduleAutosave()
 
         } else if (!popupManager.popupVisible()) {
@@ -167,12 +168,18 @@ class MainCanvas extends Canvas {
             this.reset()
     }
 
-    scheduleAutosave() {
+    #cancelPendingAutosave() {
         
         if(this.#autosaveTimer != undefined) {
             clearTimeout(this.#autosaveTimer)
+            this.#autosaveTimer = undefined
         }
+        
+    }
 
+    scheduleAutosave() {
+        
+        this.#cancelPendingAutosave()
         // Autosave if a second pass after a change without new changes
         this.#autosaveTimer = setTimeout(() => {
             this.saveToBrowser(MainCanvas.autosaveKey)
