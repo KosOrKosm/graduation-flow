@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-05 13:38:42
+ * @ Modified time: 2022-05-05 15:36:25
  */
 
 /**
@@ -159,20 +159,24 @@ class MainCanvas extends Canvas {
             this.reset()
     }
 
-    saveToBrowser() {
+    saveToBrowser(key) {
         const saveData = this.toJson()
-        localStorage.setItem('GRADFLOW-DATA-LOCAL', saveData)
+        localStorage.setItem(key, saveData)
     }
 
-    loadFromBrowser() {
-        const saveData = localStorage.getItem('GRADFLOW-DATA-LOCAL')
+    saveToBrowserPrompt() {
+        this.saveToBrowser(prompt('What would you like to name the save?', 'GRADFLOW-DATA-LOCAL'))
+    }
+
+    loadFromBrowser(key) {
+        const saveData = localStorage.getItem(key)
         if(saveData)
             this.fromJson(saveData)
         return saveData != undefined
     }
 
-    tryToLoadFromBrowser() {
-        if (!loadFromBrowser())
+    loadFromBrowserPrompt() {
+        if (!this.loadFromBrowser(promt('What is the name of the save you would like to load?')))
             alert("No save data found!")
     }
     
@@ -185,7 +189,7 @@ Canvas.injectInstance(mainCanvas, "canvas-container", "canvas-region")
 
 // Auto load the last canvas when the canvas page is loaded
 window.addEventListener('load', (ev) => {
-    mainCanvas.loadFromBrowser()
+    mainCanvas.loadFromBrowser('GRADFLOW-DATA-LOCAL')
 })
 
 // TEST NODES
