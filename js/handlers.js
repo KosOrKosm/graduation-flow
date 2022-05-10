@@ -59,7 +59,7 @@ function onClickCreateCustomNode() {
     customNode.classMajor = document.getElementById("c-major-create").value
     customNode.classDescription = document.getElementById("c-description-create").value
     customNode.tabColor = document.getElementById("c-color-create").value
-    customNode.prereqs = (document.getElementById("c-prereq-create").value.toUpperCase()).split(',')
+    customNode.prereqs = (document.getElementById("c-prereq-create").value.toUpperCase()).split(',').filter(entry => /\S/.test(entry));
     mainCanvas.addNode(customNode)
     popupManager.hideLastPopup()
     popup.reset()
@@ -96,7 +96,7 @@ function realizeNodeModifications() {
     selectedNode.classMajor = document.getElementById("c-major-modify").value
     selectedNode.classDescription = document.getElementById("c-description-modify").value
     selectedNode.tabColor = document.getElementById("c-color-modify").value
-    selectedNode.prereqs = (document.getElementById("c-prereq-modify").value.toUpperCase()).split(',')
+    selectedNode.prereqs = (document.getElementById("c-prereq-modify").value.toUpperCase()).split(',').filter(entry => /\S/.test(entry));
 }
 
 function viewNode() {
