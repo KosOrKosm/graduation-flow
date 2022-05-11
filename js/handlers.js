@@ -174,7 +174,7 @@ function viewNode() {
     //view Prerequisites
     if (selectedNode.prereqs.length > 1) {
         viewPrereqsLabel.innerHTML = "Prerequisite(s)";
-        viewPrereqs.innerHTML = selectedNode.prereqs;
+        viewPrereqs.innerHTML = selectedNode.prereqs.join(', ');;
         viewEmpty = false;
 
         console.log("There exists more than one prereq element");
