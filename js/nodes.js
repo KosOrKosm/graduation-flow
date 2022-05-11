@@ -37,9 +37,9 @@
     constructor(x, y) {
 
         if(x != undefined)
-            this.x = 1210
+            this.x = document.getElementById('btn-create').offsetLeft
         if(y != undefined)
-            this.y = 25
+            this.y = document.getElementById('btn-create').offsetTop - 25
 
     }
 
