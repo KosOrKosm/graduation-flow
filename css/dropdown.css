@@ -2,16 +2,22 @@
 	position: relative;
 }
 
-#exportDropdown {
-	position: absolute;
-	top: 0px;
-	left: 200px;
-}
-
 #saveDropdown {
 	position: absolute;
 	top: 0px;
 	left: 0px;
+}
+
+#loadDropdown {
+	position: absolute;
+	top: 0px;
+	left: 100px;
+}
+
+#exportDropdown {
+	position: absolute;
+	top: 0px;
+	left: 200px;
 }
 
 .dropdown {

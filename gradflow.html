@@ -41,7 +41,7 @@
       <!--GRADFLOW MENU HEADER-->
       <div class="gradflow-header">
          <a href="javascript:void(0)" onclick="onClickDropdown('saveDropdown')" class="dropbtn" id="save-dropbtn">SAVE</a> 
-         <a href="javascript:void(0)" onclick="onClickLoad()">LOAD</a>
+         <a href="javascript:void(0)" onclick="onClickDropdown('loadDropdown')" class="dropbtn" id="load-dropbtn">LOAD</a>
          <a href="javascript:void(0)" onclick="onClickDropdown('exportDropdown')" class="dropbtn" id="export-dropbtn">EXPORT</a>
          <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
          <div class="gradflow-header-right">
@@ -222,14 +222,7 @@
                </form>
             </div>
          </div>
-         <div class="dropdown-container">
-            <div class="dropdown">
-               <div class="dropdown-content" id="exportDropdown">
-                  <a href="javascript:void(0)" onclick="ExportPNG()">png</a>
-                  <a href="javascript:void(0)" onclick="ExportJPEG()">jpeg</a>
-               </div>
-            </div>
-         </div>
+         <!--DROPDOWNS -->
          <div class="dropdown-container">
             <div class="dropdown">
                <div class="dropdown-content" id="saveDropdown">
@@ -238,6 +231,23 @@
                </div>
             </div>
          </div>
+         <div class="dropdown-container">
+            <div class="dropdown">
+               <div class="dropdown-content" id="loadDropdown">
+                  <a href="javascript:void(0)" onclick="onClickLoadFile()">file</a>
+                  <a href="javascript:void(0)" onClick="onClickLoadBrowser()">browser</a>
+               </div>
+            </div>
+         </div>
+         <div class="dropdown-container">
+            <div class="dropdown">
+               <div class="dropdown-content" id="exportDropdown">
+                  <a href="javascript:void(0)" onclick="ExportPNG()">png</a>
+                  <a href="javascript:void(0)" onclick="ExportJPEG()">jpeg</a>
+               </div>
+            </div>
+         </div>
+         <!--MAIN CANVAS-->
          <div class="unselectable" id="canvas-container">
              <script src="./js/main-canvas.js"></script>
          </div>
