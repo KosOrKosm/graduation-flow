@@ -287,7 +287,6 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	.header {
 		background-color: transparent;
 		position: static;
-		height:7vh;
 		margin-bottom: 5px;
 
 	}
