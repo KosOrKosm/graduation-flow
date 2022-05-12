@@ -63,6 +63,7 @@ body {
 	background-repeat: no-repeat;
 	opacity: 0;
 	transition: opacity 3s;
+	
 }
 
 /* setting default fonts */
@@ -133,6 +134,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 /********************************
 			HEADER
 ********************************/
+
 :root {
 	--white: black;
 	--black: red;
@@ -144,7 +146,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 }
 /* Header */
 .header {
-	position: sticky;
+	position:sticky; 
 	top: 0;
 	width: 100%;
 }
@@ -153,7 +155,8 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 .logo {
 	display: inline-block;
 	color: white;
-	font-size: 60px;
+	font-size: 45px;
+	padding:10px;
 	margin-left: 10px;
 }
 
@@ -162,19 +165,22 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	width: 100%;
 	height: 100%;
 	position: fixed;
-
 	overflow: hidden;
+}
 
+.menu li {
+	font-size: x-large;
+	text-align:  center;
 }
 
 .menu a {
 	display: block;
 	padding: 30px;
-	color: var(--white);
+	color: white;
 }
 
 .menu a:hover {
-	background-color: var(--gray);
+	background-color: gray;
 }
 
 .nav {
@@ -192,7 +198,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 /* Style label tag */
 
 .hamb-line {
-	background: var(--white);
+	background: white;
 	display: block;
 	height: 2px;
 	position: relative;
@@ -204,7 +210,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 
 .hamb-line::before,
 .hamb-line::after {
-	background: var(--white);
+	background: white;
 	content: '';
 	display: block;
 	height: 100%;
@@ -239,14 +245,16 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 .side-menu:checked~.hamb .hamb-line::before {
 	transform: rotate(-45deg);
 	top: 0;
+	background:red;
 }
 
 .side-menu:checked~.hamb .hamb-line::after {
 	transform: rotate(45deg);
 	top: 0;
+	background:red;
 }
-
-/* Responsiveness */
+/*code above is targeting all sizes in a mobile first design approach */
+/* Responsiveness targeting only BIGGER screens*/
 @media (min-width: 768px) {
 	.nav {
 		max-height: none;
@@ -259,11 +267,12 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 
 	.menu li {
 		float: left;
+		font-size: large
 	}
 
 	.menu a:hover {
 		background-color: transparent;
-		color: var(--gray);
+		color: gray;
 
 	}
 
@@ -273,10 +282,24 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 
 	.header {
 		background-color: transparent;
+		position: static;
+		height:7vh;
+		margin-bottom: 5px;
+
 	}
 
 	.logo {
 		color:black;
+		padding: 3px;
+		
+	}
+
+	.menu a {
+		color: black;
+		padding-top:25px;
+		padding-right: 30px;
+		padding-bottom: 0px;
+		padding-left: 30px;
 	}
 }
 
