@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-17 12:10:58
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-10 15:46:43
+ * @ Modified time: 2022-05-12 14:22:03
  */
 
 const express = require('express')
@@ -56,6 +56,15 @@ app.get('/query', (req, res) => {
 
 })
 
+
+// =========  GRADMAP PAGE  =========
+
+app.get('/gradmap.html', (req, res) => {
+    res.redirect('/gradmap')
+})
+app.get('/gradmap', (req, res) => {
+    res.sendFile('gradmap.html', { root: root})
+})
 
 
 
