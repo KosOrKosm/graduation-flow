@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-12 18:47:54
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-10 12:46:38
+ * @ Modified time: 2022-05-12 13:47:42
  */
 
 const scrollbar = document.getElementById('preview-scroll')
@@ -118,6 +118,7 @@ class PreviewCanvas extends Canvas {
                 if(element.isInVolume(p5.mouseX, p5.mouseY)) {
                     let clickedNode = FlowNode.fromSimilarRecord(element);
                     clickedNode.y -= this.#scroller.getCurPos();
+                    clickedNode.lockToBounds(0, 0, p5.width, p5.height);
                     mainCanvas.addNode(clickedNode);
                     popupManager.hideLastPopup();
                 }
