@@ -536,12 +536,12 @@ STARTING AT MAIN - ABOUT.HTML
 }
 
 /********************************
-STARTING AT MAIN - FINDER.HTML
+STARTING AT MAIN - GRADMAP.HTML
 ********************************/
 
 /* boilerplate css copied from about.html - feel free to modify! */
 .finder-main {
-/*insert code here for GradFlush css*/ 
+/*insert code here for GradMap css*/ 
 	display: flex;
 	flex-grow: 1;
 	flex-direction: column;
