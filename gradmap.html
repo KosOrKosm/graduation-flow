@@ -7,36 +7,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/961d2be7f5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
 
     <!--mapbox includes-->
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.css' rel='stylesheet' />
-	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">	
-	<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+        type="text/css">
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+        type="text/css">
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.0/mapbox-gl.js'></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
 </head>
 
 <body id="index" onload="document.body.style.opacity='1'">
     <div class="page-wrapper">
         <!--PAGE HEADER-->
-        <header class="page-header">
-            <div class="left-side">
-                <ul>
-                    <li><span><a href="./index.html"><img class="logo" src="./img/logo.svg"
-                                    alt="GradFlow Logo"></a></span></li>
-                </ul>
-            </div>
-            <div class="right-side">
-                <ul>
-                    <li><a class="link-animation-1" href="./gradflow.html">GradFlow</a></li>
-                    <li><a class="link-animation-1" href="./gradmap.html">GradMap</a></li>
-                    <li><a class="link-animation-1" href="./about.html">About</a></li>
-                </ul>
-            </div>
-        </header>
+        <!-- Navigation bar -->
+        <header class="header header-overlay">
+            <!-- Logo -->
+            <a href="./index.html" class="logo"><i class="fa-solid fa-house fa-xs"></i></a>
+            <!-- Hamburger icon -->
+            <input class="side-menu" type="checkbox" id="side-menu" />
+            <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+            <!-- Menu -->
+            <nav class="nav nav-overlay">
+               <ul class="menu">
+                  <li><a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
+                        GradFlow</a></li>
+                  <li><a href="./gradmap.html"><i class="fa-solid fa-map"></i> GradMap </a></li>
+                  <li><a href="./about.html"><i class="fa-solid fa-people-group"></i> About</a>
+                  </li>
+               </ul>
+            </nav>
+         </header>
         <!--FINDER PAGE MAIN-->
 
         <main class="finder-main">
@@ -49,14 +59,13 @@
             <!-- map stuff -->
             <div id="geocoder"></div>
             <div id='map'></div>
-            
+
         </main>
         <!--PAGE FOOTER-->
         <footer class="page-footer">
             <p>GradFlow © | 2022</p>
             <ul>
-                <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git"
-                        target="blank"><img class="logo" src="./img/logo-github.svg" alt="Github Logo"></a></li>
+                <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><i class="fa-brands fa-github fa-2xl"></i></a></li>
             </ul>
         </footer>
     </div>

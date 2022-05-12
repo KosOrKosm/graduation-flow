@@ -7,11 +7,16 @@
 	font-family: 'righteous';
 	src: url('./font/righteous/righteous-regular.eot');
 	/* IE9 Compat Modes */
-	src: url('./font/righteous/righteous-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-	url('./font/righteous/righteous-regular.woff2') format('woff2'), /* Super Modern Browsers */
-	url('./font/righteous/righteous-regular.woff') format('woff'), /* Pretty Modern Browsers */
-	url('./font/righteous/righteous-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-	url('./font/righteous/righteous-regular.svg#righteous') format('svg'); /* Legacy iOS */
+	src: url('./font/righteous/righteous-regular.eot?#iefix') format('embedded-opentype'),
+		/* IE6-IE8 */
+		url('./font/righteous/righteous-regular.woff2') format('woff2'),
+		/* Super Modern Browsers */
+		url('./font/righteous/righteous-regular.woff') format('woff'),
+		/* Pretty Modern Browsers */
+		url('./font/righteous/righteous-regular.ttf') format('truetype'),
+		/* Safari, Android, iOS */
+		url('./font/righteous/righteous-regular.svg#righteous') format('svg');
+	/* Legacy iOS */
 	font-weight: normal;
 	font-style: normal;
 }
@@ -129,32 +134,182 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 /********************************
 			HEADER
 ********************************/
-.page-header {
-	display: flex;
-	justify-content: space-between;
-	font-size: 1.5rem;
-	padding: 10px;
-	margin: 10px;
-	height: 40px;
+
+:root {
+	--white: black;
+	--black: red;
+	--gray: #85888C;
 }
 
-.page-header ul {
-	display: flex;
-	list-style: none;
-	gap: 16px;
+.header-overlay, .nav-overlay {
+	background-color: black;
+}
+/* Header */
+.header {
+	position:sticky; 
+	top: 0;
+	width: 100%;
 }
 
-.left-side,
-.right-side {
-	display: flex;
-	align-items: center;
-	gap: 16px;
+/* Logo */
+.logo {
+	display: inline-block;
+	color: white;
+	font-size: 45px;
+	padding:10px;
+	margin-left: 10px;
 }
 
-.page-header .logo {
-	display: flex;
-	width: 48px;
-	height: auto;
+.fa-github {
+	color: white;
+}
+
+/* Nav menu */
+.nav {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	overflow: hidden;
+}
+
+.menu li {
+	font-size: x-large;
+	text-align:  center;
+}
+
+.menu a {
+	display: block;
+	padding: 30px;
+	color: white;
+}
+
+.menu a:hover {
+	background-color: gray;
+}
+
+.nav {
+	max-height: 0;
+	transition: max-height .5s ease-out;
+}
+
+/* Menu Icon */
+.hamb {
+	cursor: pointer;
+	float: right;
+	padding: 40px 20px;
+}
+
+/* Style label tag */
+
+.hamb-line {
+	background: white;
+	display: block;
+	height: 2px;
+	position: relative;
+	width: 24px;
+
+}
+
+/* Style span tag */
+
+.hamb-line::before,
+.hamb-line::after {
+	background: white;
+	content: '';
+	display: block;
+	height: 100%;
+	position: absolute;
+	transition: all .2s ease-out;
+	width: 100%;
+}
+
+.hamb-line::before {
+	top: 5px;
+}
+
+.hamb-line::after {
+	top: -5px;
+}
+
+.side-menu {
+	display: none;
+}
+
+/* Hide checkbox */
+
+/* Toggle menu icon */
+.side-menu:checked~nav {
+	max-height: 100%;
+}
+
+.side-menu:checked~.hamb .hamb-line {
+	background: transparent;
+}
+
+.side-menu:checked~.hamb .hamb-line::before {
+	transform: rotate(-45deg);
+	top: 0;
+	background:red;
+}
+
+.side-menu:checked~.hamb .hamb-line::after {
+	transform: rotate(45deg);
+	top: 0;
+	background:red;
+}
+/*code above is targeting all sizes in a mobile first design approach */
+/* Responsiveness targeting only BIGGER screens*/
+@media (min-width: 768px) {
+	.nav {
+		max-height: none;
+		top: 0;
+		position: relative;
+		float: right;
+		width: fit-content;
+		background-color: transparent;
+	}
+
+	.menu li {
+		float: left;
+		font-size: large
+	}
+
+	.menu a:hover {
+		background-color: transparent;
+		color: gray;
+
+	}
+
+	.hamb {
+		display: none;
+	}
+
+	.header {
+		background-color: transparent;
+		position: static;
+		height:7vh;
+		margin-bottom: 5px;
+
+	}
+
+	.logo {
+		color:black;
+		padding: 3px;
+		
+	}
+
+	.menu a {
+		color: black;
+		padding-top:25px;
+		padding-right: 30px;
+		padding-bottom: 0px;
+		padding-left: 30px;
+	}
+
+	.fa-github {
+		color: black;
+	}
+
 }
 
 /********************************
@@ -238,7 +393,7 @@ STARTING AT MAIN - INDEX.HTML
 		margin: 0 auto;
 		letter-spacing: .15em;
 		animation: typing 3.5s steps(40, end),
-		blink-caret .75s step-end 3.5;
+			blink-caret .75s step-end 3.5;
 		border-right: .15em solid transparent;
 	}
 
@@ -306,7 +461,7 @@ STARTING AT MAIN- GRADFLOW.HTML
 
 #btn-reset:hover {
 	background-color: rgb(118, 21, 21);
-	color:white;
+	color: white;
 }
 
 .gradflow-main {
@@ -533,7 +688,7 @@ STARTING AT MAIN - ABOUT.HTML
 			margin-top: 0%;
 			width: 100%;
 		}
-}
+	}
 }
 
 /********************************
@@ -542,7 +697,7 @@ STARTING AT MAIN - GRADMAP.HTML
 
 /* boilerplate css copied from about.html - feel free to modify! */
 .finder-main {
-/*insert code here for GradMap css*/ 
+	/*insert code here for GradMap css*/
 	display: flex;
 	flex-grow: 1;
 	flex-direction: column;
@@ -600,36 +755,37 @@ STARTING AT MAIN - GRADMAP.HTML
 
 /* map stuff */
 #map {
-    height: 45vh;
-    width: 100w;
+	height: 45vh;
+	width: 100w;
+	z-index: -1;
 }
 
 .marker {
-    background-image: url('images/Flushy-Marker.png');
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
+	background-image: url('images/Flushy-Marker.png');
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 .mapboxgl-popup {
-    max-width: 200px;
+	max-width: 200px;
 }
 
 .mapboxgl-popup-content {
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
 }
 
 #geocoder {
-        margin-bottom: 25px;
-        position: relative;
-        top: 10px;
-        left: 600px;
-        width: 600w;
+	margin-bottom: 25px;
+	position: relative;
+	top: 10px;
+	left: 600px;
+	width: 600w;
 }
 
 .mapboxgl-ctrl-geocoder {
-    min-width: 100%;
+	min-width: 100%;
 }
