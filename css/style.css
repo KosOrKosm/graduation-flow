@@ -160,6 +160,10 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	margin-left: 10px;
 }
 
+.fa-github {
+	color: white;
+}
+
 /* Nav menu */
 .nav {
 	width: 100%;
@@ -301,6 +305,11 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 		padding-bottom: 0px;
 		padding-left: 30px;
 	}
+
+	.fa-github {
+		color: black;
+	}
+
 }
 
 /********************************
