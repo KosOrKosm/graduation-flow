@@ -58,6 +58,7 @@ body {
 	background-repeat: no-repeat;
 	opacity: 0;
 	transition: opacity 3s;
+	overflow-x: hidden;
 }
 
 /* setting default fonts */
