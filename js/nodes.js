@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-04-07 13:08:14
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-04-28 14:53:04
+ * @ Modified time: 2022-05-12 13:41:41
  */
 
 
@@ -108,6 +108,18 @@
                 this.y <= _y && 
                 this.x + FlowNode.sizeX >= _x && 
                 this.y + FlowNode.#tabSizeY >= _y
+    }
+
+    lockToBounds(x, y, width, height) {
+        
+        if (this.x < x)
+            this.x = x
+        if (this.y < y)
+            this.y = y
+        if (this.x + FlowNode.sizeX > x + width)
+            this.x = width - FlowNode.sizeX
+        if (this.y + FlowNode.sizeY > y + height)
+            this.y = height - FlowNode.sizeY
     }
 
     draw(p) {

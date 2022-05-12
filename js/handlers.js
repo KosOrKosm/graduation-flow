@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-10 11:59:38
+ * @ Modified time: 2022-05-12 13:45:21
  */
 
 
@@ -22,7 +22,7 @@ function onClickLoadFile() {
 }
 
 function onClickLoadBrowser() {
-    mainCanvas.loadFromBrowser()
+    mainCanvas.loadFromBrowserPrompt()
 }
 
 function ExportPNG() {

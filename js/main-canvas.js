@@ -2,7 +2,7 @@
  * @ Author: Jacob Fano
  * @ Create Time: 2022-03-11 14:42:55
  * @ Modified by: Jacob Fano
- * @ Modified time: 2022-05-10 13:04:17
+ * @ Modified time: 2022-05-12 13:47:31
  */
 
 /**
@@ -121,6 +121,7 @@ class MainCanvas extends Canvas {
         if (this.#currently_dragged != null) {
             this.#currently_dragged.x = (p5.mouseX - this.#drag_offx)
             this.#currently_dragged.y = (p5.mouseY - this.#drag_offy)
+            this.#currently_dragged.lockToBounds(0, 0, p5.width, p5.height)
         }
     
     }
