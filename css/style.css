@@ -556,7 +556,7 @@ STARTING AT MAIN - ABOUT.HTML
 
 @media screen and (min-width: 1000px) {
 	.about-title {
-		animation-duration: 5s;
+		animation-duration: 3s;
 		animation-name: slidein;
 		overflow: hidden;
 	}
@@ -633,7 +633,7 @@ STARTING AT MAIN - ABOUT.HTML
 	}
 
 	.about-desc2 {
-		animation-duration: 8s;
+		animation-duration: 4s;
 		animation-name: slideinRight;
 		overflow: hidden;
 	}
@@ -651,7 +651,7 @@ STARTING AT MAIN - ABOUT.HTML
 	}
 
 	.about-desc3 {
-		animation-duration: 8s;
+		animation-duration: 4s;
 		animation-name: slideinBottom;
 		overflow: hidden;
 	}
