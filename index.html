@@ -9,20 +9,21 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <script src="https://kit.fontawesome.com/961d2be7f5.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="./css/style.css">
+   <script src="./js/nav.js"></script>
 </head>
 
 <body id="index" onload="document.body.style.opacity='1'">
    <div class="page-wrapper">
-      <!--PAGE HEADER-->
-      <!-- Navigation bar -->
-      <header class="header header-overlay">
+      <!--PAGE HEADERS-->
+      <!--PAGE HEADER FOR DESKTOP-->
+      <header class="header">
          <!-- Logo -->
-         <a href="./index.html" class="logo"><i class="fa-solid fa-house fa-xs"></i></a>
-         <!-- Hamburger icon -->
-         <input class="side-menu" type="checkbox" id="side-menu" />
-         <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
-         <!-- Menu -->
-         <nav class="nav nav-overlay">
+         <a href="./index.html" class="home-logo"><i class="fa-solid fa-house fa-xs"></i></a>
+         <!-- Hamburger icon (Hidden on Desktop) -->
+         <input onclick="openNav()" class="side-menu" type="checkbox" id="side-menu" />
+         <label class="hamb-logo" for="side-menu"><i class="fa-solid fa-bars fa-xs"></i></label>
+         <!-- Nav Menu -->
+         <nav class="nav">
             <ul class="menu">
                <li><a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
                      GradFlow</a></li>
@@ -32,6 +33,17 @@
             </ul>
          </nav>
       </header>
+      <!--PAGE HEADER FOR MOBILE-->
+      <div id="myNav" class="mobile-overlay">
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+         <div class="mobile-overlay-content">
+            <a href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
+               GradFlow</a>
+            <a href="./gradmap.html"><i class="fa-solid fa-map"></i> GradMap</a>
+            <a href="./about.html"><i class="fa-solid fa-people-group"></i> About</a>
+         </div>
+      </div>
       <!--INDEX PAGE MAIN-->
       <main class="index-main">
          <div class="title">
