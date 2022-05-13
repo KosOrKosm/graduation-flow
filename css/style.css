@@ -149,6 +149,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	font-size: 45px;
 	padding:10px;
 	margin-left: 10px;
+	cursor: pointer;
 }
 
 .hamb-logo {
@@ -184,7 +185,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: rgba(0,0,0, 0.3); /*SET ME TO BLACK AT THE END */
+	background-color: rgba(0,0,0, 1.0);
 	overflow-y: hidden;
 	transition: 0.5s;
   }
@@ -226,7 +227,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	right: 35px;
 	}
   }
-  
+
 /*code above is targeting all sizes in a mobile first design approach */
 /* Responsiveness targeting only BIGGER screens*/
 @media (min-width: 768px) {
