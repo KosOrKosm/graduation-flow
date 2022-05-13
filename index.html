@@ -1,67 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-   <title>GradFlow</title>
-   <link rel="icon" href="img/logo.svg">
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <script src="https://kit.fontawesome.com/961d2be7f5.js" crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="./css/style.css">
-   <script src="./js/nav.js"></script>
-</head>
-
-<body id="index" onload="document.body.style.opacity='1'">
-   <div class="page-wrapper">
-      <!--PAGE HEADERS-->
-      <!--PAGE HEADER FOR DESKTOP-->
-      <header class="header">
-         <!-- Logo -->
-         <a href="./index.html" class="home-logo"><i class="fa-solid fa-house fa-xs"></i></a>
-         <!-- Hamburger icon (Hidden on Desktop) -->
-         <input onclick="openNav()" class="side-menu" type="checkbox" id="side-menu" />
-         <label class="hamb-logo" for="side-menu"><i class="fa-solid fa-bars fa-xs"></i></label>
-         <!-- Nav Menu -->
-         <nav class="nav">
-            <ul class="menu">
-               <li><a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
-                     GradFlow</a></li>
-               <li><a href="./gradmap.html"><i class="fa-solid fa-map"></i> GradMap </a></li>
-               <li><a href="./about.html"><i class="fa-solid fa-people-group"></i> About</a>
-               </li>
-            </ul>
-         </nav>
-      </header>
-      <!--PAGE HEADER FOR MOBILE-->
-      <div id="myNav" class="mobile-overlay">
-         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-         <div class="mobile-overlay-content">
-            <a href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
+   <head>
+      <title>GradFlow</title>
+      <link rel="icon" href="img/logo.svg">
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://kit.fontawesome.com/961d2be7f5.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="./css/style.css">
+      <script src="./js/nav.js"></script>
+   </head>
+   <body id="index" onload="document.body.style.opacity='1'">
+      <div class="page-wrapper">
+         <!--PAGE HEADERS-->
+         <!--PAGE HEADER FOR DESKTOP-->
+         <header class="header">
+            <!-- Logo -->
+            <a href="./index.html" class="home-logo"><i class="fa-solid fa-house fa-xs"></i></a>
+            <!-- Hamburger icon (Hidden on Desktop) -->
+            <input onclick="openNav()" class="side-menu" type="checkbox" id="side-menu" />
+            <label class="hamb-logo" for="side-menu"><i class="fa-solid fa-bars fa-xs"></i></label>
+            <!-- Nav Menu -->
+            <nav class="nav">
+               <ul class="menu">
+                  <li><a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
+                     GradFlow</a>
+                  </li>
+                  <li><a href="./gradmap.html"><i class="fa-solid fa-map"></i> GradMap </a></li>
+                  <li><a href="./about.html"><i class="fa-solid fa-people-group"></i> About</a>
+                  </li>
+               </ul>
+            </nav>
+         </header>
+         <!--PAGE HEADER FOR MOBILE-->
+         <div id="myNav" class="mobile-overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="mobile-overlay-content">
+               <a href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
+               <a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
                GradFlow</a>
-            <a href="./gradmap.html"><i class="fa-solid fa-map"></i> GradMap</a>
-            <a href="./about.html"><i class="fa-solid fa-people-group"></i> About</a>
+               <a href="./gradmap.html"><i class="fa-solid fa-map"></i> GradMap</a>
+               <a href="./about.html"><i class="fa-solid fa-people-group"></i> About</a>
+            </div>
          </div>
+         <!--INDEX PAGE MAIN-->
+         <main class="index-main">
+            <div class="title">
+               <h1>GradFlow</h1>
+            </div>
+            <div class="heading">
+               <h2 class="sub-title">GradFlow helps students build graduation flowcharts.</h2>
+            </div>
+            <div class="button"><a href="./gradflow.html">Create</a></div>
+         </main>
+         <!--PAGE FOOTER-->
+         <footer class="page-footer">
+            <p>GradFlow © | 2022</p>
+            <ul>
+               <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><i class="fa-brands fa-github fa-2xl"></i></a></li>
+            </ul>
+         </footer>
       </div>
-      <!--INDEX PAGE MAIN-->
-      <main class="index-main">
-         <div class="title">
-            <h1>GradFlow</h1>
-         </div>
-         <div class="heading">
-            <h2 class="sub-title">GradFlow helps students build graduation flowcharts.</h2>
-         </div>
-         <div class="button"><a href="./gradflow.html">Create</a></div>
-      </main>
-      <!--PAGE FOOTER-->
-      <footer class="page-footer">
-         <p>GradFlow © | 2022</p>
-         <ul>
-            <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><i class="fa-brands fa-github fa-2xl"></i></a></li>
-         </ul>
-      </footer>
-   </div>
-</body>
-
+   </body>
 </html>
