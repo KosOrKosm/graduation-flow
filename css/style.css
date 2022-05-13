@@ -137,24 +137,25 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 
 /* Header */
 .header {
-	position:static; 
+	position: static;
 	top: 0;
 	width: 100%;
 }
 
 /* Header Logos */
-.home-logo, .hamb-logo {
+.home-logo,
+.hamb-logo {
 	display: inline-block;
 	color: white;
 	font-size: 45px;
-	padding:10px;
+	padding: 10px;
 	margin-left: 10px;
 	cursor: pointer;
 }
 
 .hamb-logo {
 	margin-right: 10px;
-	float:right;
+	float: right;
 }
 
 /* Nav menu */
@@ -173,6 +174,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 .side-menu {
 	display: none;
 }
+
 /* Toggle menu icon */
 .side-menu:checked~nav {
 	max-height: 100%;
@@ -185,48 +187,55 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: rgba(0,0,0, 1.0);
+	background-color: rgba(0, 0, 0, 1.0);
 	overflow-y: hidden;
 	transition: 0.5s;
-  }
-  
-  .mobile-overlay-content {
+}
+
+.mobile-overlay-content {
 	position: relative;
 	top: 25%;
 	width: 100%;
 	text-align: center;
 	margin-top: 30px;
-  }
-  
-  .mobile-overlay a {
+}
+
+.mobile-overlay a {
 	padding: 8px;
 	text-decoration: none;
 	font-size: 36px;
 	color: white;
 	display: block;
 	transition: 0.3s;
-  }
-  
-  .mobile-overlay a:hover, .overlay a:focus {
+}
+
+.mobile-overlay a:hover,
+.overlay a:focus {
 	color: #f1f1f1;
-  }
-  
-  .mobile-overlay .closebtn {
+}
+
+.mobile-overlay .closebtn {
 	position: absolute;
 	top: -10px;
 	right: 11px;
 	font-size: 60px;
-  }
-  
-  @media screen and (max-height: 450px) {
-	.mobile-overlay {overflow-y: auto;}
-	.mobile-overlay a {font-size: 20px}
-	.mobile-overlay .closebtn {
-	font-size: 40px;
-	top: 15px;
-	right: 35px;
+}
+
+@media screen and (max-height: 450px) {
+	.mobile-overlay {
+		overflow-y: auto;
 	}
-  }
+
+	.mobile-overlay a {
+		font-size: 20px
+	}
+
+	.mobile-overlay .closebtn {
+		font-size: 40px;
+		top: 15px;
+		right: 35px;
+	}
+}
 
 /*code above is targeting all sizes in a mobile first design approach */
 /* Responsiveness targeting only BIGGER screens*/
@@ -243,7 +252,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	.menu li {
 		float: left;
 		font-size: large;
-		display:block;
+		display: block;
 	}
 
 
@@ -264,15 +273,15 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	}
 
 	.home-logo {
-		color:black;
+		color: black;
 		padding: 3px;
-		
+
 	}
 
 	.menu a {
 		display: block;
 		color: black;
-		padding-top:25px;
+		padding-top: 25px;
 		padding-right: 30px;
 		padding-bottom: 0px;
 		padding-left: 30px;
@@ -693,8 +702,8 @@ STARTING AT MAIN - GRADMAP.HTML
 	flex-direction: column-reverse;
 	flex-grow: 0;
 	padding: 0px 10px 5px 10px;
-	color:white;
-	z-index:2;
+	color: white;
+	z-index: 2;
 }
 
 .page-footer ul {
@@ -723,17 +732,15 @@ STARTING AT MAIN - GRADMAP.HTML
 }
 
 @media (min-width: 768px) {
-	.page-footer{
-		color:black;
+	.page-footer {
+		color: black;
 	}
 
 	.fa-github {
-		color:black;
+		color: black;
 	}
 
 }
-
-
 
 
 /* map stuff */
