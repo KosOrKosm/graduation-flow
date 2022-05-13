@@ -1,80 +1,78 @@
-[
-    {
-        "classPrefixNumber":"120",
-        "className":"INTRO TO PROGRAMMING",
-        "classUnit":"3",
-        "classMajor":"COMPUTER SCIENCE",
-        "classDescription":"EXAMPLE DESC",
-        "tabColor":""
-    },{
-        "classPrefixNumber":"121",
-        "className":"OBJECT-ORIENTED PROGRAMMING",
-        "classUnit":"3",
-        "classMajor":"COMPUTER SCIENCE",
-        "classDescription":
-        "EXAMPLE DESC",
-        "tabColor":"#FF0000"
-    },{
-        "classPrefixNumber":"131",
-        "className":"DATA STRUCTURES",
-        "classUnit":"3",
-        "classMajor":"COMPUTER SCIENCE",
-        "classDescription":"EXAMPLE DESC",
-        "tabColor":""
-    },{
-        "classPrefixNumber":"150A",
-        "className":"CALCULUS I",
-        "classUnit":"4","classMajor":
-        "MATH","classDescription":"EXAMPLE DESC",
-        "tabColor":""
-    },{
-        "classPrefixNumber":"150B",
-        "className":"CALCULUS II",
-        "classUnit":"4",
-        "classMajor":"MATH",
-        "classDescription":"EXAMPLE DESC",
-        "tabColor":""
-    },{
-        "classPrefixNumber":"223C",
-        "className":"C PROGRAMMING",
-        "classUnit":"3",
-        "classMajor":"COMPUTER SCIENCE",
-        "classDescription":"EXAMPLE DESC",
-        "tabColor":""
-    },{
-        "classPrefixNumber":"223J",
-        "className":"JAVA PROGRAMMING",
-        "classUnit":"3",
-        "classMajor":"COMPUTER SCIENCE",
-        "classDescription":"EXAMPLE DESC",
-        "tabColor":""
-    },{
-        "classPrefixNumber":"223N",
-        "className":"VISUAL C# PROGRAMMING",
-        "classUnit":"3",
-        "classMajor":"COMPUTER SCIENCE",
-        "classDescription":"EXAMPLE DESC",
-        "tabColor":""
-    },{
-        "classPrefixNumber":"223P",
-        "className":"PYTHON PROGRAMMING",
-        "classUnit":"3",
-        "classMajor":"COMPUTER SCIENCE",
-        "classDescription":"EXAMPLE DESC",
-        "tabColor":""
-    },{
-        "classPrefixNumber":"240",
-        "className":"COMPUTER ORGANIZATION AND ASSEMBLY LANGUAGE",
-        "classUnit":"3",
-        "classMajor":"COMPUTER SCIENCE",
-        "classDescription":"EXAMPLE DESC",
-        "tabColor":""
-    },{
-        "classPrefixNumber":"250A",
-        "className":"CALCULUS III",
-        "classUnit":"4",
-        "classMajor":"MATH",
-        "classDescription":"EXAMPLE DESC",
-        "tabColor":""
-    }
-]
+[{
+    "classPrefixNumber": "120",
+    "className": "INTRO TO PROGRAMMING",
+    "classUnit": "3",
+    "classMajor": "COMPUTER SCIENCE",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": ""
+ }, {
+    "classPrefixNumber": "121",
+    "className": "OBJECT-ORIENTED PROGRAMMING",
+    "classUnit": "3",
+    "classMajor": "COMPUTER SCIENCE",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": "#FF0000"
+ }, {
+    "classPrefixNumber": "131",
+    "className": "DATA STRUCTURES",
+    "classUnit": "3",
+    "classMajor": "COMPUTER SCIENCE",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": ""
+ }, {
+    "classPrefixNumber": "150A",
+    "className": "CALCULUS I",
+    "classUnit": "4",
+    "classMajor": "MATH",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": ""
+ }, {
+    "classPrefixNumber": "150B",
+    "className": "CALCULUS II",
+    "classUnit": "4",
+    "classMajor": "MATH",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": ""
+ }, {
+    "classPrefixNumber": "223C",
+    "className": "C PROGRAMMING",
+    "classUnit": "3",
+    "classMajor": "COMPUTER SCIENCE",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": ""
+ }, {
+    "classPrefixNumber": "223J",
+    "className": "JAVA PROGRAMMING",
+    "classUnit": "3",
+    "classMajor": "COMPUTER SCIENCE",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": ""
+ }, {
+    "classPrefixNumber": "223N",
+    "className": "VISUAL C# PROGRAMMING",
+    "classUnit": "3",
+    "classMajor": "COMPUTER SCIENCE",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": ""
+ }, {
+    "classPrefixNumber": "223P",
+    "className": "PYTHON PROGRAMMING",
+    "classUnit": "3",
+    "classMajor": "COMPUTER SCIENCE",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": ""
+ }, {
+    "classPrefixNumber": "240",
+    "className": "COMPUTER ORGANIZATION AND ASSEMBLY LANGUAGE",
+    "classUnit": "3",
+    "classMajor": "COMPUTER SCIENCE",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": ""
+ }, {
+    "classPrefixNumber": "250A",
+    "className": "CALCULUS III",
+    "classUnit": "4",
+    "classMajor": "MATH",
+    "classDescription": "EXAMPLE DESC",
+    "tabColor": ""
+ }]
