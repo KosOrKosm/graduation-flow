@@ -7,32 +7,34 @@
 
 // Node list functionality mixin
 const NodesList = {
-    
+
     addNode(node) {
-        this.nodes.push(node)
+       this.nodes.push(node)
     },
-
+ 
     removeNode(node) {
-        this.nodes = this.nodes.filter(item => item !== node)
+       this.nodes = this.nodes.filter(item => item !== node)
     },
-
+ 
     toJson() {
-        return JSON.stringify(this.nodes)
+       return JSON.stringify(this.nodes)
     },
-
+ 
     fromJson(json) {
-        this.reset()
-        JSON.parse(json).forEach((record) => this.addNode(FlowNode.fromSimilarRecord(record)))
+       this.reset()
+       JSON.parse(json).forEach((record) => this.addNode(FlowNode.fromSimilarRecord(record)))
     },
-
+ 
     reset() {
-        this.nodes = []
+       this.nodes = []
     },
-
+ 
     findNodeByClassCode(code) {
-        if(code == '')
-            return undefined
-        return this.nodes.find(node => {return (node.classPrefixNumber.replace(/\s+/g, '')).toUpperCase() == (code.replace(/\s+/g, '')).toUpperCase()}) 
+       if (code == '')
+          return undefined
+       return this.nodes.find(node => {
+          return (node.classPrefixNumber.replace(/\s+/g, '')).toUpperCase() == (code.replace(/\s+/g, '')).toUpperCase()
+       })
     }
-    
-}
+ 
+ }

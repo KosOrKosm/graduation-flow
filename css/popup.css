@@ -115,7 +115,7 @@
 }
 
 #viewClassDescription {
-	overflow: auto; 
+	overflow: auto;
 	overflow-wrap: break-word;
 	max-height: 200px;
 }
@@ -150,7 +150,8 @@
 	border-radius: 5px;
 }
 
-#btn-create-popup, #btn-import-popup {
+#btn-create-popup,
+#btn-import-popup {
 	width: 100%;
 }
 
