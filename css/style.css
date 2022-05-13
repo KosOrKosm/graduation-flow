@@ -764,3 +764,15 @@ STARTING AT MAIN - GRADMAP.HTML
 .mapboxgl-ctrl-geocoder {
 	min-width: 100%;
 }
+
+/* temporarily hiding items that lacks correct layout placement. */
+.mapboxgl-ctrl-geocoder--icon.mapboxgl-ctrl-geocoder--icon-search {
+	display: none;
+}
+
+/* only hiding search box on mobile temporarily until fix is found.*/
+@media screen and (max-width: 560px) {
+	.mapboxgl-ctrl-geocoder--input {
+		display: none;
+	}
+}
