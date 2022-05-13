@@ -258,7 +258,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	background:red;
 }
 
-.overlay {
+.mobile-overlay {
 	height: 0%;
 	width: 100%;
 	position: fixed;
@@ -271,7 +271,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	transition: 0.5s;
   }
   
-  .overlay-content {
+  .mobile-overlay-content {
 	position: relative;
 	top: 25%;
 	width: 100%;
@@ -279,7 +279,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	margin-top: 30px;
   }
   
-  .overlay a {
+  .mobile-overlay a {
 	padding: 8px;
 	text-decoration: none;
 	font-size: 36px;
@@ -288,11 +288,11 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	transition: 0.3s;
   }
   
-  .overlay a:hover, .overlay a:focus {
+  .mobile-overlay a:hover, .overlay a:focus {
 	color: #f1f1f1;
   }
   
-  .overlay .closebtn {
+  .mobile-overlay .closebtn {
 	position: absolute;
 	top: 20px;
 	right: 45px;
@@ -300,9 +300,9 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
   }
   
   @media screen and (max-height: 450px) {
-	.overlay {overflow-y: auto;}
-	.overlay a {font-size: 20px}
-	.overlay .closebtn {
+	.mobile-overlay {overflow-y: auto;}
+	.mobile-overlay a {font-size: 20px}
+	.mobile-overlay .closebtn {
 	font-size: 40px;
 	top: 15px;
 	right: 35px;
