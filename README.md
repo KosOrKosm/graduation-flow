@@ -1,6 +1,6 @@
 <div align="center">
 
-# [GradFlow](https://kosorkosm.github.io/graduation-flow/index.html)
+# [GRADFLOW](https://kosorkosm.github.io/graduation-flow/index.html)
   <b>An app for visually planning college semesters based on class dependencies.</b>
 
 <kbd>
