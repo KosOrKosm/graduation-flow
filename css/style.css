@@ -140,6 +140,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	position: static;
 	top: 0;
 	width: 100%;
+	font-family: 'righteous', sans-serif;
 }
 
 /* Header Logos */
@@ -198,6 +199,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	width: 100%;
 	text-align: center;
 	margin-top: 30px;
+	font-family: 'righteous', sans-serif;
 }
 
 .mobile-overlay a {
