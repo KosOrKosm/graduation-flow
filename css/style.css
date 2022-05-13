@@ -748,6 +748,7 @@ STARTING AT MAIN - GRADMAP.HTML
 #map {
 	height: 45vh;
 	width: 100w;
+	z-index:0;
 }
 
 .marker {
