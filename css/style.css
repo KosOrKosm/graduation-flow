@@ -141,9 +141,6 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	--gray: #85888C;
 }
 
-.header-overlay, .nav-overlay {
-	background-color: black;
-}
 /* Header */
 .header {
 	position:sticky; 
@@ -173,8 +170,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 }
 
 .menu li {
-	font-size: x-large;
-	text-align:  center;
+	display: none;
 }
 
 .menu a {
@@ -242,21 +238,6 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	max-height: 100%;
 }
 
-.side-menu:checked~.hamb .hamb-line {
-	background: transparent;
-}
-
-.side-menu:checked~.hamb .hamb-line::before {
-	transform: rotate(-45deg);
-	top: 0;
-	background:red;
-}
-
-.side-menu:checked~.hamb .hamb-line::after {
-	transform: rotate(45deg);
-	top: 0;
-	background:red;
-}
 
 .mobile-overlay {
 	height: 0%;
@@ -265,8 +246,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: rgb(0,0,0);
-	background-color: rgba(0,0,0, 0.9);
+	background-color: rgba(0,0,0, 1.0);
 	overflow-y: hidden;
 	transition: 0.5s;
   }
@@ -283,7 +263,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	padding: 8px;
 	text-decoration: none;
 	font-size: 36px;
-	color: #818181;
+	color: white;
 	display: block;
 	transition: 0.3s;
   }
@@ -322,7 +302,8 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 
 	.menu li {
 		float: left;
-		font-size: large
+		font-size: large;
+		display:block;
 	}
 
 	.menu a:hover {
