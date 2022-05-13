@@ -135,12 +135,6 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 			HEADER
 ********************************/
 
-:root {
-	--white: black;
-	--black: red;
-	--gray: #85888C;
-}
-
 /* Header */
 .header {
 	position:static; 
@@ -148,8 +142,8 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	width: 100%;
 }
 
-/* Logo */
-.logo {
+/* Header Logos */
+.home-logo, .hamb-logo {
 	display: inline-block;
 	color: white;
 	font-size: 45px;
@@ -158,16 +152,8 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 }
 
 .hamb-logo {
-	display: inline-block;
-	color: white;
-	font-size: 45px;
-	padding:10px;
 	margin-right: 10px;
 	float:right;
-}
-
-.fa-github {
-	color: white;
 }
 
 /* Nav menu */
@@ -182,73 +168,14 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	display: none;
 }
 
-.menu a {
-	display: block;
-	padding: 30px;
-	color: white;
-}
-
-.menu a:hover {
-	background-color: gray;
-}
-
-.nav {
-	max-height: 0;
-	transition: max-height .5s ease-out;
-}
-
-/* Menu Icon */
-.hamb {
-	cursor: pointer;
-	float: right;
-	padding: 40px 20px;
-}
-
-/* Style label tag */
-
-.hamb-line {
-	background: white;
-	display: block;
-	height: 2px;
-	position: relative;
-	width: 24px;
-	border-radius: 25%;
-	
-}
-
-/* Style span tag */
-
-.hamb-line::before,
-.hamb-line::after {
-	background: white;
-	content: '';
-	display: block;
-	height: 100%;
-	position: absolute;
-	transition: all .2s ease-out;
-	width: 100%;
-	border-radius: 25%;
-}
-
-.hamb-line::before {
-	top: 5px;
-}
-
-.hamb-line::after {
-	top: -5px;
-}
-
+/* Hide checkbox */
 .side-menu {
 	display: none;
 }
-
-/* Hide checkbox */
-
 /* Toggle menu icon */
 .side-menu:checked~nav {
 	max-height: 100%;
 }
-
 
 .mobile-overlay {
 	height: 0%;
@@ -257,7 +184,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: rgba(0,0,0, 0.1); /*SET ME TO BLACK AT THE END */
+	background-color: rgba(0,0,0, 0.3); /*SET ME TO BLACK AT THE END */
 	overflow-y: hidden;
 	transition: 0.5s;
   }
@@ -299,6 +226,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	right: 35px;
 	}
   }
+  
 /*code above is targeting all sizes in a mobile first design approach */
 /* Responsiveness targeting only BIGGER screens*/
 @media (min-width: 768px) {
@@ -317,6 +245,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 		display:block;
 	}
 
+
 	.menu a:hover {
 		background-color: transparent;
 		color: gray;
@@ -329,27 +258,23 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 
 	.header {
 		background-color: transparent;
-		position: static;
 		margin-bottom: 5px;
 
 	}
 
-	.logo {
+	.home-logo {
 		color:black;
 		padding: 3px;
 		
 	}
 
 	.menu a {
+		display: block;
 		color: black;
 		padding-top:25px;
 		padding-right: 30px;
 		padding-bottom: 0px;
 		padding-left: 30px;
-	}
-
-	.fa-github {
-		color: black;
 	}
 
 }
@@ -767,7 +692,8 @@ STARTING AT MAIN - GRADMAP.HTML
 	flex-direction: column-reverse;
 	flex-grow: 0;
 	padding: 0px 10px 5px 10px;
-	/*background-image: linear-gradient(to bottom right, #004d7a, #008793); */
+	color:white;
+	z-index:2;
 }
 
 .page-footer ul {
@@ -777,6 +703,10 @@ STARTING AT MAIN - GRADMAP.HTML
 .page-footer .logo {
 	width: 40px;
 	height: auto;
+}
+
+.fa-github {
+	color: white;
 }
 
 @media screen and (min-width: 550px) {
@@ -791,6 +721,16 @@ STARTING AT MAIN - GRADMAP.HTML
 	}
 }
 
+@media (min-width: 768px) {
+	.page-footer{
+		color:black;
+	}
+
+	.fa-github {
+		color:black;
+	}
+
+}
 
 
 
