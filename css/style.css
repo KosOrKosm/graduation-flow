@@ -157,6 +157,15 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	margin-left: 10px;
 }
 
+.hamb-logo {
+	display: inline-block;
+	color: white;
+	font-size: 45px;
+	padding:10px;
+	margin-right: 10px;
+	float:right;
+}
+
 .fa-github {
 	color: white;
 }
@@ -203,7 +212,8 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	height: 2px;
 	position: relative;
 	width: 24px;
-
+	border-radius: 25%;
+	
 }
 
 /* Style span tag */
@@ -217,6 +227,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	position: absolute;
 	transition: all .2s ease-out;
 	width: 100%;
+	border-radius: 25%;
 }
 
 .hamb-line::before {
@@ -246,7 +257,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: rgba(0,0,0, 1.0);
+	background-color: rgba(0,0,0, 0.1); /*SET ME TO BLACK AT THE END */
 	overflow-y: hidden;
 	transition: 0.5s;
   }
@@ -274,8 +285,8 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
   
   .mobile-overlay .closebtn {
 	position: absolute;
-	top: 20px;
-	right: 45px;
+	top: -10px;
+	right: 11px;
 	font-size: 60px;
   }
   
@@ -312,7 +323,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 
 	}
 
-	.hamb {
+	.hamb-logo {
 		display: none;
 	}
 

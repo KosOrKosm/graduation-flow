@@ -9,18 +9,20 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <script src="https://kit.fontawesome.com/961d2be7f5.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="./css/style.css">
+   <script src="./js/nav.js"></script>
 </head>
 
 <body onload="document.body.style.opacity='1'">
    <div class="page-wrapper">
-         <!--PAGE HEADER-->
+      <!--PAGE HEADER-->
       <!-- Navigation bar -->
       <header class="header">
          <!-- Logo -->
          <a href="./index.html" class="logo"><i class="fa-solid fa-house fa-xs"></i></a>
          <!-- Hamburger icon -->
-         <input style="font-size:30px;cursor:pointer" onclick="openNav()" class="side-menu" type="checkbox" id="side-menu" />
-         <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+         <input style="font-size:30px;cursor:pointer" onclick="openNav()" class="side-menu" type="checkbox"
+            id="side-menu" />
+         <label class="hamb-logo" for="side-menu"><i class="fa-solid fa-bars fa-xs"></i></label>
          <!-- Menu -->
          <nav class="nav">
             <ul class="menu">
@@ -36,23 +38,13 @@
          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
          <div class="mobile-overlay-content">
             <a href="./index.html"><i class="fa-solid fa-house"></i> Home</a>
-            <li><a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
-               GradFlow</a></li>
-         <li><a href="./gradmap.html"><i class="fa-solid fa-map"></i> GradMap</a></li>
-         <li><a href="./about.html"><i class="fa-solid fa-people-group"></i> About</a>
+            <a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
+               GradFlow</a>
+            <a href="./gradmap.html"><i class="fa-solid fa-map"></i> GradMap</a>
+            <a href="./about.html"><i class="fa-solid fa-people-group"></i> About</a>
          </div>
-       </div>
+      </div>
 
-
-<script>
-function openNav() {
-  document.getElementById("myNav").style.height = "100%";
-}
-
-function closeNav() {
-  document.getElementById("myNav").style.height = "0%";
-}
-</script>
       <!--ABOUT PAGE MAIN-->
       <main class="about-main">
          <h1 class="about-title">WHAT IS GRADFLOW?</h1>
@@ -128,7 +120,8 @@ function closeNav() {
       <footer class="page-footer">
          <p>GradFlow © | 2022</p>
          <ul>
-            <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><i class="fa-brands fa-github fa-2xl"></i></a></li>
+            <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><i
+                     class="fa-brands fa-github fa-2xl"></i></a></li>
          </ul>
       </footer>
    </div>
