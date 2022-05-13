@@ -147,7 +147,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 .home-logo,
 .hamb-logo {
 	display: inline-block;
-	color: white;
+	color: black;
 	font-size: 45px;
 	padding: 10px;
 	margin-left: 10px;
@@ -703,7 +703,7 @@ STARTING AT MAIN - GRADMAP.HTML
 	flex-direction: column-reverse;
 	flex-grow: 0;
 	padding: 0px 10px 5px 10px;
-	color: white;
+	color: black;
 	z-index: 2;
 }
 
@@ -714,10 +714,6 @@ STARTING AT MAIN - GRADMAP.HTML
 .page-footer .logo {
 	width: 40px;
 	height: auto;
-}
-
-.fa-github {
-	color: white;
 }
 
 @media screen and (min-width: 550px) {
@@ -731,18 +727,6 @@ STARTING AT MAIN - GRADMAP.HTML
 		margin-bottom: 0;
 	}
 }
-
-@media (min-width: 768px) {
-	.page-footer {
-		color: black;
-	}
-
-	.fa-github {
-		color: black;
-	}
-
-}
-
 
 /* map stuff */
 #map {
