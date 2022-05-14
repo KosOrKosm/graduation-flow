@@ -729,10 +729,17 @@ STARTING AT MAIN - GRADMAP.HTML
 }
 
 /* map stuff */
+.finder-text {
+	margin-top: 15px;
+	padding: 0px 10px 0px 10px;
+}
 #map {
-	height: 45vh;
-	width: 100w;
+	height: 74vh;
+	width: 95vw;
 	z-index:0;
+	margin: 0px auto;
+	border: 2px solid black;
+	box-shadow: 5px 5px 5px Black;
 }
 
 .marker {
@@ -774,5 +781,10 @@ STARTING AT MAIN - GRADMAP.HTML
 @media screen and (max-width: 560px) {
 	.mapboxgl-ctrl-geocoder--input {
 		display: none;
+	}
+
+	#map {
+		height: 82vh;
+		margin-bottom: 10px;
 	}
 }
