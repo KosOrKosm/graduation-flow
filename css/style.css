@@ -116,6 +116,7 @@ a {
 }
 
 @media (hover: hover) {
+
 	.link-animation-1:hover::after,
 	.link-animation-1:focus::after {
 		transform: scale(1);
@@ -137,34 +138,41 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 ********************************/
 
 /* Header */
-.header {
-	position: static;
-	top: 0;
-	width: 100%;
+header {
 	font-family: 'righteous', sans-serif;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: clamp(30px, 6vh, 60px);
 }
 
 /* Header Logos */
-.home-logo,
+.home-logo {
+	padding-left: 10px;
+}
+
 .hamb-logo {
-	display: inline-block;
-	color: black;
-	font-size: 45px;
-	padding: 10px;
-	margin-left: 10px;
+	padding-right: 10px;
 	cursor: pointer;
 }
 
-.hamb-logo {
-	margin-right: 10px;
-	float: right;
+@media (hover: hover) {
+
+	.header a:hover,
+	label.hamb-logo:hover {
+		background-color: transparent;
+		color: white;
+		text-shadow: 0 0 5px black;
+	}
 }
 
 /* Nav menu */
-.nav {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
+.menu {
+	display: flex;
+	gap: 50px;
+	justify-content: space-around;
+	padding-right: 10px;
 }
 
 .menu li {
@@ -212,6 +220,7 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 }
 
 @media (hover: hover) {
+
 	.mobile-overlay a:hover,
 	.overlay a:focus {
 		color: #f1f1f1;
@@ -243,54 +252,16 @@ wraps around <header(s)>, <page-specific-main>, [<etc>], and <footer> for all pa
 
 /*code above is targeting all sizes in a mobile first design approach */
 /* Responsiveness targeting only BIGGER screens*/
-@media (min-width: 768px) {
-	.nav {
-		max-height: none;
-		top: 0;
-		position: relative;
-		float: right;
-		width: fit-content;
-		background-color: transparent;
-	}
-
+@media (min-width: 550px) {
 	.menu li {
-		float: left;
-		font-size: large;
-		display: block;
+		display: flex;
+		flex-direction: row;
 	}
 
-	@media (hover: hover) {
-		.menu a:hover {
-			background-color: transparent;
-			color: gray;
-		}
-	}
 
 	.hamb-logo {
 		display: none;
 	}
-
-	.header {
-		background-color: transparent;
-		margin-bottom: 5px;
-
-	}
-
-	.home-logo {
-		color: black;
-		padding: 3px;
-
-	}
-
-	.menu a {
-		display: block;
-		color: black;
-		padding-top: 25px;
-		padding-right: 30px;
-		padding-bottom: 0px;
-		padding-left: 30px;
-	}
-
 }
 
 /********************************
@@ -409,28 +380,40 @@ STARTING AT MAIN - INDEX.HTML
 /********************************
 STARTING AT MAIN- GRADFLOW.HTML
 ********************************/
-#body-gradflow {
-	overflow: hidden;
+#body-gradflow::-webkit-scrollbar {
+	width: 0px;
+	height: 0px;
+	background: transparent;
+	/* make scrollbar transparent */
 }
 
 /* Add a black background color to the top navigation */
 .gradflow-header {
 	background-color: #333;
-	overflow: hidden;
+	overflow: auto;
+	white-space: nowrap;
+	display: flex;
+	justify-content: space-between;
 }
 
-/* Style the links inside the navigation bar */
 .gradflow-header a {
-	float: left;
+	display: inline-block;
 	color: #f2f2f2;
 	text-align: center;
-	padding: 14px 16px;
+	padding: 14px;
 	text-decoration: none;
-	font-size: 17px;
 	width: 100px;
 }
 
+div.gradflow-header::-webkit-scrollbar {
+	width: 0px;
+	height: 0px;
+	background: transparent;
+	/* make scrollbar transparent */
+}
+
 @media (hover: hover) {
+
 	/* Change the color of links on hover */
 	.gradflow-header a:hover {
 		background-color: #ddd;
@@ -444,8 +427,12 @@ STARTING AT MAIN- GRADFLOW.HTML
 	color: white;
 }
 
+.gradflow-header-left {
+	display: flex;
+}
+
 .gradflow-header-right {
-	float: right;
+	display: flex;
 }
 
 @media (hover: hover) {
@@ -714,32 +701,23 @@ STARTING AT MAIN - GRADMAP.HTML
 			FOOTER
 ********************************/
 .page-footer {
+	font-family: 'righteous', sans-serif;
 	display: flex;
-	flex-direction: column-reverse;
-	flex-grow: 0;
-	padding: 0px 10px 5px 10px;
-	color: black;
 	z-index: 2;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	height: clamp(30px, 5vh, 60px);
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
-.page-footer ul {
-	display: flex;
-}
-
-.page-footer .logo {
-	width: 40px;
-	height: auto;
-}
-
-@media screen and (min-width: 550px) {
-	.page-footer {
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.page-footer ul {
-		margin-bottom: 0;
+@media (hover: hover) {
+	footer a:hover {
+		background-color: transparent;
+		color: white;
+		text-shadow: 0 0 5px black;
 	}
 }
 
