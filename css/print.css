@@ -1,0 +1,29 @@
+@media print {
+
+    header,
+    .gradflow-header,
+    footer,
+    .page-footer,
+    nav,
+    #mobile-footer {
+        display: none;
+    }
+
+    @page {
+        /*allows the user to choose between portrait and landscape */
+        /* size: auto; */
+
+        /*automatically set to Landscape only for now*/
+        size: landscape;
+
+        margin: 0mm;
+    }
+}
+
+@media print and (orientation: landscape) {
+    /* landscape styles */
+}
+
+@media print and (orientation: portrait) {
+    /* portrait styles */
+}

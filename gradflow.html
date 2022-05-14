@@ -1,300 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <title>GradFlow</title>
-      <link rel="icon" href="img/logo.png">
-      <meta charset="UTF-8">
-      <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+   <title>GradFlow</title>
+   <link rel="icon" href="img/logo.png">
+   <meta charset="UTF-8">
+   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
          <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-      <link rel="stylesheet" href="./css/style.css">
-      <link rel="stylesheet" href="./css/popup.css">
-      <link rel="stylesheet" href="./css/dropdown.css">
-      <script src="./js/nav.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
-      <script src="https://kit.fontawesome.com/961d2be7f5.js" crossorigin="anonymous"></script>
-      <script src="./js/helpers.js"></script>
-      <script src="./js/popup-manager.js"></script>
-      <script src="./js/nodes.js"></script>
-      <script src="./js/handlers.js"></script>
-      <script src="./js/generic-canvas.js"></script>
-      <script src="./js/node-list.js"></script>
-      <script src="./js/dropdown.js"></script>
-      <script src="./js/scrollbar.js"></script>
-   </head>
-   <body onload="document.body.style.opacity='1'">
-      <div class="page-wrapper">
-         <!--PAGE HEADERS-->
-         <!--PAGE HEADER FOR DESKTOP-->
-         <header class="header">
-            <!-- Logo -->
-            <a href="./index.html" class="home-logo"><i class="fa-solid fa-house fa-xs"></i></a>
-            <!-- Hamburger icon (Hidden on Desktop) -->
-            <input onclick="openNav()" class="side-menu" type="checkbox" id="side-menu" />
-            <label class="hamb-logo" for="side-menu"><i class="fa-solid fa-bars fa-xs"></i></label>
-            <!-- Nav Menu -->
-            <nav class="nav">
-               <ul class="menu">
-                  <li><a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
+   <link rel="stylesheet" href="./css/style.css">
+   <link rel="stylesheet" href="./css/popup.css">
+   <link rel="stylesheet" href="./css/dropdown.css">
+   <link rel="stylesheet" href="./css/print.css" type="text/css" media="print">
+   <script src="./js/nav.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+   <script src="https://kit.fontawesome.com/961d2be7f5.js" crossorigin="anonymous"></script>
+   <script src="./js/helpers.js"></script>
+   <script src="./js/popup-manager.js"></script>
+   <script src="./js/nodes.js"></script>
+   <script src="./js/handlers.js"></script>
+   <script src="./js/generic-canvas.js"></script>
+   <script src="./js/node-list.js"></script>
+   <script src="./js/dropdown.js"></script>
+   <script src="./js/scrollbar.js"></script>
+</head>
+<body onload="document.body.style.opacity='1'">
+   <div class="page-wrapper">
+      <!--PAGE HEADERS-->
+      <!--PAGE HEADER FOR DESKTOP-->
+      <header class="header">
+         <!-- Logo -->
+         <a href="./index.html" class="home-logo"><i class="fa-solid fa-house fa-xs"></i></a>
+         <!-- Hamburger icon (Hidden on Desktop) -->
+         <input onclick="openNav()" class="side-menu" type="checkbox" id="side-menu" />
+         <label class="hamb-logo" for="side-menu"><i class="fa-solid fa-bars fa-xs"></i></label>
+         <!-- Nav Menu -->
+         <nav class="nav">
+            <ul class="menu">
+               <li><a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
                      GRADFLOW</a>
-                  </li>
-                  <li><a href="./gradmap.html"><i class="fa-solid fa-map"></i> GRADMAP </a></li>
-                  <li><a href="./about.html"><i class="fa-solid fa-people-group"></i> ABOUT</a>
-                  </li>
-               </ul>
-            </nav>
-         </header>
-         <!--PAGE HEADER FOR MOBILE-->
-         <div id="myNav" class="mobile-overlay">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <div class="mobile-overlay-content">
-               <a href="./index.html"><i class="fa-solid fa-house"></i> HOME</a>
-               <a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
-               GRADFLOW</a>
-               <a href="./gradmap.html"><i class="fa-solid fa-map"></i> GRADMAP</a>
-               <a href="./about.html"><i class="fa-solid fa-people-group"></i> ABOUT</a>
-            </div>
-         </div>
-         <!--GRADFLOW MENU HEADER-->
-         <div class="gradflow-header">
-            <a href="javascript:void(0)" onclick="onClickDropdown('saveDropdown')" class="dropbtn"
-               id="save-dropbtn">SAVE</a>
-            <a href="javascript:void(0)" onclick="onClickDropdown('loadDropdown')" class="dropbtn"
-               id="load-dropbtn">LOAD</a>
-            <a href="javascript:void(0)" onclick="onClickDropdown('exportDropdown')" class="dropbtn"
-               id="export-dropbtn">EXPORT</a>
-            <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
-            <div class="gradflow-header-right">
-               <a href="javascript:void(0)" id="btn-create"
-                  onclick="popupManager.showPopup('create-node-form');">CREATE</a>
-               <a href="javascript:void(0)" id="btn-import"
-                  onclick="popupManager.showPopup('import-node-form');">IMPORT</a>
-               <a href="javascript:void(0)" id="btn-reset" onclick="mainCanvas.askToReset()">RESET</a>
-            </div>
-         </div>
-         <!--GRADFLOW PAGE MAIN-->
-         <main class="gradflow-main" id="canvas-region">
-            <!--popups-->
-            <!-- *************************************************************************************************-->
-            <!-- Create Custom Node Popup-->
-            <div class="overlay" id="create-node-form-over">
-               <div class="form-popup create-node-form" id="create-node-form">
-                  <form class="form-container" id="create-node-form-body" onsubmit="return false;">
-                     <div class="close-button-container">
-                        <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
-                           class="fa-solid fa-xmark"></i></button>
-                     </div>
-                     <h1 class="form-title">CREATE COURSE</h1>
-                     <ol class="form-input-wrapper">
-                        <ol class="form-input-item">
-                           <label for="c-prefixnum"><b>Prefix Number</b></label>
-                           <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create"
-                              pattern="^([A-Za-z]{3,4}\s?)?[0-9]{3}([A-Za-z])?$"
-                              title="optional 3-4 letters + optional space, 3 digits, optional letter. ex: ABCD 123A"
-                              required>
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-name"><b>Course Name</b></label>
-                           <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create"
-                              maxlength="100">
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-units"><b>Units</b></label>
-                           <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-create"
-                              pattern="(^[0-9]{1}[0-2]?$)|^$" title="A number between 0 and 12, or no input">
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-preReq"><b>Prereqs</b></label>
-                           <input type="text" placeholder="Enter Prerequisite(s)" name="c-preReq" id="c-prereq-create"
-                              maxlength="250">
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-major"><b>Major</b></label>
-                           <input type="text" placeholder="Enter Major" name="c-major" id="c-major-create" maxlength="100">
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-description"><b>Description</b></label>
-                           <input type="text" placeholder="Enter Description" name="c-description"
-                              id="c-description-create" maxlength="1000">
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-color"><b>Tab Color</b></label>
-                           <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
-                        </ol>
-                     </ol>
-                     <div class="buttons-container">
-                        <button id="btn-create-popup" type="submit" class="btn btn-create-custom"
-                           onclick="onClickCreateCustomNode()"><i
-                           class="fa-solid fa-circle-arrow-down fa-2xl"></i></button>
-                     </div>
-                  </form>
-               </div>
-            </div>
-            <!-- *************************************************************************************************-->
-            <!-- Create View Node Popup-->
-            <div class="overlay" id="view-node-form-over">
-               <div class="view-popup view-node-form" id="view-node-form">
-                  <div class="form-container" id="view-node-body">
-                     <div class="close-button-container">
-                        <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
-                           class="fa-solid fa-xmark"></i></button>
-                     </div>
-                     <div class="view-data-container">
-                        <h1 class="form-title" id="viewPrefixNumber"></h1>
-                        <h2 class="view-subtitle">
-                           <span id="viewClassName"></span><span id="viewClassUnit"></span>
-                        </h2>
-                        <div class="view-item prereq">
-                           <h3 id="viewPrereqsLabel"></h3>
-                           <div id="viewPrereqs"></div>
-                        </div>
-                        <div class="view-item major">
-                           <h3 id="viewMajorLabel"></h3>
-                           <div id="viewClassMajor"></div>
-                        </div>
-                        <div class="view-item">
-                           <h3 id="viewDescLabel"></h3>
-                           <div id="viewClassDescription"></div>
-                        </div>
-                        <div class="buttons-container">
-                           <button id="btn-view" type="button" class="btn btn-create-modify"
-                              onclick="popupManager.hideLastPopup(); popupManager.showPopup('modify-node-form');"><i
-                              class="fa-solid fa-pen-to-square fa-xl"></i></button>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- *************************************************************************************************-->
-            <!-- Modify Node Popup -->
-            <div class="overlay" id="modify-node-form-over">
-               <div class="form-popup modify-node-form" id="modify-node-form">
-                  <form class="form-container" id="modify-node-form-body" onsubmit="return false;">
-                     <div class="close-button-container">
-                        <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
-                           class="fa-solid fa-xmark"></i></button>
-                     </div>
-                     <h1 class="form-title">MODIFY COURSE</h1>
-                     <ol class="form-input-wrapper">
-                        <ol class="form-input-item">
-                           <label for="c-prefixnum"><b>Prefix Number</b></label>
-                           <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-modify"
-                              pattern="^([A-Za-z]{3,4}\s?)?[0-9]{3}([A-Za-z])?$"
-                              title="optional 3-4 letters + optional space, 3 digits, optional letter. ex: ABCD 123A"
-                              required>
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-name"><b>Course Name</b></label>
-                           <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-modify"
-                              maxlength="100">
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-units"><b>Units</b></label>
-                           <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-modify"
-                              pattern="(^[0-9]{1}[0-2]?$)|^$" title="A number between 0 and 12, or no input">
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-preReq"><b>Prereqs</b></label>
-                           <input type="text" placeholder="Enter Prerequisite(s)" name="c-preReq" id="c-prereq-modify"
-                              maxlength="250">
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-major"><b>Major</b></label>
-                           <input type="text" placeholder="Enter Major" name="c-major" id="c-major-modify" maxlength="100">
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-description"><b>Description</b></label>
-                           <input type="text" name="c-description" id="c-description-modify"
-                              placeholder="Enter Description" maxlength="1000">
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-color"><b>Tab Color</b></label>
-                           <input type="color" name="c-color" id="c-color-modify" value="#f6b73c">
-                        </ol>
-                     </ol>
-                     <div class="buttons-container">
-                        <button id="btn-create-custom" type="submit" class="btn btn-create-custom"
-                           onclick="onClickModifyNode()"><i class="fa-solid fa-floppy-disk fa-xl"></i></button>
-                        <button id="btn-view" type="button" class="btn btn-view" onclick="viewNode()"><i
-                           class="fa-solid fa-eye fa-xl"></i></button>
-                        <button id="btn-delete" type="button" class="btn btn-delete"
-                           onclick="onClickDeleteSelectedNode()"><i class="fa-solid fa-trash fa-xl"></i></button>
-                     </div>
-                  </form>
-               </div>
-            </div>
-            <!-- *************************************************************************************************-->
-            <!-- Import Node Popup -->
-            <div class="overlay" id="import-node-form-over">
-               <div class="form-popup import-node-form" id="import-node-form">
-                  <form class="form-container" id="import-node-form-body">
-                     <div class="close-button-container">
-                        <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
-                           class="fa-solid fa-xmark"></i></button>
-                     </div>
-                     <h1 class="form-title">IMPORT COURSE</h1>
-                     <ol>
-                        <ol class="form-input-item">
-                           <label for="c-query"><b>Course Name</b></label>
-                           <input list="c-query" type="text" name="c-name" id="c-query-import">
-                        </ol>
-                        <ol id="form-mini-canvas-item">
-                           <div class="unselectable mini-canvas" id="mini-canvas">
-                              <div id="preview-scroll" class="unselectable custom-scrollbar">
-                                 <span id="preview-anchor" class="unselectable custom-scrollbar-anchor"></span>
-                              </div>
-                              <script src="./js/preview-canvas.js"></script>
-                           </div>
-                        </ol>
-                        <ol class="form-input-item">
-                           <label for="c-color"><b>Tab Color</b></label>
-                           <input type="color" name="c-color" id="c-color-import" value="#f6b73c">
-                        </ol>
-                     </ol>
-                     <!-- Submit button-->
-                     <div class="buttons-container">
-                        <button id="btn-import-popup" type="button" class="btn btn-import-popup" onclick="nothing"><i
-                           class="fa-solid fa-file-arrow-down fa-2xl"></i></button>
-                     </div>
-                  </form>
-               </div>
-            </div>
-            <!--DROPDOWNS -->
-            <div class="dropdown-container">
-               <div class="dropdown">
-                  <div class="dropdown-content" id="saveDropdown">
-                     <a href="javascript:void(0)" onclick="onClickSaveFile()">file</a>
-                     <a href="javascript:void(0)" onClick="onClickSaveBrowser()">browser</a>
-                  </div>
-               </div>
-            </div>
-            <div class="dropdown-container">
-               <div class="dropdown">
-                  <div class="dropdown-content" id="loadDropdown">
-                     <a href="javascript:void(0)" onclick="onClickLoadFile()">file</a>
-                     <a href="javascript:void(0)" onClick="onClickLoadBrowser()">browser</a>
-                  </div>
-               </div>
-            </div>
-            <div class="dropdown-container">
-               <div class="dropdown">
-                  <div class="dropdown-content" id="exportDropdown">
-                     <a href="javascript:void(0)" onclick="ExportPNG()">png</a>
-                     <a href="javascript:void(0)" onclick="ExportJPEG()">jpeg</a>
-                  </div>
-               </div>
-            </div>
-            <!--MAIN CANVAS-->
-            <div class="unselectable" id="canvas-container">
-               <script src="./js/main-canvas.js"></script>
-            </div>
-         </main>
-         <!--PAGE FOOTER-->
-         <footer class="page-footer" id="mobile-footer">
-            <p>GradFlow © | 2022</p>
-            <ul>
-               <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><i class="fa-brands fa-github fa-2xl"></i></a></li>
+               </li>
+               <li><a href="./gradmap.html"><i class="fa-solid fa-map"></i> GRADMAP </a></li>
+               <li><a href="./about.html"><i class="fa-solid fa-people-group"></i> ABOUT</a>
+               </li>
             </ul>
-         </footer>
+         </nav>
+      </header>
+      <!--PAGE HEADER FOR MOBILE-->
+      <div id="myNav" class="mobile-overlay">
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+         <div class="mobile-overlay-content">
+            <a href="./index.html"><i class="fa-solid fa-house"></i> HOME</a>
+            <a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
+               GRADFLOW</a>
+            <a href="./gradmap.html"><i class="fa-solid fa-map"></i> GRADMAP</a>
+            <a href="./about.html"><i class="fa-solid fa-people-group"></i> ABOUT</a>
+         </div>
       </div>
-   </body>
+      <!--GRADFLOW MENU HEADER-->
+      <div class="gradflow-header">
+         <a href="javascript:void(0)" onclick="onClickDropdown('saveDropdown')" class="dropbtn"
+            id="save-dropbtn">SAVE</a>
+         <a href="javascript:void(0)" onclick="onClickDropdown('loadDropdown')" class="dropbtn"
+            id="load-dropbtn">LOAD</a>
+         <a href="javascript:void(0)" onclick="onClickDropdown('exportDropdown')" class="dropbtn"
+            id="export-dropbtn">EXPORT</a>
+         <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
+         <div class="gradflow-header-right">
+            <a href="javascript:void(0)" id="btn-create"
+               onclick="popupManager.showPopup('create-node-form');">CREATE</a>
+            <a href="javascript:void(0)" id="btn-import"
+               onclick="popupManager.showPopup('import-node-form');">IMPORT</a>
+            <a href="javascript:void(0)" id="btn-reset" onclick="mainCanvas.askToReset()">RESET</a>
+         </div>
+      </div>
+      <!--GRADFLOW PAGE MAIN-->
+      <main class="gradflow-main" id="canvas-region">
+         <!--popups-->
+         <!-- *************************************************************************************************-->
+         <!-- Create Custom Node Popup-->
+         <div class="overlay" id="create-node-form-over">
+            <div class="form-popup create-node-form" id="create-node-form">
+               <form class="form-container" id="create-node-form-body" onsubmit="return false;">
+                  <div class="close-button-container">
+                     <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
+                           class="fa-solid fa-xmark"></i></button>
+                  </div>
+                  <h1 class="form-title">CREATE COURSE</h1>
+                  <ol class="form-input-wrapper">
+                     <ol class="form-input-item">
+                        <label for="c-prefixnum"><b>Prefix Number</b></label>
+                        <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-create"
+                           pattern="^([A-Za-z]{3,4}\s?)?[0-9]{3}([A-Za-z])?$"
+                           title="optional 3-4 letters + optional space, 3 digits, optional letter. ex: ABCD 123A"
+                           required>
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-name"><b>Course Name</b></label>
+                        <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-create"
+                           maxlength="100">
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-units"><b>Units</b></label>
+                        <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-create"
+                           pattern="(^[0-9]{1}[0-2]?$)|^$" title="A number between 0 and 12, or no input">
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-preReq"><b>Prereqs</b></label>
+                        <input type="text" placeholder="Enter Prerequisite(s)" name="c-preReq" id="c-prereq-create"
+                           maxlength="250">
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-major"><b>Major</b></label>
+                        <input type="text" placeholder="Enter Major" name="c-major" id="c-major-create" maxlength="100">
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-description"><b>Description</b></label>
+                        <input type="text" placeholder="Enter Description" name="c-description"
+                           id="c-description-create" maxlength="1000">
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-color"><b>Tab Color</b></label>
+                        <input type="color" name="c-color" id="c-color-create" value="#f6b73c">
+                     </ol>
+                  </ol>
+                  <div class="buttons-container">
+                     <button id="btn-create-popup" type="submit" class="btn btn-create-custom"
+                        onclick="onClickCreateCustomNode()"><i
+                           class="fa-solid fa-circle-arrow-down fa-2xl"></i></button>
+                  </div>
+               </form>
+            </div>
+         </div>
+         <!-- *************************************************************************************************-->
+         <!-- Create View Node Popup-->
+         <div class="overlay" id="view-node-form-over">
+            <div class="view-popup view-node-form" id="view-node-form">
+               <div class="form-container" id="view-node-body">
+                  <div class="close-button-container">
+                     <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
+                           class="fa-solid fa-xmark"></i></button>
+                  </div>
+                  <div class="view-data-container">
+                     <h1 class="form-title" id="viewPrefixNumber"></h1>
+                     <h2 class="view-subtitle">
+                        <span id="viewClassName"></span><span id="viewClassUnit"></span>
+                     </h2>
+                     <div class="view-item prereq">
+                        <h3 id="viewPrereqsLabel"></h3>
+                        <div id="viewPrereqs"></div>
+                     </div>
+                     <div class="view-item major">
+                        <h3 id="viewMajorLabel"></h3>
+                        <div id="viewClassMajor"></div>
+                     </div>
+                     <div class="view-item">
+                        <h3 id="viewDescLabel"></h3>
+                        <div id="viewClassDescription"></div>
+                     </div>
+                     <div class="buttons-container">
+                        <button id="btn-view" type="button" class="btn btn-create-modify"
+                           onclick="popupManager.hideLastPopup(); popupManager.showPopup('modify-node-form');"><i
+                              class="fa-solid fa-pen-to-square fa-xl"></i></button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- *************************************************************************************************-->
+         <!-- Modify Node Popup -->
+         <div class="overlay" id="modify-node-form-over">
+            <div class="form-popup modify-node-form" id="modify-node-form">
+               <form class="form-container" id="modify-node-form-body" onsubmit="return false;">
+                  <div class="close-button-container">
+                     <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
+                           class="fa-solid fa-xmark"></i></button>
+                  </div>
+                  <h1 class="form-title">MODIFY COURSE</h1>
+                  <ol class="form-input-wrapper">
+                     <ol class="form-input-item">
+                        <label for="c-prefixnum"><b>Prefix Number</b></label>
+                        <input type="text" placeholder="Enter Prefix Number" name="c-prefixnum" id="c-prefixnum-modify"
+                           pattern="^([A-Za-z]{3,4}\s?)?[0-9]{3}([A-Za-z])?$"
+                           title="optional 3-4 letters + optional space, 3 digits, optional letter. ex: ABCD 123A"
+                           required>
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-name"><b>Course Name</b></label>
+                        <input type="text" placeholder="Enter Course Name" name="c-name" id="c-name-modify"
+                           maxlength="100">
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-units"><b>Units</b></label>
+                        <input type="text" placeholder="Enter Units" name="c-unit" id="c-unit-modify"
+                           pattern="(^[0-9]{1}[0-2]?$)|^$" title="A number between 0 and 12, or no input">
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-preReq"><b>Prereqs</b></label>
+                        <input type="text" placeholder="Enter Prerequisite(s)" name="c-preReq" id="c-prereq-modify"
+                           maxlength="250">
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-major"><b>Major</b></label>
+                        <input type="text" placeholder="Enter Major" name="c-major" id="c-major-modify" maxlength="100">
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-description"><b>Description</b></label>
+                        <input type="text" name="c-description" id="c-description-modify"
+                           placeholder="Enter Description" maxlength="1000">
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-color"><b>Tab Color</b></label>
+                        <input type="color" name="c-color" id="c-color-modify" value="#f6b73c">
+                     </ol>
+                  </ol>
+                  <div class="buttons-container">
+                     <button id="btn-create-custom" type="submit" class="btn btn-create-custom"
+                        onclick="onClickModifyNode()"><i class="fa-solid fa-floppy-disk fa-xl"></i></button>
+                     <button id="btn-view" type="button" class="btn btn-view" onclick="viewNode()"><i
+                           class="fa-solid fa-eye fa-xl"></i></button>
+                     <button id="btn-delete" type="button" class="btn btn-delete"
+                        onclick="onClickDeleteSelectedNode()"><i class="fa-solid fa-trash fa-xl"></i></button>
+                  </div>
+               </form>
+            </div>
+         </div>
+         <!-- *************************************************************************************************-->
+         <!-- Import Node Popup -->
+         <div class="overlay" id="import-node-form-over">
+            <div class="form-popup import-node-form" id="import-node-form">
+               <form class="form-container" id="import-node-form-body">
+                  <div class="close-button-container">
+                     <button type="button" class="close-button" onclick="popupManager.hideLastPopup();"><i
+                           class="fa-solid fa-xmark"></i></button>
+                  </div>
+                  <h1 class="form-title">IMPORT COURSE</h1>
+                  <ol>
+                     <ol class="form-input-item">
+                        <label for="c-query"><b>Course Name</b></label>
+                        <input list="c-query" type="text" name="c-name" id="c-query-import">
+                     </ol>
+                     <ol id="form-mini-canvas-item">
+                        <div class="unselectable mini-canvas" id="mini-canvas">
+                           <div id="preview-scroll" class="unselectable custom-scrollbar">
+                              <span id="preview-anchor" class="unselectable custom-scrollbar-anchor"></span>
+                           </div>
+                           <script src="./js/preview-canvas.js"></script>
+                        </div>
+                     </ol>
+                     <ol class="form-input-item">
+                        <label for="c-color"><b>Tab Color</b></label>
+                        <input type="color" name="c-color" id="c-color-import" value="#f6b73c">
+                     </ol>
+                  </ol>
+                  <!-- Submit button-->
+                  <div class="buttons-container">
+                     <button id="btn-import-popup" type="button" class="btn btn-import-popup" onclick="nothing"><i
+                           class="fa-solid fa-file-arrow-down fa-2xl"></i></button>
+                  </div>
+               </form>
+            </div>
+         </div>
+         <!--DROPDOWNS -->
+         <div class="dropdown-container">
+            <div class="dropdown">
+               <div class="dropdown-content" id="saveDropdown">
+                  <a href="javascript:void(0)" onclick="onClickSaveFile()">file</a>
+                  <a href="javascript:void(0)" onClick="onClickSaveBrowser()">browser</a>
+               </div>
+            </div>
+         </div>
+         <div class="dropdown-container">
+            <div class="dropdown">
+               <div class="dropdown-content" id="loadDropdown">
+                  <a href="javascript:void(0)" onclick="onClickLoadFile()">file</a>
+                  <a href="javascript:void(0)" onClick="onClickLoadBrowser()">browser</a>
+               </div>
+            </div>
+         </div>
+         <div class="dropdown-container">
+            <div class="dropdown">
+               <div class="dropdown-content" id="exportDropdown">
+                  <a href="javascript:void(0)" onclick="ExportPNG()">png</a>
+                  <a href="javascript:void(0)" onclick="ExportJPEG()">jpeg</a>
+               </div>
+            </div>
+         </div>
+         <!--MAIN CANVAS-->
+         <div class="unselectable" id="canvas-container">
+            <script src="./js/main-canvas.js"></script>
+         </div>
+      </main>
+      <!--PAGE FOOTER-->
+      <footer class="page-footer" id="mobile-footer">
+         <p>GradFlow © | 2022</p>
+         <ul>
+            <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><i class="fa-brands fa-github fa-2xl"></i></a></li>
+         </ul>
+      </footer>
+   </div>
+</body>
 </html>
