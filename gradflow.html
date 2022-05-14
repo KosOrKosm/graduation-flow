@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <title>GradFlow</title>
    <link rel="icon" href="img/logo.png">
    <meta charset="UTF-8">
-   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="./css/style.css">
    <link rel="stylesheet" href="./css/popup.css">
    <link rel="stylesheet" href="./css/dropdown.css">
@@ -22,27 +23,28 @@
    <script src="./js/dropdown.js"></script>
    <script src="./js/scrollbar.js"></script>
 </head>
+
 <body onload="document.body.style.opacity='1'" id="body-gradflow">
    <div class="page-wrapper">
       <!--PAGE HEADERS-->
       <!--PAGE HEADER FOR DESKTOP-->
       <header class="header">
          <!-- Logo -->
-         <a href="./index.html" class="home-logo"><i class="fa-solid fa-house fa-xs"></i></a>
-         <!-- Hamburger icon (Hidden on Desktop) -->
-         <input onclick="openNav()" class="side-menu" type="checkbox" id="side-menu" />
-         <label class="hamb-logo" for="side-menu"><i class="fa-solid fa-bars fa-xs"></i></label>
+         <a href="./index.html" class="home-logo"><i class="fa-solid fa-house fa-2xl"></i></a>
          <!-- Nav Menu -->
          <nav class="nav">
             <ul class="menu">
-               <li><a href="./gradflow.html"><i class="fa-solid fa-diagram-project"></i>
+               <li><a href="./gradflow.html"><i class="fa-solid fa-diagram-project fa-2xl"></i>
                      GRADFLOW</a>
                </li>
-               <li><a href="./gradmap.html"><i class="fa-solid fa-map"></i> GRADMAP </a></li>
-               <li><a href="./about.html"><i class="fa-solid fa-people-group"></i> ABOUT</a>
+               <li><a href="./gradmap.html"><i class="fa-solid fa-map fa-2xl"></i> GRADMAP </a></li>
+               <li><a href="./about.html"><i class="fa-solid fa-people-group fa-2xl"></i> ABOUT</a>
                </li>
             </ul>
          </nav>
+         <!-- Hamburger icon (Hidden on Desktop) -->
+         <input onclick="openNav()" class="side-menu" type="checkbox" id="side-menu" />
+         <label class="hamb-logo" for="side-menu"><i class="fa-solid fa-bars fa-2xl"></i></label>
       </header>
       <!--PAGE HEADER FOR MOBILE-->
       <div id="myNav" class="mobile-overlay">
@@ -57,20 +59,22 @@
       </div>
       <!--GRADFLOW MENU HEADER-->
       <div class="gradflow-header">
-         <a href="javascript:void(0)" onclick="onClickDropdown('saveDropdown')" class="dropbtn"
-            id="save-dropbtn">SAVE</a>
-         <a href="javascript:void(0)" onclick="onClickDropdown('loadDropdown')" class="dropbtn"
-            id="load-dropbtn">LOAD</a>
-         <a href="javascript:void(0)" onclick="onClickDropdown('exportDropdown')" class="dropbtn"
-            id="export-dropbtn">EXPORT</a>
-         <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
-         <div class="gradflow-header-right">
+         <span class="gradflow-header-left">
+            <a href="javascript:void(0)" onclick="onClickDropdown('saveDropdown')" class="dropbtn"
+               id="save-dropbtn">SAVE</a>
+            <a href="javascript:void(0)" onclick="onClickDropdown('loadDropdown')" class="dropbtn"
+               id="load-dropbtn">LOAD</a>
+            <a href="javascript:void(0)" onclick="onClickDropdown('exportDropdown')" class="dropbtn"
+               id="export-dropbtn">EXPORT</a>
+            <a href="javascript:void(0)" onclick="window.print()">PRINT</a>
+         </span>
+         <span class="gradflow-header-right">
             <a href="javascript:void(0)" id="btn-create"
                onclick="popupManager.showPopup('create-node-form');">CREATE</a>
             <a href="javascript:void(0)" id="btn-import"
                onclick="popupManager.showPopup('import-node-form');">IMPORT</a>
             <a href="javascript:void(0)" id="btn-reset" onclick="mainCanvas.askToReset()">RESET</a>
-         </div>
+         </span>
       </div>
       <!--GRADFLOW PAGE MAIN-->
       <main class="gradflow-main" id="canvas-region">
@@ -293,9 +297,11 @@
       <footer class="page-footer" id="mobile-footer">
          <p>GradFlow © | 2022</p>
          <ul>
-            <li><a class="link-animation-1" href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><i class="fa-brands fa-github fa-2xl"></i></a></li>
+            <li><a href="https://github.com/KosOrKosm/graduation-flow.git" target="blank"><i
+                     class="fa-brands fa-github fa-2xl"></i></a></li>
          </ul>
       </footer>
    </div>
 </body>
+
 </html>
