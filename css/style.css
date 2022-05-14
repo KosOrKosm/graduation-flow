@@ -63,7 +63,6 @@ body {
 	background-repeat: no-repeat;
 	opacity: 0;
 	transition: opacity .8s;
-	overflow-x: hidden;
 }
 
 /* setting default fonts */
@@ -410,6 +409,10 @@ STARTING AT MAIN - INDEX.HTML
 /********************************
 STARTING AT MAIN- GRADFLOW.HTML
 ********************************/
+#body-gradflow {
+	overflow: hidden;
+}
+
 /* Add a black background color to the top navigation */
 .gradflow-header {
 	background-color: #333;
@@ -481,6 +484,7 @@ STARTING AT MAIN - ABOUT.HTML
 	align-items: center;
 	margin: 10px;
 	text-align: center;
+	overflow-x: hidden;
 }
 
 .about-main h1 {
@@ -763,6 +767,7 @@ STARTING AT MAIN - GRADMAP.HTML
 }
 
 #map {
+	min-height: 515px;
 	height: 74vh;
 	width: 95vw;
 	z-index: 0;

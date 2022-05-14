@@ -34,6 +34,7 @@
        p5.resizeCanvas(0, 0)
        p5.resizeCanvas(this.#parentDiv.offsetWidth, this.#parentDiv.offsetHeight - 4)
        this._canvas.style("width", "100%")
+       this._canvas.style("height", "auto")
     }
  
     setParentDiv(div) {

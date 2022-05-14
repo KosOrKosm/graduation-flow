@@ -10,20 +10,14 @@
     }
 
     @page {
-        /*allows the user to choose between portrait and landscape */
-        /* size: auto; */
-
-        /*automatically set to Landscape only for now*/
-        size: landscape;
-
         margin: 0mm;
     }
-}
 
-@media print and (orientation: landscape) {
-    /* landscape styles */
-}
-
-@media print and (orientation: portrait) {
-    /* portrait styles */
+    #canvas-region {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 }
