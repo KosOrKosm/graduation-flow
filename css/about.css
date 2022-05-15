@@ -1,0 +1,211 @@
+/********************************
+STARTING AT MAIN - ABOUT.HTML
+********************************/
+.about-main {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	justify-content: space-evenly;
+	padding: clamp(.5rem, 2vw, 2.5rem);
+	align-items: center;
+	margin: 10px;
+	text-align: center;
+	overflow-x: hidden;
+}
+
+.about-main h1 {
+	font-size: clamp(2.5rem, 5vw, 5.5rem);
+}
+
+.about-main h2 {
+	margin-top: 10px;
+	font-size: clamp(2rem, 3.5vw, 4.5rem);
+}
+
+.about-main p {
+	font-size: clamp(1rem, 1.5vw, 3.5rem);
+
+}
+
+.about-card-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 30px;
+}
+
+.person-card {
+	text-align: center;
+	margin: 10px;
+	width: clamp(22rem, 25vw, 37rem);
+	height: auto;
+	padding: 10px;
+}
+
+.person-card h3 {
+	font-size: clamp(1.5rem, 2vw, 3rem);
+}
+
+.person-card p {
+	font-size: clamp(1rem, 1vw, 3.5rem);
+}
+
+.person-card .avatar {
+	width: 100px;
+	height: auto;
+	align-self: center;
+	border-radius: 50%;
+	border: 3px solid black;
+}
+
+@media (hover: hover) {
+	.person-card .avatar:hover {
+		box-shadow: 0px 0px 10px 5px;
+	}
+
+	.person-card .avatar.alfredo:hover {
+		color: rgb(225, 180, 143);
+		border-color: rgb(225, 180, 143);
+	}
+
+	.person-card .avatar.andrew:hover {
+		color: rgb(117, 221, 143);
+		border-color: rgb(117, 221, 143);
+	}
+
+	.person-card .avatar.anthony:hover {
+		color: rgb(147, 116, 217);
+		border-color: rgb(147, 116, 217);
+	}
+
+	.person-card .avatar.daisy:hover {
+		color: rgb(147, 116, 217);
+		border-color: rgb(147, 116, 217);
+	}
+
+	.person-card .avatar.jacob:hover {
+		color: rgb(225, 122, 197);
+		border-color: rgb(225, 122, 197);
+	}
+
+	.person-card .avatar.brandon:hover {
+		color: rgb(166, 219, 120);
+		border-color: rgb(166, 219, 120);
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	.about-title {
+		animation-duration: 3s;
+		animation-name: slidein;
+		overflow: hidden;
+	}
+
+	@keyframes slidein {
+		from {
+			margin-left: 100%;
+			width: 300%;
+		}
+
+		to {
+			margin-left: 0%;
+			width: 100%;
+		}
+	}
+
+
+	.about-desc1 {
+		animation: fadeIn ease 7s;
+		-webkit-animation: fadeIn ease 7s;
+		-moz-animation: fadeIn ease 7s;
+		-o-animation: fadeIn ease 7s;
+		-ms-animation: fadeIn ease 7s;
+	}
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@-moz-keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@-webkit-keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@-o-keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@-ms-keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	.about-desc2 {
+		animation-duration: 4s;
+		animation-name: slideinRight;
+		overflow: hidden;
+	}
+
+	@keyframes slideinRight {
+		from {
+			margin-right: 100%;
+			width: 300%;
+		}
+
+		to {
+			margin-right: 0%;
+			width: 100%;
+		}
+	}
+
+	.about-desc3 {
+		animation-duration: 4s;
+		animation-name: slideinBottom;
+		overflow: hidden;
+	}
+
+	@keyframes slideinBottom {
+		from {
+			margin-top: 100%;
+			width: 300%;
+		}
+
+		to {
+			margin-top: 0%;
+			width: 100%;
+		}
+	}
+}

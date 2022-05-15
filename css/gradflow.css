@@ -1,0 +1,83 @@
+/********************************
+STARTING AT MAIN- GRADFLOW.HTML
+********************************/
+#body-gradflow::-webkit-scrollbar {
+	width: 0px;
+	height: 0px;
+	background: transparent;
+	/* make scrollbar transparent */
+}
+
+/* Add a black background color to the top navigation */
+.gradflow-header {
+	background-color: #333;
+	overflow-x:scroll;
+	white-space: nowrap;
+	display: flex;
+	justify-content: space-between;
+}
+
+.gradflow-header a {
+	display: inline-block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 10px;
+	text-decoration: none;
+	width: 100px;
+}
+
+div.gradflow-header::-webkit-scrollbar {
+    width: 0px;
+	height: 6px;
+	background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+	background-repeat: no-repeat;
+	border-radius: 10px;
+	/* make scrollbar transparent */
+}
+
+@media (hover: hover) {
+
+	/* Change the color of links on hover */
+	.gradflow-header a:hover {
+		background-color: #ddd;
+		color: black;
+	}
+}
+
+/* Add a color to the active/current link */
+.gradflow-header a.active {
+	background-color: #04AA6D;
+	color: white;
+}
+
+.gradflow-header-left {
+	display: flex;
+}
+
+.gradflow-header-right {
+	display: flex;
+}
+
+@media (hover: hover) {
+	#btn-reset:hover {
+		background-color: rgb(118, 21, 21);
+		color: white;
+	}
+}
+
+.gradflow-main {
+	flex: 1 1 auto;
+}
+
+
+.unselectable {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.p5Canvas {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}

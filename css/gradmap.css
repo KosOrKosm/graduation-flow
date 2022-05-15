@@ -1,0 +1,105 @@
+/********************************
+STARTING AT MAIN - GRADMAP.HTML
+********************************/
+
+/* boilerplate css copied from about.html - feel free to modify! */
+.finder-main {
+	/*insert code here for GradMap css*/
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+.finder-main h1 {
+	font-size: clamp(2.5rem, 5vw, 5.5rem);
+}
+
+.finder-main h2 {
+	font-size: clamp(2rem, 3.5vw, 4.5rem);
+}
+
+.finder-main p {
+	font-size: clamp(1rem, 1.5vw, 3.5rem);
+}
+
+/* more map stuff */
+
+#flushy {
+	color: black;
+	text-shadow: 1px 2px 2px #36a8d7;
+}
+
+@media (hover: hover) {
+	#flushy:hover {
+		color: #36a8d7;
+		text-shadow: 1px 2px 2px black;
+	}
+}
+
+.finder-text {
+	margin-top: 15px;
+	padding: 0px 10px 0px 10px;
+}
+
+.finder-text .link-animation-1 {
+	display: inline-block;
+}
+
+#map {
+	min-height: 515px;
+	height: 74vh;
+	width: 95vw;
+	z-index: 0;
+	margin: 0px auto;
+	border: 2px solid black;
+	box-shadow: 5px 5px 5px Black;
+}
+
+.marker {
+	background-image: url('images/Flushy-Marker.png');
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.mapboxgl-popup {
+	max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+}
+
+#geocoder {
+	margin-bottom: 25px;
+	position: relative;
+	top: 10px;
+	left: 600px;
+	width: 600w;
+}
+
+.mapboxgl-ctrl-geocoder {
+	min-width: 100%;
+}
+
+/* temporarily hiding items that lacks correct layout placement. */
+.mapboxgl-ctrl-geocoder--icon.mapboxgl-ctrl-geocoder--icon-search {
+	display: none;
+}
+
+/* only hiding search box on mobile temporarily until fix is found.*/
+@media screen and (max-width: 560px) {
+	.mapboxgl-ctrl-geocoder--input {
+		display: none;
+	}
+
+	#map {
+		height: 82vh;
+		margin-bottom: 10px;
+	}
+}
