@@ -167,6 +167,7 @@
     askToReset() {
        if (window.confirm('Are you sure you want to reset the canvas?'))
           this.reset()
+          localStorage.clear()
     }
  
     #cancelPendingAutosave() {
